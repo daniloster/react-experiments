@@ -6,6 +6,7 @@ node_js:
 cache:
   yarn: true
 before_install:
+ - git checkout master
  - chmod +x ./.travis/*.sh
  - npm run tools
 install:
