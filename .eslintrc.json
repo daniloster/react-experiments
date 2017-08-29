@@ -1,0 +1,43 @@
+{
+  "root": true,
+  "extends": "airbnb",
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "complexity": [2, 10],
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true}]
+  },
+  "parser": "babel-eslint",
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "env": {
+    "es6": true,
+    "mocha": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "forOf": true,
+      "generators": true,
+      "globalReturn": true,
+      "jsx": true,
+      "modules": true,
+      "regexUFlag": true,
+      "regexYFlag": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "unicodeCodePointEscapes": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  }
+}

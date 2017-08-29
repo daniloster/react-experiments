@@ -1,0 +1,20 @@
+sudo: true
+language: node_js
+node_js:
+ - '8.0'
+ - '6.9.1'
+cache:
+  yarn: true
+before_install:
+ - chmod +x ./.travis/*.sh
+ - npm run tools
+install:
+ - yarn install
+ - npm run bootstrap
+script: npm run validate
+after_success: ./.travis/after_success.sh
+after_deploy:
+ - rm .npmrc
+branches:
+  only:
+   - master

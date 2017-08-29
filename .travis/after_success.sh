@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+# Validating if it is a PR
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+  echo "- We are in a pull request, not releasing"
+  exit 0
+fi
+
+# Checking if it is a master commit with release attribute
+if [[ $TRAVIS_BRANCH == 'master' ]]; then
+  echo '** Generating npm auth'
+  echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ./.npmrc
+  export TYPE_RELEASE="$(git log -1 --pretty=%B | grep release= | awk '{print $1}' | sed s/release=//)"
+  if [[ $TYPE_RELEASE == '[major]' ]]; then
+    echo '** Releasing MAJOR'
+    lerna publish --cd-version=major --message="[skip ci] [release]: %s"
+  elif [[ $TYPE_RELEASE == '[minor]' ]]; then
+    lerna publish --cd-version=minor --message="[skip ci] [release]: %s"
+  elif [[ $TYPE_RELEASE == '[patch]' ]]; then
+    lerna publish --cd-version=patch --message="[skip ci] [release]: %s"
+  fi
+fi

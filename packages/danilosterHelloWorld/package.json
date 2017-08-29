@@ -1,0 +1,58 @@
+{
+  "name": "daniloster-hellow-world",
+  "version": "0.0.1",
+  "description": "Project template for continuos integration (travis) for react components",
+  "main": "lib/index.js",
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "include": [
+      "src/**/*.js",
+      "src/*.js"
+    ],
+    "exclude": [
+      "test",
+      "build",
+      "dist",
+      "lib",
+      "mochawesome-reports"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+    "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
+    "test": "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+    "test:watch": "npm run test -- --watch",
+    "predev": "rm -rf dist && mkdir -p dist",
+    "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist",
+    "precompile": "rm -rf lib/ && mkdir -p lib",
+    "compile": "babel src --out-dir lib --copy-files --source-maps",
+    "bundle": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "build": "npm run compile && npm run bundle",
+    "prepublish": "npm run build",
+    "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
+    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
+  },
+  "peerDependencies": {
+    "react": "15.4.2",
+    "font-aw": "15.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "6.18.0",
+    "cross-env": "3.1.4",
+    "enzyme": "2.7.0",
+    "eslint": "3.19.0",
+    "mocha": "3.2.0",
+    "mochawesome": "2.0.2",
+    "nyc": "10.0.0",
+    "react-addons-test-utils": "15.4.2",
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.4.2"
+  }
+}
