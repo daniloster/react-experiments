@@ -1,21 +1,25 @@
 sudo: true
 language: node_js
 node_js:
- - '8.0'
- - '6.9.1'
+- '8.0'
+- 6.9.1
 cache:
   yarn: true
 before_install:
- - git checkout master
- - chmod +x ./.travis/*.sh
- - npm run tools
+- git checkout master
+- chmod +x ./.travis/*.sh
+- npm run tools
 install:
- - yarn install
- - npm run bootstrap
+- yarn install
+- npm run bootstrap
 script: npm run validate
 after_success: ./.travis/after_success.sh
 after_deploy:
- - rm .npmrc
+- rm .npmrc
 branches:
   only:
-   - master
+  - master
+env:
+  global:
+  - secure: eavncDbCSB8ovu3zF13oJlqHr5h2b+MOsrjm7rdb5iFuqdycL9vLo9LH5PYahqZsd7CRkNqGOobIABneO6zgYlbwAUN6JSbPC7yPJsP9u5gejIrs352vpdDYT/m3Uo3hQywUMCAgDMB1GboSfrpiNvtk1PIGSVLeoqKvZUuuzabt/qAuzRuJYJ8KweV7J4LGNojADeDo1V0FSlJRcjIPEtSS1wIetvZaGQ5lFZKJsJHtIT51zHy849LKCeqfTnUuzfrsoO3lQI2aS+EC9qCibhhe/zwMxAO2hZi2Tsb0+L4I8lM7B5sJFUlu0er8RJ0h7E5undhJUjMQioTdx25W2pb+F+Nm76Tan1OxVWY3APy4sLKEaTBY9XFHjbbDIUdmqcrpmAuEnoillZaTOnwpYPoAK0mfrQiaspgExcnddulPrfzFegliaBLsvWssSSSDSIXxLG81uURGbTcLvrTIV3OdRgqsPMioBnvGDEyzYxyIlg5zShuudJvgq6rAUOk/w6jJkDgQ9ijiyPZzps/X+fOxs5hOQgOE43tfIUwcJiW9I73P5+i3BAtDyJc72CHOdUJ2I2FHDc0YGVwWs2lHjROJxtuX7vDGwTniFtMWoX5lnIR8T7dMR0tyn4Nly2F6HLKXiHmsSpQNkZNhwXYi5LQJXZXylwVET4HMG2X6mHU=
+  - secure: B5MGhOzIAxjyHoieMcaUvtk8JgMlpxLw99xQaulq0qj9s1a0vqpPuck0tzE6lEfJMa/jJZswvQJJmOmQ7wZTuiyMauHjt5yzJpPBYX23oCIDF/HztNYL/XUZjZF+fz3xRUwn98NC5MVo1KWFyWQfB+AI4ujVe33/BU72IFYdMj1ZDUoXt85Q1jU25OEr/thjoXqGrek15Os2WCWhwxLnrfGNxyVGSysrdtfcyt+5na4ND5xXYhkoOAMq5uYlyHxAoc7lPUcbEMsfLfHY47RFcjMxpLBwasqfqzvmONTQUI+JBL3mbd+myi331yvsJiV/hjgPIU+5MrhO1kW3CDie7rd5Tz426nTBLgFvwl6SfB3r5KZavHkMM8ykfCpgJPf3+NL2l4SSPxaiOA0zQXfus0PpBNjEtEn6qSMvI8TCNyVroGBcG3ldL8af3q7y+9Tf3UyQFwASZOy33HQspoeWCpECh6/oFOlLNmZx9dtc9VmKHQuGqB1Mn4BLxI81fSbpsSKAJZcI7nYEbcHI6uSCImdzK4XnDbkkhMLC1Y3Hbboqm8tLBTa7hI5PBwUYCljpiUsM3RWLeABRCn8a7cIX4fZu8927lGvcDtZfm/nyL1R1fF4hMuXfV3oM9jjNQIMCT5WT1Km/04NpT56bnifm7I4J3UeZbSHlf8UVDt5ar9w=
