@@ -2,6 +2,5 @@ node_modules
 coverage
 mochawesome-reports
 *.log
-src
 **/*.spec.js
 DEV
