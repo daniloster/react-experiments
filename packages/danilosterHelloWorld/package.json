@@ -1,7 +1,7 @@
 {
   "name": "daniloster-hellow-world",
   "version": "0.0.1",
-  "description": "Project template for continuos integration (travis) for react components",
+  "description": "Project template for continuos integration (travis) for react components experiments",
   "main": "lib/index.js",
   "nyc": {
     "require": [
