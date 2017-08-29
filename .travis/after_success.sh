@@ -13,7 +13,7 @@ fi
 # Checking if it is a master commit with release attribute
 if [[ $TRAVIS_BRANCH == 'master' ]]; then
   echo '** Generating npm auth'
-  echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ./.npmrc
+  echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
   export TYPE_RELEASE="$(git log -1 --pretty=%B | grep release= | awk '{print $1}' | sed s/release=//)"
   if [[ $TYPE_RELEASE == '[major]' ]]; then
     echo '** Releasing MAJOR'
