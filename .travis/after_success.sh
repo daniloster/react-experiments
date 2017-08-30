@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+set -u
+
 # Validating if it is a PR
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   echo "- We are in a pull request, not releasing"
@@ -12,14 +13,16 @@ fi
 
 # Checking if it is a master commit with release attribute
 if [[ $TRAVIS_BRANCH == 'master' ]]; then
-  echo '** Generating npm auth'
-  echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-  git remote add gh-publish "https://$GIT_AUTH_TOKEN@github.com/daniloster/react-experiments.git"
-
+  echo '** Setting github user'
   git config --global user.email "daniloster@gmail.com"
   git config --global user.name "Danilo Castro"
+  git remote add gh-publish "https://${GIT_AUTH_TOKEN}@github.com/daniloster/react-experiments.git"
   git fetch gh-publish
-  git checkout --track -b master gh-publish/master
+  git checkout master
+  git rebase gh-publish/master
+
+  echo '** Generating npm auth'
+  echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> ~/.npmrc
 
   export TYPE_RELEASE="$(git log -1 --pretty=%B | grep release= | awk '{print $1}' | sed s/release=//)"
   if [[ $TYPE_RELEASE == '[major]' ]]; then

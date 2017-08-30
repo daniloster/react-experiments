@@ -1,7 +1,7 @@
 {
   "name": "daniloster-utils",
   "version": "0.0.1",
-  "description": "Utilities for react components experiments",
+  "description": "Utilities for react experiments",
   "main": "lib/index.js",
   "nyc": {
     "require": [
