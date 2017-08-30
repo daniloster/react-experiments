@@ -40,8 +40,8 @@
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },
   "peerDependencies": {
-    "react": "15.4.2",
-    "font-aw": "15.4.2"
+    "font-aw": "15.4.2",
+    "react": "15.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",

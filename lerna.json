@@ -2,5 +2,5 @@
   "lerna": "2.1.0",
   "hoist": true,
   "npmClient": "yarn",
-  "version": "0.0.0"
+  "version": "0.0.1"
 }
