@@ -4,10 +4,6 @@ set -u
 # Validating if it is a PR
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   echo "- We are in a pull request, not releasing"
-  export TYPE_RELEASE="$(git log -1 --pretty=%B | grep release= | awk '{print $1}' | sed s/release=//)"
-  if [[ $TYPE_RELEASE != '[major]' ]] && [[ $TYPE_RELEASE != '[minor]' ]] && [[ $TYPE_RELEASE != '[patch]' ]]; then
-    exit 1
-  fi
   exit 0
 fi
 
