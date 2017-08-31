@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import HelloWorld from './src/HelloWorld';
+import HelloWorld from '../src/HelloWorld';
 
 // app
 const div = document.createElement('div');

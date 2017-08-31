@@ -7,6 +7,7 @@ cache:
   yarn: true
 before_install:
 - chmod +x ./.travis/*.sh
+- ./.travis/validate_last_commit_message.sh
 - npm run tools
 install:
 - yarn install

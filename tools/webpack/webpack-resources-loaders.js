@@ -1,38 +1,75 @@
-var path = require('path'),
-  webpack = require('webpack'),
-  autoprefixer = require('autoprefixer'),
-  env = require('./webpack-env'),
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const env = require('./webpack-env');
 
-  styleLoader = ['style-loader'].concat(env.isProd ? '' : '?sourceMap').join(''),
-  cssLoaderNoModules = [
-    'css-loader?minimize&camelCase&modules&importLoaders=1&localIdentName=[local]'
-  ].concat(
-    env.isProd
-      ? ''
-      : '&sourceMap'
-  ).join('')
-  cssLoader = [
-    'css-loader?minimize&camelCase&modules&importLoaders=1&localIdentName=[name]--[local]'
-  ].concat(
-    env.isProd
-      ? ''
-      : '&sourceMap'
-  ).join(''),
-  sassLoader = [
-    'sass-loader'
-  ].concat(
-    env.isProd
-      ? ''
-      : '?sourceMap'
-  ).join(''),
-  postcssLoader = ['postcss-loader'].concat(env.isProd ? '' : '?sourceMap').join(''),
-  resolveUrlLoader = ['resolve-url-loader'].concat(env.isProd ? '' : '?sourceMap').join(''),
-  urlLoader = 'url-loader?limit=10000',
-  fileLoader = 'file-loader',
-  imgLoader = 'img-loader';
+const styleLoader = {
+  loader: 'style-loader',
+  options: {
+    sourceMap: !env.isProd
+  }
+};
+const cssLoaderNoModules = {
+  loader: 'css-loader',
+  options: {
+    minimize: true,
+    camelCase: true,
+    modules: true,
+    importLoaders: true,
+    localIdentName: '[local]',
+    sourceMap: !env.isProd
+  }
+};
+const cssLoader = {
+  loader: 'css-loader',
+  options: {
+    minimize: true,
+    camelCase: true,
+    modules: true,
+    importLoaders: true,
+    localIdentName: '[name]--[local]',
+    sourceMap: !env.isProd
+  }
+};
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    plugins: function () {
+      return [autoprefixer];
+    },
+    sourceMap: !env.isProd
+  }
+};
+const resolveUrlLoader = {
+  loader: 'resolve-url-loader',
+  options: {
+    sourceMap: !env.isProd
+  }
+};
+const imgLoader = {
+  loader: 'img-loader'
+};
+const fileLoader = {
+  loader: 'file-loader'
+};
+function getUrlLoader(mimetype) {
+  const urlLoader = {
+    loader: 'resolve-url-loader',
+    options: {
+      limit: 10000
+    }
+  };
+
+  if (mimetype) {
+    urlLoader.options.mimetype = mimetype;
+  }
+
+  return urlLoader;
+}
 
 function createResourcesLoaders(dirname) {
   const sassOptions = {
+    sourceMap: !env.isProd,
     includePaths: [
       path.resolve(dirname, 'src'),
       path.resolve(dirname, 'node_modules'),
@@ -42,6 +79,11 @@ function createResourcesLoaders(dirname) {
     ],
     data: '$fa-font-path: "font-awesome/fonts";'
   };
+  const sassLoader = {
+    loader: 'sass-loader',
+    options: sassOptions
+  };
+
   return {
     module: {
       rules: [
@@ -68,49 +110,40 @@ function createResourcesLoaders(dirname) {
             /packages\/((\w|\-|\d)+)\/lib\/(.*)/
           ],
           exclude: [/node_modules/],
-          loaders: [
-            {loader: styleLoader},
-            {loader: cssLoader},
-            {
-              loader: sassLoader,
-              options: sassOptions
-            },
-            { loader: postcssLoader, options: { plugins: function () { return [autoprefixer] } } }
-          ]
+          loaders: [styleLoader, cssLoader, sassLoader, postcssLoader]
         },
         {
           test: /\.(s?)css$/,
           include: [/node_modules/],
-          use: [
-            {loader: styleLoader},
-            {loader: cssLoader},
-            {
-              loader: sassLoader,
-              options: sassOptions
-            }
-          ]
+          use: [styleLoader, cssLoader, sassLoader]
         },
         {
           test: /\.(jpe?g|png|gif)$/,
-          use: [{loader: urlLoader}, {loader: imgLoader}]
+          use: [
+            getUrlLoader(),
+            imgLoader
+          ]
         },
         {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
-          loader: [urlLoader, '&mimetype=image/svg+xml'].join('')
+          loader: getUrlLoader('image/svg+xml')
         },
         {
           test: /\.woff(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
-          loader: [urlLoader, '&mimetype=application/font-woff'].join('')
+          loader: getUrlLoader('application/font-woff')
         },
         {
           test: /\.woff2(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
-          loader: [urlLoader, '&mimetype=application/font-woff'].join('')
+          loader: getUrlLoader('application/font-woff')
         },
         {
           test: /\.ttf(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
-          loader: [urlLoader, '&mimetype=application/octet-stream'].join('')
+          loader: getUrlLoader('application/octet-stream')
         },
-        {test: /\.eot(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/, loader: fileLoader},
+        {
+          test: /\.eot(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
+          loader: fileLoader
+        },
         {
           test: /\.json$/,
           loader: 'json-loader'

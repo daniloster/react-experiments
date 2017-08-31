@@ -24,7 +24,7 @@ Sandbox for experimenting react
    will run the check-coverage for all packages affected (minimum is 95% for all: statements, branches, functions and lines)
 
 
-## Packages:
-* daniloster-hellow-world (boilerplate)
-* daniloster-utils
+## Packages: [![Build Status](https://img.shields.io/travis/daniloster/react-experiments/master.svg?style=flat-square)](https://travis-ci.org/daniloster/react-experiments)
+* daniloster-hellow-world (boilerplate)  [![NPM](https://img.shields.io/npm/dm/daniloster-hellow-world.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-hellow-world)
+* daniloster-utils [![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
 

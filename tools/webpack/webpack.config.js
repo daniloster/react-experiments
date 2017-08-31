@@ -1,13 +1,13 @@
-var path = require('path'),
-  webpack = require('webpack'),
-  autoprefixer = require('autoprefixer'),
-  HtmlWebpackPlugin = require('html-webpack-plugin');
-nodeExternals = require('webpack-node-externals'),
-  createResourcesLoaders = require('./webpack-resources-loaders'),
-  env = require('./webpack-env');
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
+const createResourcesLoaders = require('./webpack-resources-loaders');
+const env = require('./webpack-env');
 
 module.exports = function (package, dirname) {
-  var prodPlugins = [
+  const prodPlugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -33,11 +33,11 @@ module.exports = function (package, dirname) {
          }
        })
   ];
-  var nonProdPlugins = [
+  const nonProdPlugins = [
     new HtmlWebpackPlugin()
   ];
-  var webpackResourcesLoaders = createResourcesLoaders(dirname);
-  var webpackConfig = {
+  const webpackResourcesLoaders = createResourcesLoaders(dirname);
+  const webpackConfig = {
     output: {
       path: path.resolve(dirname, 'dist'),
       filename: '[name].js'
@@ -60,7 +60,7 @@ module.exports = function (package, dirname) {
     module: webpackResourcesLoaders.module,
   };
 
-  var DEV_PORT = package.devPort || 4000,
+  const DEV_PORT = package.devPort || 8000,
     DEV_HOST = 'localhost',
     DEV_URL = ['http://', DEV_HOST, ':', DEV_PORT, '/'].join('');
 
