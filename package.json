@@ -77,6 +77,6 @@
     "coverage": "lerna run coverage $(awk '{print \" --scope \"substr($0,3)}' affected-packages.log) --concurrency 8",
     "precheck-coverage": "npm run affected-packages",
     "check-coverage": "lerna run check-coverage $(awk '{print \" --scope \"substr($0,3)}' affected-packages.log) --concurrency 8",
-    "validate": "npm test && npm run coverage && npm run check-coverage"
+    "validate": "npm run coverage && npm run check-coverage"
   }
 }

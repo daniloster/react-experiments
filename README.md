@@ -30,6 +30,6 @@ Sandbox for experimenting react
 * Last commit message must have attribute `[release=<major|minor|patch|no-release>]`;
 
 ## Packages: [![Build Status](https://img.shields.io/travis/daniloster/react-experiments/master.svg?style=flat-square)](https://travis-ci.org/daniloster/react-experiments)
-* daniloster-hellow-world (boilerplate)  [![NPM](https://img.shields.io/npm/dm/daniloster-hellow-world.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-hellow-world)
-* daniloster-utils [![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
+* daniloster-hellow-world (boilerplate) [![NPM](https://img.shields.io/npm/v/daniloster-hellow-world.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-hellow-world.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-hellow-world)
+* daniloster-utils [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
 
