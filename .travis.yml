@@ -1,7 +1,7 @@
 sudo: true
 language: node_js
 node_js:
-- 8.0
+- 7.8.0
 - 6.9.1
 cache:
   yarn: true
@@ -20,6 +20,8 @@ jobs:
   - stage: release
     node_js: 8.0
     script:
+    - echo "Running tests against $(node -v) ..."
+    - npm run validate
     - echo "Deploying to npm ..."
     - ./.travis/publish.sh
 branches:
