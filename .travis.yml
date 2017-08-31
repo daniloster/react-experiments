@@ -1,7 +1,7 @@
 sudo: true
 language: node_js
 node_js:
-- '8.0'
+- 8.0
 - 6.9.1
 cache:
   yarn: true
@@ -12,10 +12,16 @@ before_install:
 install:
 - yarn install
 - npm run bootstrap
-script: npm run validate
-after_success: ./.travis/after_success.sh
-after_deploy:
-- rm .npmrc
+script:
+- echo "Running tests against $(node -v) ..."
+- npm run validate
+jobs:
+  include:
+  - stage: release
+    node_js: 8.0
+    script:
+    - echo "Deploying to npm ..."
+    - ./.travis/publish.sh
 branches:
   only:
   - master

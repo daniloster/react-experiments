@@ -20,7 +20,7 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   echo '** Generating npm auth'
   echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> ~/.npmrc
 
-  export TYPE_RELEASE="$(git log -1 --pretty=%B | grep release= | awk '{print $1}' | sed s/release=//)"
+  export TYPE_RELEASE="$(git log --no-merges -n 1 --pretty=%B | grep '\[release=' | awk '{print $1}' | sed s/release=//)"
   if [[ $TYPE_RELEASE == '[major]' ]]; then
     echo '** Releasing MAJOR'
     lerna publish --cd-version=major --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
@@ -30,5 +30,7 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   elif [[ $TYPE_RELEASE == '[patch]' ]]; then
     echo '** Releasing PATCH'
     lerna publish --cd-version=patch --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+  else
+    echo '** NOT RELEASED'
   fi
 fi
