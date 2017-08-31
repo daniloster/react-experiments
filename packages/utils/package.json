@@ -12,6 +12,7 @@
       "src/*.js"
     ],
     "exclude": [
+      "src/**/*.spec.js",
       "test",
       "build",
       "dist",
