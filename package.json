@@ -70,7 +70,7 @@
     "tools": "npm run install:yarn && npm run install:lerna",
     "bootstrap": "lerna bootstrap --concurrency 8",
     "preaffected-packages": "rm -rf ./affected-packages.log || exit 0",
-    "affected-packages": "lerna updated >> ./affected-packages.log",
+    "affected-packages": "lerna updated >> ./affected-packages.log || exit 0",
     "pretest": "npm run affected-packages",
     "test": "lerna run test $(awk '{print \" --scope \"substr($0,3)}' affected-packages.log) --concurrency 8",
     "precoverage": "npm run affected-packages",
