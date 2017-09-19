@@ -38,9 +38,6 @@
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },
-  "peerDependencies": {
-    "react": "^15.4.2"
-  },
   "devDependencies": {
     "babel-cli": "6.18.0",
     "cross-env": "3.1.4",

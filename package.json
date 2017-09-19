@@ -5,6 +5,7 @@
     "node": ">6.0.0"
   },
   "dependencies": {
+    "axios": "0.16.2",
     "prop-types": "15.5.10",
     "react": "15.4.2",
     "react-dom": "15.4.2",
@@ -52,6 +53,7 @@
     "nyc": "10.0.0",
     "postcss-loader": "1.2.1",
     "react-addons-test-utils": "15.4.2",
+    "react-doc-generator": "1.2.5",
     "resolve-url-loader": "1.6.1",
     "sass-loader": "4.1.1",
     "sinon": "1.17.7",
@@ -62,7 +64,7 @@
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2",
     "webpack-node-externals": "1.5.4",
-    "yarn": "0.24.4"
+    "yarn": "1.0.2"
   },
   "scripts": {
     "install:yarn": "npm install yarn@$(cat package.json | grep \"yarn\" | awk '{print $2}' | cut -d'\"' -f2) -g",
@@ -77,6 +79,7 @@
     "coverage": "lerna run coverage $(awk '{print \" --scope \"substr($0,3)}' affected-packages.log) --concurrency 8",
     "precheck-coverage": "npm run affected-packages",
     "check-coverage": "lerna run check-coverage $(awk '{print \" --scope \"substr($0,3)}' affected-packages.log) --concurrency 8",
-    "validate": "npm run coverage && npm run check-coverage"
+    "validate": "npm run coverage && npm run check-coverage",
+    "doc": "lerna exec doc"
   }
 }
