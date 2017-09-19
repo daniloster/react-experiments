@@ -1,6 +1,6 @@
 {
   "name": "daniloster-cli",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "CLI to the lerna repo for react experiments",
   "main": "index.js",
   "nyc": {
@@ -33,11 +33,11 @@
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },
   "dependencies": {
+    "axios": "0.16.2",
     "camelize": "1.0.0",
     "co": "4.6.0",
     "co-prompt": "1.0.0",
-    "commander": "2.11.0",
-    "axios": "0.16.2"
+    "commander": "2.11.0"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
