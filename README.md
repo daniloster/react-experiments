@@ -1,8 +1,6 @@
 # React Experiments
 Sandbox for experimenting react
 
-[Link to wiki](https://github.com/daniloster/react-experiments/wiki)
-
 ## Current jenkins versions
 * node >= 6.9.5
 * npm >= 3.9.3
@@ -23,6 +21,15 @@ Sandbox for experimenting react
 5. npm run check-coverage (optional)
    will run the check-coverage for all packages affected (minimum is 95% for all: statements, branches, functions and lines)
 
+## How to create a subpackage using the CLI?
+```
+npm run cli -- create my-package-name // it will get generated at packages/myPackageName
+```
+More info:
+```
+npm run cli -- --help
+```
+
 ## Contributions rules
 * Changes must be approved;
 * Changes must have tests passing on Travis-CI;
@@ -30,8 +37,10 @@ Sandbox for experimenting react
 * Last commit message must have attribute `[release=<major|minor|patch|no-release>]`;
 
 ## Packages: [![Build Status](https://img.shields.io/travis/daniloster/react-experiments/master.svg?style=flat-square)](https://travis-ci.org/daniloster/react-experiments) [![BCH compliance](https://bettercodehub.com/edge/badge/daniloster/react-experiments?branch=master)](https://bettercodehub.com/)
-* daniloster-hellow-world (boilerplate)
+* [daniloster-cli](packages/cli/README.md)
+  [![NPM](https://img.shields.io/npm/v/daniloster-cli.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-cli.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-cli)
+* [daniloster-hellow-world](packages/danilosterHelloWorld/README.md) (boilerplate)
   [![NPM](https://img.shields.io/npm/v/daniloster-hellow-world.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-hellow-world.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-hellow-world)
-* daniloster-utils
+* [daniloster-utils](packages/utils/README.md)
   [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
 

@@ -39,7 +39,7 @@
     "prepublish": "npm run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "doc": "react-doc-generator --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports --exclude-patterns *.spec.js --output COMPONENTS_INTERFACE.md"
+    "doc": "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
