@@ -32,6 +32,9 @@
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },
+  "bin": {
+    "daniloster-cli": "./index.js"
+  },
   "dependencies": {
     "axios": "0.16.2",
     "camelize": "1.0.0",

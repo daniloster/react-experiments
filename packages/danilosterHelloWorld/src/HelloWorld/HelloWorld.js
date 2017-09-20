@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 import styles from './HelloWorld.scss';
 
+/**
+ * HelloWorld
+ * HelloWorld may be used as below.
+ * E.g.:
+ * ```html
+ * <HelloWorld>My message!</HelloWorld>
+ * ```
+ */
 const HelloWorld = (props) => {
   const {
     children,
@@ -14,6 +22,9 @@ const HelloWorld = (props) => {
   );
 };
 HelloWorld.propTypes = {
+  /**
+   * children is a string which will be wrapped by a div element.
+   */
   children: PropTypes.string.isRequired,
 };
 
