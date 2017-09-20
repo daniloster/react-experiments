@@ -1965,8 +1965,8 @@ damerau-levenshtein@^1.0.0:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
 daniloster-cli@>=0.0.1:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/daniloster-cli/-/daniloster-cli-0.0.4.tgz#75c85734609cc3d551199d02105b46a4077494f8"
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/daniloster-cli/-/daniloster-cli-0.0.5.tgz#1ca6c5454db90330ce44dec696689f0a0367d860"
   dependencies:
     axios "0.16.2"
     camelize "1.0.0"
