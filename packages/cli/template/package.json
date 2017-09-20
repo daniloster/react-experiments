@@ -26,6 +26,7 @@
     "access": "public"
   },
   "scripts": {
+    "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist --config webpack.config.js",
     "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
     "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
     "test": "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",

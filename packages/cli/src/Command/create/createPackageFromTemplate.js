@@ -13,7 +13,9 @@ import copyTemplateFolder from './copyTemplateFolder';
  */
 export default function createPackageFromTemplate(packageConfig) {
   try {
-    const templateFilePath = path.resolve('template/');
+    const templateFilePath = fs.existsSync(path.resolve('node_modules/daniloster-cli/template/'))
+      ? path.resolve('node_modules/daniloster-cli/template/')
+      : path.resolve('template/');
     const workingDirectory = getWorkingDirectory({ packageConfig });
     const packageFolder = `${workingDirectory}/packages/${packageConfig.folderName}`;
     copyTemplateFolder(workingDirectory, packageFolder, templateFilePath);
