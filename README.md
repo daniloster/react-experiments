@@ -43,4 +43,5 @@ npm run cli -- --help
   [![NPM](https://img.shields.io/npm/v/daniloster-hellow-world.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-hellow-world.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-hellow-world)
 * [daniloster-utils](packages/utils/README.md)
   [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
-
+* [daniloster-toggle-button](packages/toggleButton/README.md)
+  [![NPM](https://img.shields.io/npm/v/daniloster-toggle-button.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-toggle-button.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-toggle-button)
