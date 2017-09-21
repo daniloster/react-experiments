@@ -1,7 +1,7 @@
 {
-  "name": "${project.name}",
+  "name": "daniloster-toggle-button",
   "version": "0.0.1",
-  "description": "${project.description}",
+  "description": "React toggle button component",
   "main": "lib/index.js",
   "nyc": {
     "require": [
@@ -41,8 +41,11 @@
     "doc": "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
   "dependencies": {
+    "uuid": "3.1.0"
   },
   "peerDependencies": {
+    "react": "^15.4.2",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
@@ -56,6 +59,7 @@
     "react-addons-test-utils": "15.4.2",
     "react-doc-generator": "1.2.5",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2"
+    "webpack-dev-server": "2.4.2",
+    "prop-types": "15.5.10"
   }
 }
