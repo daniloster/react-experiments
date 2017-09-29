@@ -93,10 +93,10 @@ function createDivForInternetExplorer() {
 describe('document', () => {
   describe('document methods', () => {
     it('Then should have on method defined', () => {
-      expect(document.on).to.be.defined;
+      expect(document.on).to.not.be.undefined;
     });
     it('And off method defined', () => {
-      expect(document.off).to.be.defined;
+      expect(document.off).to.not.be.undefined;
     });
   });
 });
@@ -112,7 +112,7 @@ describe('Event', () => {
     it('Given assignable object', () => obj = {});
     it('When set target to true', () => setTarget(obj, true));
     it('Then the target value should be true',() => {
-      expect(obj.target).to.equal(true);
+      expect(obj.target).to.be.true;
     });
   });
 
@@ -121,7 +121,7 @@ describe('Event', () => {
     it('Given assignable object', () => obj = Object.freeze({}));
     it('When set current target to true', () => setCurrentTarget(obj, true));
     it('Then the target value should be true',() => {
-      expect(obj.currentTarget).to.equal(undefined);
+      expect(obj.currentTarget).to.be.undefined;
     });
   });
 
@@ -129,7 +129,7 @@ describe('Event', () => {
     it('Given an event has been created', buildEvent);
     it('When preventDefault is performed', () => event.preventDefault());
     it('Then returnValue should be false',() => {
-      expect(event.returnValue).to.equal(false);
+      expect(event.returnValue).to.be.false;
     });
   });
 
@@ -137,7 +137,7 @@ describe('Event', () => {
     it('Given an event has been created', buildEvent);
     it('When stopPropagation is performed', () => event.stopPropagation());
     it('Then cancelBubble should be true',() => {
-      expect(event.cancelBubble).to.equal(true);
+      expect(event.cancelBubble).to.be.true;
     });
   });
 

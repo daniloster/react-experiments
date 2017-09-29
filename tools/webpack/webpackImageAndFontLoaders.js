@@ -6,11 +6,11 @@ const imgLoader = {
 const fileLoader = {
   loader: 'file-loader'
 };
-function getUrlLoader(mimetype) {
+function getUrlLoader(mimetype, limit = 10000) {
   const urlLoader = {
-    loader: 'resolve-url-loader',
+    loader: 'url-loader',
     options: {
-      limit: 10000
+      limit,
     }
   };
 
@@ -31,7 +31,10 @@ module.exports = [
   },
   {
     test: /\.svg(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,
-    loader: getUrlLoader('image/svg+xml')
+    loader: 'svg-url-loader',
+    options: {
+      stripdeclarations: true,
+    },
   },
   {
     test: /\.woff(\?v=\d+\.\d+\.\d+)?(\?(\w|\d)+)?(\#(\w|\d)+)?$/,

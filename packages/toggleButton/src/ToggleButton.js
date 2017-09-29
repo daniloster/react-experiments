@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
+import If from 'daniloster-if';
 
 import styles from './ToggleButton.scss';
 
@@ -39,6 +40,7 @@ import styles from './ToggleButton.scss';
  */
 class ToggleButton extends PureComponent {
   componentWillMount() {
+    this.labelID = uuid();
     this.uniqueID = uuid();
   }
 
@@ -58,27 +60,26 @@ class ToggleButton extends PureComponent {
       nodeOff,
       isChecked,
     } = this.props;
+    const classNameComposed = [
+      styles.toggleButton,
+      className,
+    ].join(' ');
+
     return (
-      <div
-        className={[
-          styles.toggleButton,
-          className,
-        ].join(' ')}
-      >
-        {(!!children) && (
-          <span
-            id={this.uniqueID}
-          >{children}</span>
-        )}
+      <div className={classNameComposed}>
+        <If expression={!!children}>
+          <label id={this.labelID} htmlFor={this.uniqueID}>
+            {children}
+          </label>
+        </If>
         <button
-          aria-labelledby={this.uniqueID}
+          id={this.uniqueID}
+          aria-labelledby={this.labelID}
           aria-checked={isChecked}
           role="switch"
           onClick={this.onToggle}
-        >
-          <span>{nodeOn}</span>
-          <span>{nodeOff}</span>
-        </button>
+          title={isChecked ? nodeOn : nodeOff}
+        />
       </div>
     );
   }
