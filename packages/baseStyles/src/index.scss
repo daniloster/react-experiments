@@ -1,0 +1,95 @@
+$fontFamily: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$inactiveColor: #cecece;
+$inactiveLightColor: #eaeaea;
+$activeColor: #1982fb;
+$baseColor: #0469DD;
+$disabledColor: #e8e8e8;
+$selectedColor: #0270A3;
+$defaultColor: #000;
+$focusColor: adjust-color($activeColor, $saturation: 10, $lightness: 40);
+
+$errorColor: #CF0A0A;
+
+$lightCard: 7px 7px 35px -5px rgba(0,0,0,0.45);
+$basicCard: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$basicCardHover: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+$basicCardTransition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+$basicInputHeight: 38px;
+$basicLineHeight: 28px;
+$basicFontSize: 14px;
+$titleFontSize: 22px;
+$subtitleFontSize: 18px;
+$legendFontSize: 10px;
+
+@mixin card($shadowDrop: $basicCardHover) {
+  box-shadow: $shadowDrop;
+}
+
+@mixin flyout($shadowDrop: $basicCardHover, $zIndex: 1) {
+  @include card($shadowDrop);
+  position: absolute;
+  z-index: $zIndex;
+}
+
+@mixin flyoutHoverTransition($shadowDrop: $basicCard, $shadowDropOver: $basicCardHover) {
+  @include flyout($shadowDrop);
+  transition: $basicCardTransition;
+
+  &:hover {
+    box-shadow: $shadowDropOver;
+  }
+}
+
+@mixin focus($color: $focusColor) {
+  transition: box-shadow 0.5s ease-out;
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem $color;
+  }
+}
+
+@mixin input {
+  box-sizing: border-box;
+  height: $basicInputHeight;
+  line-height: $basicLineHeight;
+  font-size: $basicFontSize;
+  outline: none;
+}
+
+@mixin text {
+  border-style: groove;
+  border-width: 1px;
+}
+
+@mixin triangleCorner($bgcolor, $size) {
+  background-color: $bgcolor;
+  clip-path: polygon(0% 50%, 50% 0%, 50% 50%);
+  position: absolute;
+  width: calc(#{$size} * 2);
+  height: calc(#{$size} * 2);
+  bottom: calc(#{$size} * -1);
+  right: calc(#{$size} * -1);
+  content: '';
+}
+
+@mixin avatar($size: 60px) {
+  .clip-circle {
+    clip-path: circle($size at center);
+    /* OLD VALUE example: circle(245px, 140px, 50px); */
+    /* Yep, even the new clip-path has deprecated stuff. */
+  }
+}
+
+@mixin grid($columns: 2fr 1fr 1fr, $rows: 1fr 1fr 1fr 1fr) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+}
+
+@mixin placeInGrid($x1: 1, $x2: 2, $y1: 1, $y2: 2) {
+  grid-column: #{$x1}/#{$x2};
+  grid-row: #{$x1}/#{$x2};
+}
+

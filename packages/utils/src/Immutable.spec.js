@@ -9,7 +9,7 @@ describe('Immutable', () => {
       });
     });
     it('Expect that the result is enumerable', () => {
-      expect(Object.keys(value)).to.deep.equal(['test']);
+      expect(Object.keys(value)).to.be.eql(['test']);
     });
   });
 
@@ -28,10 +28,10 @@ describe('Immutable', () => {
       }
     });
     it('Then the object key should not be re-assignable', () => {
-      expect(value.test).to.equal(1);
+      expect(value.test).to.be.eql(1);
     });
     it('And an exception should be thrown', () => {
-      expect(exception).to.be.defined;
+      expect(exception).to.not.be.undefined;
     });
   });
 
@@ -50,10 +50,10 @@ describe('Immutable', () => {
       }
     });
     it('Then the object key should not be assignable', () => {
-      expect(value.arg).to.not.be.defined;
+      expect(value.arg).to.be.undefined;
     });
     it('And an exception should be thrown', () => {
-      expect(exception).to.be.defined;
+      expect(exception).to.not.be.undefined;
     });
   });
 
@@ -65,7 +65,7 @@ describe('Immutable', () => {
       });
     });
     it('Expect that the object should have hidden property __isImmutable', () => {
-      expect(Immutable.isImmutable(value)).to.equal(true);
+      expect(Immutable.isImmutable(value)).to.be.true;
     });
   });
 
@@ -85,7 +85,7 @@ describe('Immutable', () => {
       expect(value).to.have.length(3);
     });
     it('And an exception should be thrown', () => {
-      expect(exception).to.be.defined;
+      expect(exception).to.not.be.undefined;
     });
   });
 
@@ -100,7 +100,7 @@ describe('Immutable', () => {
       valueSecondTimeParsed = Immutable(value);
     });
     it('Then the first and second immutable objects should be the same instance', () => {
-      expect(value).to.equal(valueSecondTimeParsed);
+      expect(value).to.be.eql(valueSecondTimeParsed);
     });
   });
 
@@ -113,7 +113,7 @@ describe('Immutable', () => {
       valueSecondTimeParsed = Immutable(value);
     });
     it('Then the first and second immutable lists should be the same instance', () => {
-      expect(value).to.equal(valueSecondTimeParsed);
+      expect(value).to.be.eql(valueSecondTimeParsed);
     });
   });
 
@@ -132,8 +132,8 @@ describe('Immutable', () => {
       }
     });
     it('Then the first and second immutable lists should be the same instance', () => {
-      expect(exception).to.be.defined;
-      expect(value.category.description).to.be.equal('I am immutable');
+      expect(exception).to.not.be.undefined;
+      expect(value.category.description).to.be.eql('I am immutable');
     });
   });
 });

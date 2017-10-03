@@ -1,0 +1,248 @@
+@import '~daniloster-base-styles';
+
+$calendarPaletteDarkLight: $inactiveLightColor;
+$calendarHeaderColor: #448aff;
+$calendarHighlightColor: #559fff;
+$calendarHeaderTextColor: #ffffff;
+$calendarTextColor: #3a3a3a;
+$calendarBoxCell: 56px;
+$calendarHeaderNavigation: 48px;
+
+.datePickerContainer {
+  font-family: $fontFamily;
+  line-height: $basicLineHeight;
+  height: $basicLineHeight;
+  font-size: $basicFontSize;
+  position: relative;
+  width: calc(#{$calendarBoxCell} * 7);
+
+  .iconDatePickerIcon {
+    background: url('./icon.svg');
+    width: calc(#{$basicInputHeight} - 12px);
+    height: calc(#{$basicInputHeight} - 12px);
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+  }
+  .iconDatePicker {
+    width: calc(#{$basicInputHeight} - 12px);
+    height: calc(#{$basicInputHeight} - 12px);
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    fill: #346acf;
+
+    svg {
+      fill: #346acf;
+      display: block !important;
+    }
+  }
+
+  .dateField {
+    @include input;
+    @include text;
+    @include focus;
+    outline: none;
+    text-align: center;
+    padding-right: $basicInputHeight;
+    width: 100%;
+  }
+
+  .valid {
+
+  }
+  .invalid {
+    color: $errorColor;
+  }
+
+  .calendar {
+    @include grid(
+      $columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr,
+      $rows: 1.3fr 0.7fr auto 1fr
+    );
+    grid-template-areas:
+      'previousMonth headerContent headerContent headerContent headerContent headerContent nextMonth'
+      'sunday monday tuesday wednesday thursday friday saturday'
+      'content content content content content content content'
+      'footer footer footer footer footer footer footer'
+    ;
+
+    box-sizing: border-box;
+    width: 100%;
+    right: 0;
+    @include flyout;
+
+    button[type="button"][data-active="true"] {
+      position: relative;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover:before,
+      &:active:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(#{$calendarBoxCell} - 4px);
+        height: calc(#{$calendarBoxCell} - 4px);
+        margin-top: -26px;
+        margin-left: -26px;
+        border-radius: 50%;
+        z-index: -1;
+      }
+    }
+
+    .calendarNavigation, .calendarHeaderText {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .calendarNavigation {
+      cursor: pointer;
+      outline: none;
+      background-color: transparent;
+      font-size: 1.5em;
+      background-color: $calendarHeaderColor;
+      color: $calendarHeaderTextColor;
+      padding: 0;
+      border: 0;
+      transition: text-shadow .3s ease-in;
+
+      &:hover {
+        text-shadow: 5px 5px 12px $calendarPaletteDarkLight;
+      }
+    }
+
+    .calendarPreviousMonth {
+      grid-area: previousMonth;
+    }
+
+    .calendarNextMonth {
+      grid-area: nextMonth;
+    }
+
+    .calendarHeaderText {
+      grid-area: headerContent;
+      cursor: default;
+      font-size: 1.5em;
+      background-color: $calendarHeaderColor;
+      color: $calendarHeaderTextColor;
+    }
+
+    .sun {
+      grid-area: sunday;
+    }
+    .mon {
+      grid-area: monday;
+    }
+    .tue {
+      grid-area: tuesday;
+    }
+    .wed {
+      grid-area: wednesday;
+    }
+    .thu {
+      grid-area: thursday;
+    }
+    .fri {
+      grid-area: friday;
+    }
+    .sat {
+      grid-area: saturday;
+    }
+
+    .calendarWeekday {
+      cursor: default;
+      display: flex;
+      width: 100%;
+      background-color: $calendarHighlightColor;
+      color: $calendarHeaderTextColor;
+      justify-content: center;
+      align-items: center;
+      // height: calc(#{$calendarBoxCell}*2/3);
+    }
+
+    .calendarDays {
+      grid-area: content;
+      width: 100%;
+      background: linear-gradient(
+        180deg,
+        hsla(0,0%,100%,0) 50%,
+        rgba(0,0,0,.05)
+      );
+
+      .calendarDay {
+        position: relative;
+        width: $calendarBoxCell;
+        height: $calendarBoxCell;
+        color: $calendarTextColor;
+        background-color: $calendarPaletteDarkLight;
+        box-sizing: border-box;
+        display: inline-flex;
+        width: $calendarBoxCell;
+        height: $calendarBoxCell;
+        padding: 0;
+        border: 0;
+        outline: none;
+        justify-content: center;
+
+        &[data-active="true"] {
+          background-color: transparent;
+        }
+      }
+
+      button[data-active="true"]:hover:before,
+      button[data-active="true"]:active:before {
+        background-color: $calendarPaletteDarkLight;
+      }
+    }
+
+
+    button[type="button"].calendarSelectedDay {
+      color: $calendarHeaderTextColor;
+
+      &:hover {
+        color: $calendarTextColor;
+      }
+
+      &:before {
+        content: '';
+        background-color: $calendarHighlightColor;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(#{$calendarBoxCell} - 4px);
+        height: calc(#{$calendarBoxCell} - 4px);
+        margin-top: -26px;
+        margin-left: -26px;
+        border-radius: 50%;
+        z-index: -1;
+      }
+    }
+
+    button[type="button"].calendarToday {
+      &:after {
+        @include triangleCorner($calendarHighlightColor, 25px);
+        bottom: -23px;
+        right: -23px;
+      }
+    }
+
+    .footer {
+      grid-area: footer;
+      cursor: default;
+      width: 100%;
+      height: $calendarBoxCell;
+      border-top: 1px solid lighten(rgba(0,0,0,.05), 20);
+      background-color: rgba(0,0,0,.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

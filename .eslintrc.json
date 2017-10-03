@@ -20,6 +20,9 @@
   },
   "parserOptions": {
     "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "experimentalDecorators": true,
+      "destructuring": true,
       "arrowFunctions": true,
       "blockBindings": true,
       "classes": true,

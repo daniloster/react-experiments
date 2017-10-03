@@ -14,7 +14,8 @@ const babelLoader = {
   loader: 'babel-loader',
   query: {
     babelrc: false,
-    presets: ['react', ['es2015', { 'modules': false }], 'stage-0']
+    presets: ['react', ['es2015', { 'modules': false }], 'stage-0'],
+    plugins: ['transform-decorators-legacy']
   }
 };
 const jsonLoader = {

@@ -60,7 +60,7 @@ describe('cancelSwipeNavigation', () => {
 
   function mountScrollableAtLeft0() {
     mountScrollable();
-    element.node.refs.scrollableContainer.scrollLeft = 0;
+    element.instance().refs.scrollableContainer.scrollLeft = 0;
     document.body.scrollLeft = 0;
   }
 

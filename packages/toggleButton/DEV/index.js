@@ -25,10 +25,14 @@ class Example extends Component {
 
   render() {
     return (
-      <ToggleButton
-        onChange={this.toggle}
-        isChecked={this.state.isLightOn}
-      >Lights?</ToggleButton>
+      <div style={{ padding: '80px' }}>
+        <ToggleButton
+          onChange={this.toggle}
+          isChecked={this.state.isLightOn}
+        >
+          Lights
+        </ToggleButton>
+      </div>
     );
   }
 }
