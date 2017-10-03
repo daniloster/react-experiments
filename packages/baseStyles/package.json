@@ -1,6 +1,6 @@
 {
   "name": "daniloster-base-styles",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This base styles package defines theme colors and layouts",
   "main": "src/index.scss",
   "nyc": {
@@ -32,8 +32,6 @@
     "build": "exit 0",
     "prepublish": "exit 0"
   },
-  "dependencies": {},
-  "peerDependencies": {},
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",

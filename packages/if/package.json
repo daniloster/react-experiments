@@ -1,6 +1,6 @@
 {
   "name": "daniloster-if",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "react experiments package",
   "main": "lib/index.js",
   "nyc": {
@@ -36,10 +36,9 @@
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc": "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
-  "dependencies": {},
   "peerDependencies": {
-    "react": "^16.0.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -49,12 +48,12 @@
     "mocha": "3.5.3",
     "mochawesome": "2.3.1",
     "nyc": "10.0.0",
+    "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.2",
     "react-doc-generator": "1.2.5",
     "react-test-renderer": "16.0.0",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2",
-    "prop-types": "15.6.0"
+    "webpack-dev-server": "2.4.2"
   }
 }

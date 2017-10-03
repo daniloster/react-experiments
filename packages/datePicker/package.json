@@ -1,6 +1,6 @@
 {
   "name": "daniloster-date-picker",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "react experiments package",
   "main": "lib/index.js",
   "nyc": {
@@ -40,24 +40,23 @@
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc": "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
-  "dependencies": {},
   "peerDependencies": {
-    "daniloster-base-styles": "^0.1.0",
-    "daniloster-if": "^0.1.0",
-    "daniloster-utils": "^0.0.5",
+    "daniloster-base-styles": "^1.0.0",
+    "daniloster-if": "^1.0.0",
+    "daniloster-utils": "^1.0.0",
     "mobx": "^3.3.0",
     "mobx-react": "^4.3.2",
     "moment": "^2.18.1",
     "moment-range": "^3.0.3",
-    "react": "^16.0.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",
-    "daniloster-base-styles": "^0.1.0",
-    "daniloster-if": "^0.1.0",
-    "daniloster-utils": "^0.0.5",
+    "daniloster-base-styles": "^1.0.0",
+    "daniloster-if": "^1.0.0",
+    "daniloster-utils": "^1.0.0",
     "enzyme": "3.0.0",
     "eslint": "3.19.0",
     "mobx": "3.3.0",
@@ -67,12 +66,12 @@
     "moment": "2.18.1",
     "moment-range": "3.0.3",
     "nyc": "10.0.0",
+    "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.2",
     "react-doc-generator": "1.2.5",
     "react-test-renderer": "16.0.0",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2",
-    "prop-types": "15.6.0"
+    "webpack-dev-server": "2.4.2"
   }
 }

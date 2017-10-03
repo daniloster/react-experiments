@@ -1,6 +1,6 @@
 {
   "name": "daniloster-toggle-button",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "React toggle button component",
   "main": "lib/index.js",
   "nyc": {
@@ -44,16 +44,16 @@
     "uuid": "3.1.0"
   },
   "peerDependencies": {
-    "daniloster-base-styles": "^0.1.0",
-    "daniloster-if": "^0.1.0",
+    "daniloster-base-styles": "^1.0.0",
+    "daniloster-if": "^1.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",
-    "daniloster-base-styles": "^0.1.0",
-    "daniloster-if": "^0.1.0",
+    "daniloster-base-styles": "^1.0.0",
+    "daniloster-if": "^1.0.0",
     "enzyme": "3.0.0",
     "eslint": "3.19.0",
     "mocha": "3.5.3",
