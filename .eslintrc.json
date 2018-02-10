@@ -1,11 +1,11 @@
 {
   "root": true,
-  "extends": "airbnb",
+  "extends": ["prettier", "airbnb"],
   "rules": {
-    "react/jsx-filename-extension": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
     "complexity": [2, 10],
-    "react/prefer-stateless-function": [2, { "ignorePureComponents": true}]
+    "jsx-a11y/no-static-element-interactions": "off",
+    "react/jsx-filename-extension": "off",
+    "react/prefer-stateless-function": [2, { "ignorePureComponents": true }]
   },
   "parser": "babel-eslint",
   "globals": {

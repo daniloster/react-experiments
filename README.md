@@ -51,4 +51,5 @@ npm run cli -- --help
   [![NPM](https://img.shields.io/npm/v/daniloster-toggle-button.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-toggle-button.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-toggle-button)
 * [daniloster-utils](https://github.com/daniloster/react-experiments/packages/utils/README.md)
   [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
-
+* [react-i18n-base](https://github.com/daniloster/react-experiments/packages/reactI18nBase/README.md)
+  [![NPM](https://img.shields.io/npm/v/react-i18n-base.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/react-i18n-base.svg?style=flat-square)](https://www.npmjs.com/package/react-i18n-base)

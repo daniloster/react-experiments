@@ -45,8 +45,10 @@
     "enzyme-adapter-utils": "1.0.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
+    "eslint-config-prettier": "2.9.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "6.10.3",
     "file-loader": "0.9.0",
     "html-webpack-plugin": "2.26.0",
@@ -60,9 +62,10 @@
     "mochawesome": "2.3.1",
     "node-sass": "4.5.3",
     "nyc": "10.0.0",
+    "prettier": "1.10.2",
     "postcss-loader": "1.2.1",
     "react-addons-test-utils": "15.6.2",
-    "react-doc-generator": "1.2.5",
+    "react-asciidoc-generator": "1.5.8",
     "react-test-renderer": "16.0.0",
     "sass-loader": "4.1.1",
     "sinon": "4.0.0",
@@ -80,15 +83,18 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "cli": "daniloster-cli",
-    "install:yarn": "npm install yarn@$(cat package.json | grep \"yarn\" | awk '{print $2}' | cut -d'\"' -f2) -g",
-    "install:lerna": "npm install lerna@$(cat lerna.json | grep \"lerna\" | awk '{print $2}' | cut -d'\"' -f2) -g",
-    "tools": "npm run install:yarn && yarn config set workspaces-experimental true",
+    "install:yarn":
+      "npm install yarn@$(cat package.json | grep \"yarn\" | awk '{print $2}' | cut -d'\"' -f2) -g",
+    "install:lerna":
+      "npm install lerna@$(cat lerna.json | grep \"lerna\" | awk '{print $2}' | cut -d'\"' -f2) -g",
+    "tools":
+      "npm run install:yarn && yarn config set workspaces-experimental true",
     "bootstrap": "lerna bootstrap --concurrency 8",
     "prepare": "lerna run compile --parallel --concurrency 8",
     "test": "lerna run test --since --concurrency 8",
     "coverage": "lerna run coverage --since --concurrency 8",
     "check-coverage": "lerna run check-coverage --since --concurrency 8",
     "validate": "npm run coverage && npm run check-coverage",
-    "doc": "lerna exec doc"
+    "doc": "lerna run doc --parallel --concurrency 8"
   }
 }

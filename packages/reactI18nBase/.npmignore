@@ -1,0 +1,9 @@
+.nyc_output
+coverage
+mochawesome-reports
+node_modules
+*.log
+**/*.spec.js
+DEV
+demo
+.npmrc
