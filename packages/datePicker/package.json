@@ -38,7 +38,7 @@
     "prepublish": "npm run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "doc": "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
+    "doc": "react-asciidoc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
   "peerDependencies": {
     "daniloster-base-styles": "^1.0.0",
@@ -69,7 +69,7 @@
     "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.2",
-    "react-doc-generator": "1.2.5",
+    "react-asciidoc-generator": "1.5.8",
     "react-test-renderer": "16.0.0",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"

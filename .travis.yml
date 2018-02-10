@@ -10,12 +10,11 @@ before_install:
 - chmod +x ./.travis/*.sh
 - ./.travis/validate_last_commit_message.sh
 - npm run tools
-install:
+install:git
 - yarn install
-- npm run bootstrap
 script:
 - echo "Running tests against $(node -v) ..."
-- npm run validate
+- yarn run validate
 jobs:
   include:
   - stage: release
