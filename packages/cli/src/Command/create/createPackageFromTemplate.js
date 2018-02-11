@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import run from './run';
 import defineReadme from './defineReadme';
 import definePackageJson from './definePackageJson';
 import definePackageFolders from './definePackageFolders';

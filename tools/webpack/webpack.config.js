@@ -9,11 +9,12 @@ const externals = require('./webpackExternals');
 const env = require('./webpackEnv');
 const applyDevMode = require('./webpackDev');
 
-module.exports = function (package, dirname) {
+module.exports = function (package, dirname, preDistPath) {
   const webpackResourcesLoaders = createResourcesLoaders(dirname);
+  const outputPath = path.join(preDistPath || '', 'dist');
   const webpackConfig = {
     output: {
-      path: path.resolve(dirname, 'dist'),
+      path: path.resolve(dirname, outputPath),
       filename: '[name].js'
     },
     entry: {
@@ -39,7 +40,7 @@ module.exports = function (package, dirname) {
   }
 
   if (env.isDev) {
-    applyDevMode(package, webpackConfig);
+    return applyDevMode(package, webpackConfig);
   }
 
   if (env.isTest) {

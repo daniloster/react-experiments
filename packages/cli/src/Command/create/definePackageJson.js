@@ -1,11 +1,8 @@
-import fs from 'fs';
-import run from './run';
-
 function definePackageJson({
   packageContent,
   packageConfig,
-  packageFolder,
 }) {
+  /* eslint-disable */
   packageContent.name = packageConfig.name;
   packageContent.description = packageConfig.description;
   packageConfig.dependencies.forEach((dependency) => {
@@ -17,6 +14,7 @@ function definePackageJson({
   packageConfig.devDependencies.forEach((dependency) => {
     packageContent.devDependencies[dependency.name] = dependency.version;
   });
+  /* eslint-enable */
 }
 
 export default definePackageJson;

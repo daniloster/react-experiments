@@ -111,13 +111,16 @@ class DatePicker extends Component {
         className={composedClassName}
         ref={this.setContainer}
       >
-        <If expression={isComponentReady}>
-          <i
-            className={styles.iconDatePickerIcon}
-            onClick={this.showDateMonthView}
-            title="Date picker, press space to open it"
-          />
-        </If>
+        <If
+          expression={isComponentReady}
+          then={() => (
+            <i
+              className={styles.iconDatePickerIcon}
+              onClick={this.showDateMonthView}
+              title="Date picker, press space to open it"
+            />
+          )}
+        />
         <DateInputField
           shouldChangeValueOnBlur={shouldChangeValueOnBlur}
           isUtc={isUtc}
@@ -129,15 +132,18 @@ class DatePicker extends Component {
           onLeave={this.onLeave}
           onFocus={this.showDateMonthView}
         />
-        <If expression={isMonthViewDisplayed}>
-          <Calendar
-            format="DD MMM YYYY"
-            isUtc={isUtc}
-            value={value}
-            hasWeekdays={hasWeekdays}
-            onChange={onChange}
-          />
-        </If>
+        <If
+          expression={isMonthViewDisplayed}
+          then={() => (
+            <Calendar
+              format="DD MMM YYYY"
+              isUtc={isUtc}
+              value={value}
+              hasWeekdays={hasWeekdays}
+              onChange={onChange}
+            />
+          )}
+        />
       </div>
     );
   }

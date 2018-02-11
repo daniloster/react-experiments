@@ -1,0 +1,183 @@
+@import '~daniloster-base-styles';
+
+$highlightColor: #5264AE;
+$paddingText: 7px;
+
+@mixin activeLabel {
+  top: 5px;
+  padding: calc($paddingText/2);
+  font-size: 12px;
+  color: $highlightColor;
+}
+
+.field {
+  position: relative;
+  @include grid(auto, auto auto);
+  height: 58px;
+
+  &.invalid {
+    input {
+      color: $errorColor;
+    }
+  }
+
+  input {
+    @include input;
+    width: 100%;
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 20px $paddingText 0;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    font-weight: 500;
+    box-shadow: none;
+    z-index: 1;
+
+    /* Empty attribute selector */
+    &[data-value=''] {
+      @include hidePlaceholder;
+    }
+
+    &:invalid {
+      color: $errorColor;
+    }
+
+    /* Not empty attribute selector */
+    &:not([data-value='']) {
+      & ~ label {
+        @include activeLabel;
+      }
+
+      & ~ .bar:before, & ~ .bar:after {
+        width:50%;
+      }
+    }
+
+    &:focus {
+      @include hidePlaceholder;
+      &[data-value=''] {
+        @include showPlaceholder;
+      }
+    }
+
+    /* active state */
+    &:focus ~ label, &:active ~ label {
+      @include activeLabel;
+    }
+
+    /* active state */
+    &:focus ~ .bar:before, &:focus ~ .bar:after,
+    &:active ~ .bar:before, &:active ~ .bar:after {
+      width:50%;
+    }
+
+    /* bars */
+    & ~ .bar  {
+      position:relative;
+      display:block;
+      width:100%;
+
+      &:before, &:after {
+        content:'';
+        position: absolute;
+        z-index: 1;
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        background: #5264AE;
+        transition: 0.2s ease all;
+      }
+
+      &:before {
+        left: 50%;
+      }
+
+      &:after {
+        right: 50%;
+      }
+    }
+
+    & ~ label {
+      position: absolute;
+      box-sizing: border-box;
+      font-weight: normal;
+      pointer-events: none;
+      width: calc(100%);
+      color:#999;
+      font-size: 18px;
+      padding: 0 $paddingText;
+      top: 25px;
+      transition: 0.2s ease all;
+      z-index: 1;
+    }
+  }
+}
+
+.link {
+  outline: none;
+  cursor: pointer;
+  color: $baseColor;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.button {
+  &:not(.iconButton) {
+    @include createAnimationRadar;
+  }
+  &.square {
+    border-radius: 0;
+  }
+  &:not(.flat) {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .4);
+  }
+  @include input(58px);
+  color: $defaultSecondaryColor;
+  &.common {
+    color: $defaultTertearyColor;
+    &:before {
+      background-color: $baseTertearyColor;
+    }
+  }
+  cursor: pointer;
+
+  &.iconButton {
+    background-color: transparent;
+    border: 0;
+    color: $baseSecondaryColor;
+
+    &:hover {
+      color: $activeSecondaryColor;
+      &.common {
+        &:before {
+          background-color: $activeTertearyColor;
+        }
+        color: $defaultTertearyColor;
+      }
+    }
+  }
+}
+
+.loading, .success, .error {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  z-index: 1;
+}
+
+.loading {
+  color: $defaultSecondaryColor;
+}
+
+.success {
+  color: $successColor;
+}
+
+.error {
+  color: $errorColor;
+}

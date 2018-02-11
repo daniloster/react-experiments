@@ -1,0 +1,36 @@
+{
+  "rules": {
+    ".read": "true",
+    "users": {
+      "$uid": {
+        ".read": "auth.uid == $uid || root.child('users').child(auth.uid).child('isAdmin').val() == true",
+        ".write": "true",
+        ".indexOn": [
+          "email"
+        ],
+        "isAdmin": {
+          ".read": "auth.uid == $uid || root.child('users').child(auth.uid).child('isAdmin').val() == true",
+          ".write": "newData.parent().parent().parent().child('users').child(auth.uid).child('isAdmin').val() == true"
+        }
+      }
+    },
+    "pets": {
+      "$uid": {
+        ".read": "auth != null && (root.child('users').child(auth.uid).child('isAdmin').val() == true || root.child('pets').child($uid).child('ownerId').val() == auth.uid)",
+        ".write": "auth != null && !(newData.parent().parent().child('pets').child($uid).val() == true) || newData.parent().parent().child('users').child(auth.uid).child('isAdmin').val() == true"
+      }
+    },
+    "items": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "newData.parent().parent().child('users').child(auth.uid).child('isAdmin').val() == true"
+      }
+    },
+    "schedule-types": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "newData.parent().parent().child('users').child(auth.uid).child('isAdmin').val() == true"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@import '~daniloster-base-styles';
+.items {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 60% auto;
+  grid-template-rows: 50px auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .header {
+    @include header;
+    grid-column: 1/3;
+    margin-top: 0;
+  }
+
+  --columnSpacingBetween: 15px;
+  .list {
+    --tableColumnsCount: 1;
+    --tableRowsCount: 1;
+    grid-column: 1/2;
+    table {
+      width: 100%;
+      justify-items: start;
+      align-items: center;
+
+      max-height: auto;
+      overflow-y: scroll;
+
+      td, th {
+        padding: 0 10px;
+        text-align: left;
+        &:last-child {
+          text-align: center;
+        }
+        &.tableOption {
+          width: 38px;
+          padding: 0px;
+        }
+      }
+
+      th {
+        color: $defaultSecondaryColor;
+        height: 38px;
+      }
+
+      td {
+        & > button[type="button"] {
+          grid-column: repeat(auto-fill);
+          grid-row: repeat(auto-fill);
+          i {
+            align-items: center;
+            display: flex;
+          }
+        }
+      }
+
+    }
+  }
+
+  .form {
+    grid-column: 2/3;
+    flex-direction: column;
+    form {
+      @include grid(100%, auto);
+      grid-gap: 10px;
+
+      & > div, & > button {
+        grid-column: 1/1;
+        grid-row: repeat(auto-fill);
+      }
+    }
+  }
+
+  .form, .list {
+    font-family: $fontFamily;
+    text-rendering: optimizeLegibility;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .footer {
+      grid-column: 1/1;
+      grid-row: repeat(auto-fill);
+    }
+
+    .save {
+      grid-column: 1/1;
+      grid-row: repeat(auto-fill);
+    }
+  }
+}

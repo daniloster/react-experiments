@@ -1,0 +1,82 @@
+{
+  "name": "daniloster-shopping-manager",
+  "version": "0.0.1",
+  "description": "react experiments package",
+  "main": "lib/index.js",
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "include": [
+      "src/**/*.js",
+      "src/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js",
+      "test",
+      "build",
+      "dist",
+      "lib",
+      "mochawesome-reports"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base deployment/dist --config webpack.config.js",
+    "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+    "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
+    "test": "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+    "test:watch": "npm run test -- --watch",
+    "precompile": "rm -rf lib/ && mkdir -p lib",
+    "compile": "babel src --out-dir lib --copy-files --source-maps",
+    "bundle": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "build": "npm run compile && (\"$SKIP_BUNDLE\" == \"true\" || npm run bundle)",
+    "prepublish": "npm run build",
+    "postpublish": "[ -z \"$FIREBASE_TOKEN_SHOPPING_MANAGER\" ] || npm run deploy",
+    "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
+    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
+    "doc": "react-doc-generator src --ignore node_modules,lib,dist,deployment,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md",
+    "predeploy": "which firebase || npm install -g firebase-tools",
+    "deploy": "firebase deploy --token \"$FIREBASE_TOKEN_SHOPPING_MANAGER\" "
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "daniloster-base-styles": "^1.0.0",
+    "daniloster-date-picker": "^1.0.0",
+    "daniloster-if": "^1.0.0",
+    "daniloster-utils": "^1.0.0",
+    "fast-memoize": "2.2.8",
+    "firebase": "4.5.0",
+    "prop-types": "15.6.0",
+    "react": "16.0.0",
+    "react-redux": "5.0.6",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
+    "redux": "3.7.2",
+    "redux-logger": "3.0.6",
+    "redux-saga": "0.16.0",
+    "moment": "2.18.1",
+    "moment-range": "3.0.3",
+    "zone.js": "0.8.18"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "cross-env": "5.0.5",
+    "enzyme": "3.1.0",
+    "eslint": "3.19.0",
+    "mocha": "3.5.3",
+    "mochawesome": "2.3.1",
+    "nyc": "10.0.0",
+    "react-addons-test-utils": "15.6.2",
+    "react-doc-generator": "1.2.5",
+    "redux-devtools": "3.4.1",
+    "redux-devtools-log-monitor": "1.4.0",
+    "redux-devtools-dock-monitor": "1.1.3",
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.4.2"
+  }
+}

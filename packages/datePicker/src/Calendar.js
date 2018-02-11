@@ -30,12 +30,12 @@ class Calendar extends PureComponent {
       value: initialValue,
       isUtc: initialIsUtc,
     } = this.props;
-    const currentMonth = getMoment(initialIsUtc)(initialValue);
-    const initialMonth = currentMonth.month();
-    const initialYear = currentMonth.year();
+    const initialCurrentMonth = getMoment(initialIsUtc)(initialValue);
+    const initialMonth = initialCurrentMonth.month();
+    const initialYear = initialCurrentMonth.year();
 
     this.setState({
-      currentMonth,
+      currentMonth: initialCurrentMonth,
       month: initialMonth,
       year: initialYear,
       calendar: getCalendar({
@@ -154,9 +154,10 @@ class Calendar extends PureComponent {
         >
           &gt;
         </NavigationButton>
-        <If expression={hasWeekdays}>
-          <Weekdays />
-        </If>
+        <If
+          expression={hasWeekdays}
+          then={() => <Weekdays />}
+        />
         <Weeks
           isUtc={isUtc}
           month={month}

@@ -1,0 +1,87 @@
+@import '~daniloster-base-styles';
+
+.applicationContainer {
+  font-family: $fontFamily;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+
+  &:not(.centredForm) {
+    @include grid(repeat(1, auto), 58px 32px repeat(2,auto));
+
+    grid-template-areas:
+      'header'
+      'menu'
+      'content'
+      'footer'
+    ;
+  }
+
+  &.centredSignInForm {
+    @include grid(auto 350px auto, auto 265px auto);
+
+    .form {
+      grid-column: 2/2;
+      grid-row: 2/2;
+    }
+  }
+
+  &.centredSignUpForm {
+    @include grid(auto 450px auto, auto auto auto);
+
+    .form {
+      grid-column: 2/2;
+      grid-row: 2/2;
+    }
+  }
+
+  :global {
+    input {
+      @include input;
+
+      &[type="text"], &[type="email"], &[type="password"] {
+        @include text;
+      }
+    }
+  }
+
+  .header {
+    grid-area: header;
+    z-index: 3;
+
+    .accountButton {
+      button[type="button"] {
+        box-shadow: 0 0;
+      }
+    }
+  }
+
+  .menu {
+    grid-area: menu;
+    position: relative;
+    z-index: 2;
+  }
+
+  .content {
+    grid-area: content;
+    z-index: 1;
+  }
+
+  .footer {
+    grid-area: footer;
+    z-index: 3;
+  }
+  @media screen and (max-width: 440px) {
+    .menu {
+      position: absolute;
+      height: 0;
+      overflow-y: hidden;
+      transition: height .3s ease-out;
+      .active {
+        height: auto;
+        overflow-y: auto;
+      }
+    }
+  }
+}

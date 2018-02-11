@@ -13,7 +13,7 @@ module.exports = function(package, webpackConfig) {
     webpackConfig.output.libraryTarget = 'umd';
     webpackConfig.output.publicPath = DEV_URL;
     webpackConfig.devServer = {
-      inline: true,
+      // inline: true,
       port: DEV_PORT,
       stats: {
         title: 'DEV PAGE',
@@ -28,4 +28,5 @@ module.exports = function(package, webpackConfig) {
       }
     };
   }
+  return webpackConfig;
 };

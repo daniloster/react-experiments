@@ -1,0 +1,68 @@
+{
+  "hosting": {
+    "public": "./deployment",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/mochawesome-report/**",
+      "**/mochawesome-reports/**",
+      "**/coverage/**",
+      "**/DEV/**",
+      "**/lib/**",
+      "**/src/**",
+      "**/*.md",
+      "**/package.json",
+      "**/webpack.config.js"
+    ],
+    // Add the "redirects" section within "hosting"
+    "redirects": [
+      {
+        "source" : "/firebase/*",
+        "destination" : "https://firebase.google.com",
+        "type" : 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/app/index.html"
+      },
+      {
+        "source": "/#/**",
+        "destination": "/app/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "headers" : [
+            {
+            "key" : "Access-Control-Allow-Origin",
+            "value" : "*"
+          }
+        ]
+      },
+      {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=7200"
+          }
+        ]
+      },
+      {
+        "source" : "404.html",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=300"
+          }
+        ]
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

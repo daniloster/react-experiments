@@ -1,0 +1,62 @@
+@import '~daniloster-base-styles';
+
+.navigationMenuContainer {
+  position: relative;
+  grid-gap: 10px;
+  justify-items: right;
+  justify-content: right;
+
+  &:before {
+    content: '';
+    background-color: $baseColor;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  a {
+    position: relative;
+    font-size: 0.8rem;
+    text-decoration: none;
+    &:before {
+      content: '';
+      background-color: transparent;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  a, a:visited, a:active, a:hover {
+    color: $defaultSecondaryColor;
+  }
+  a:active, a:hover {
+    &:before {
+      background-color: $activeColor;
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    @include grid(repeat(1, auto), auto);
+  }
+
+  @media screen and (min-width: 441px) and (max-width: 960px) {
+    @include grid(repeat(6, auto), auto);
+  }
+  @media screen and (min-width: 961px) {
+    @include grid(repeat(12, auto), auto);
+  }
+
+  .navigationMenuItem {
+    grid-column: repeat(auto-fill);
+    grid-row: repeat(auto-fill);
+    justify-items: center;
+    align-items: center;
+    padding: 7px;
+  }
+}

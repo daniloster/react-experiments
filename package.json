@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "axios": "0.16.2",
+    "fast-memoize": "2.3.0",
     "mobx": "3.3.0",
     "mobx-react": "4.3.2",
     "moment": "2.18.1",
@@ -13,7 +14,8 @@
     "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
-    "uuid": "3.1.0"
+    "uuid": "3.1.0",
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "autoprefixer": "6.6.1",
@@ -40,7 +42,7 @@
     "cross-env": "5.0.5",
     "css-loader": "0.25.0",
     "daniloster-cli": ">=0.0.1",
-    "enzyme": "3.0.0",
+    "enzyme": "3.1.0",
     "enzyme-adapter-react-16": "1.0.0",
     "enzyme-adapter-utils": "1.0.0",
     "eslint": "3.19.0",
@@ -94,6 +96,7 @@
     "coverage": "lerna run coverage --since --concurrency 8",
     "check-coverage": "lerna run check-coverage --since --concurrency 8",
     "validate": "npm run coverage && npm run check-coverage",
+    "compile:watch": "lerna run compile --ignore daniloster-base-styles --parallel -- -- --watch",
     "doc": "lerna run doc --parallel --concurrency 8"
   }
 }

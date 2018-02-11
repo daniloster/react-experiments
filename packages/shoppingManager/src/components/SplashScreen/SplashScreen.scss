@@ -1,0 +1,32 @@
+@import '~daniloster-base-styles';
+
+.splashScreen {
+  font-family: $fontFamily;
+  background-color: rgba(0, 0, 0, 0.88);
+  color: $defaultSecondaryColor;
+  height: 100vh;
+  width: 100vw;
+
+  @include grid(
+    $columns: auto 450px auto,
+    $rows: auto 300px 30px auto
+  );
+
+  .splash {
+    justify-self: center;
+    align-self: center;
+    grid-column: 2/2;
+    grid-row: 2/2;
+    background: url('./ballTriangleSplashScreen.svg') no-repeat;
+    background-size: 200px 200px;
+    width: 200px;
+    height: 200px;
+  }
+
+  span {
+    justify-self: center;
+    align-self: center;
+    grid-column: 2/2;
+    grid-row: 3/3;
+  }
+}

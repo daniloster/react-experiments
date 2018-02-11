@@ -9,16 +9,19 @@ import PropTypes from 'prop-types';
  */
 class If extends PureComponent {
   render() {
-    const { className, expression, children } = this.props;
-    if (expression && children) {
-      if (typeof children === 'string') {
-        return <span className={className}>{children}</span>;
-      }
-
-      return children;
+    const { className, expression, then, otherwise } = this.props;
+    let node = false;
+    if (expression && then) {
+      node = then();
+    } else if (otherwise) {
+      node = otherwise();
     }
 
-    return false;
+    if (typeof node === 'string') {
+      return <span className={className}>{node}</span>;
+    }
+
+    return node;
   }
 }
 
@@ -29,18 +32,25 @@ If.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Node conditionally rendered. Note: this node is wrapped into
-   * a span when a string is provided.
-   */
-  children: PropTypes.node.isRequired,
-  /**
    * The flag that show/hide the children.
    */
   expression: PropTypes.bool.isRequired,
+  /**
+   * Node conditionally rendered (else case). Note: this node is wrapped
+   * into a span when a string is provided.
+   */
+  otherwise: PropTypes.func,
+  /**
+   * Node conditionally rendered (if case). Note: this node is wrapped
+   * into a span when a string is provided.
+   */
+  then: PropTypes.func,
 };
 
 If.defaultProps = {
   className: '',
+  otherwise: null,
+  then: null,
 };
 
 export default If;

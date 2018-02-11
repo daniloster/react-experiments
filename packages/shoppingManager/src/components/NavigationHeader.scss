@@ -1,0 +1,47 @@
+@import '~daniloster-base-styles';
+
+.navigationHeaderContainer {
+  position: relative;
+  background-color: rgba(20,20,50, .94);
+  box-shadow: $basicCardHover;
+  --columnsCount: 2;
+  @include grid(repeat(var(--columnsCount), auto), repeat(1, auto));
+  @media screen and (max-width: 440px) {
+    --columnsCount: 2;
+    grid-template-areas:
+      'logo settings'
+    ;
+  }
+  @media screen and (min-width: 441px) and (max-width: 960px) {
+    --columnsCount: 6;
+    grid-template-areas:
+      'logo settings settings settings settings settings'
+    ;
+  }
+  @media screen and (min-width: 961px) {
+    --columnsCount: 12;
+    grid-template-areas:
+      'logo settings settings settings settings settings settings settings settings settings settings settings'
+    ;
+  }
+
+  .logoPicture {
+    width: 48px;
+    height: 42px;
+    line-height: 58px;
+    padding: 8px 4px;
+    grid-area: logo;
+    justify-items: start;
+    align-items: center;
+    text-shadow: 2px 4px 6px $defaultColor, 0 0 0 $activeSecondaryColor, 2px 4px 6px $defaultColor;
+    color: $baseSecondaryColor;
+    fill: $baseSecondaryColor;
+  }
+
+  .settings {
+    grid-area: settings;
+    @include grid(repeat(calc(var(--columnsCount) - 1), auto-fill), auto);
+    justify-items: end;
+    align-items: center;
+  }
+}

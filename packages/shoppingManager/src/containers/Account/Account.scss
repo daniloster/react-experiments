@@ -1,0 +1,143 @@
+@import '~daniloster-base-styles';
+
+.form {
+  font-family: $fontFamily;
+  text-rendering: optimizeLegibility;
+  @include grid(1fr, 2fr auto auto auto auto auto);
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .header {
+    grid-column: 1/1;
+    @include header;
+    margin: 0;
+  }
+
+  & > span {
+    grid-column: 1/1;
+    grid-row: repeat(auto-fill);
+    font-size: .7rem;
+    text-align: center;
+    color: $baseSecondaryColor;
+    &:last-child {
+      padding: $innerGap;
+    }
+  }
+
+  input {
+    grid-column: 1/1;
+    grid-row: repeat(auto-fill);
+  }
+
+  .groupSignUpButtons {
+    @include grid(1fr 1fr, auto);
+    grid-gap: 1px;
+
+    button {
+      grid-column: repeat(auto-fill);
+      grid-row: repeat(auto);
+    }
+  }
+
+  &.passwordIncorrect {
+    input[type="password"] {
+      color: $errorColor;
+    }
+  }
+
+  &.resetPasswordForm {
+    p {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+
+  .errorMessage {
+    color: $errorColor;
+  }
+
+  .button {
+    grid-column: 1/1;
+    grid-row: repeat(auto);
+  }
+}
+
+.accountButtonContainer {
+  .accountFlyout.minimal {
+    form {
+      button[type="button"] {
+        border-radius: 0;
+      }
+    }
+  }
+}
+.accountButtonContainer {
+  button[type="button"].accountButton {
+    display: flex;
+    align-items: center;
+    padding: 0 $innerGap;
+    box-shadow: 0 0;
+    transition: background-color .3s ease-out;
+
+    &:before {
+      background-color: transparent;
+    }
+
+    span:first-child {
+      margin-right: $innerGap;
+    }
+
+    &:hover {
+      background-color: $baseSecondaryColor;
+    }
+  }
+  .accountFlyout {
+    background-color: #fff;
+  }
+  @media screen and (max-width: 440px) {
+    .accountFlyout {
+      top: 58px;
+      left: 0;
+      right: 0;
+    }
+  }
+  @media screen and (min-width: 441px) {
+    .accountFlyout {
+      width: 220px;
+      top: 58px;
+      right: 0;
+    }
+  }
+}
+
+section {
+  .clientsContainer {
+    grid-template-columns: 100%;
+    grid-template-areas: "header header" "list list";
+    h2.header {
+      grid-column: 1/2;
+    }
+
+    &> div.tableWrapper {
+      display: block;
+      grid-column: 1/2;
+      table {
+        width: 100%;
+
+        th {
+          color: $defaultSecondaryColor;
+          height: 38px;
+        }
+        td, th {
+          padding: 0 10px;
+          text-align: left;
+          &:last-child {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

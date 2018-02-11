@@ -45,9 +45,11 @@ function getSassLoader(dirname, isProd) {
     includePaths: [
       path.resolve(dirname, 'src'),
       path.resolve(dirname, 'node_modules'),
-      path.resolve(dirname, 'node_modules', 'font-awesome', 'fonts'),
+      path.resolve(dirname, 'node_modules/font-awesome/css'),
+      path.resolve(dirname, 'node_modules/font-awesome/fonts'),
       path.resolve(dirname, '../../node_modules'),
-      path.resolve(dirname, '../../node_modules', 'font-awesome', 'fonts'),
+      path.resolve(dirname, '../../node_modules/font-awesome/css'),
+      path.resolve(dirname, '../../node_modules/font-awesome/fonts')
     ],
     data: '$fa-font-path: "font-awesome/fonts";'
   };
