@@ -1,7 +1,5 @@
 /* eslint-disable */
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 /* eslint-enable */
 import PropTypes from 'prop-types';
 import memoize from 'fast-memoize';
@@ -15,10 +13,7 @@ import { shouldComponentUpdate } from 'daniloster-utils';
  */
 export const isValidChange = memoize(
   (state, key, value) =>
-    value &&
-    (!state ||
-      !state[key] ||
-      JSON.stringify(value) !== JSON.stringify(state[key])),
+    value && (!state || !state[key] || JSON.stringify(value) !== JSON.stringify(state[key])),
 );
 
 /* eslint-disable */
@@ -85,28 +80,28 @@ export const getStateFromProps = memoize((state, defaultLocale, locale, locales)
  *      title: 'Creating label',
  *      description: 'Description',
  *      color: 'Color',
- *      errorMessage: '<0>Error</0>: label has not been created successfully.',
- *      successMessage: '<0>Success</0>: label has been created successfully!',
+ *      errorMessage: decorate('<0>Error</0>: label has not been created successfully.'),
+ *      successMessage: decorate('<0>Success</0>: label has been created successfully!'),
  *      button: 'Save',
  *    },
  *    pt: {
  *      title: 'Criando label',
  *      description: 'Descrição',
  *      color: 'Cor',
- *      errorMessage: '<0>Erro</0>: label não foi criado com <1>sucesso</1>.',
- *      successMessage: '<0>Sucesso</0>: label foi criado com <1>sucesso</1>!',
+ *      errorMessage: decorate('<0>Erro</0>: label não foi criado com <1>sucesso</1>.'),
+ *      successMessage: decorate('<0>Sucesso</0>: label foi criado com <1>sucesso</1>!'),
  *      button: 'Gravar',
  *    },
  *  };
  *
- *  const LabelForm = localise(localeGreeting)(({ i18n, isError, isSuccess }) => (
+ *  const LabelForm = localise(localeLabel)(({ i18n, isError, isSuccess }) => (
  *    <div>
  *      <h2>{i18n.title}</h2>
  *      <form>
  *        <div>{i18n.description}</div>
- *        <input type="text" {...yourProps} />
+ *        <input type="text" />
  *        <div>{i18n.color}</div>
- *        <input type="text" {...yourProps} />
+ *        <input type="text" />
  *
  *        {isError && (
  *          <div>
@@ -131,25 +126,26 @@ export const getStateFromProps = memoize((state, defaultLocale, locale, locales)
  *  //----------------------------------------------//
  *  import { I18nProvider } from 'daniloster-react-i18n';
  *
- *  // If you have the redux store provider wrapping and want to
- *  // feed information from its state to the provider component,
- *  // it is possible. Only need to create a mapStateToProps and
- *  // an action to change the locale through reducer.
+ *  // If you have the redux store provider and want to feed
+ *  // information from its state to the I18nProvider component,
+ *  // it is possible. Only required to create a mapStateToProps
+ *  // and an action {onChangeI18n} to change the locale through
+ *  // reducer. Altough redux provider is not required to use the
+ *  // internationalization library.
  *
- *  <Provider store={store}> // optional
- *    <I18nProvider defaultLocale="en" locales={['en', 'pt']}>
- *      <Greeting /> // it will get the correct i18n object
- *      <LabelForm isError />
- *      <LabelForm isSuccess />
- *    </I18nProvider>
- *    // The elements below will always display in portuguese, unless
- *    // you have internal components change the locale by action or
- *    // by the setI18n function provided by I18nProvider.
- *    <I18nProvider defaultLocale="pt">
- *      <Greeting /> // it will get the correct i18n object
- *      <LabelForm isError />
- *      <LabelForm isSuccess />
- *    </I18nProvider>
+ *  <Provider store={store}>
+ *    <div>
+ *      <I18nProvider defaultLocale="en" locales={['en', 'pt']}>
+ *        <Greeting />
+ *        <LabelForm isError />
+ *        <LabelForm isSuccess />
+ *      </I18nProvider>
+ *      <I18nProvider defaultLocale="pt">
+ *        <Greeting />
+ *        <LabelForm isError />
+ *        <LabelForm isSuccess />
+ *      </I18nProvider>
+ *    </div>
  *  </Provider>
  * ```
  */
@@ -202,12 +198,7 @@ export default class I18nProvider extends Component {
   };
 
   state = {
-    ...getStateFromProps(
-      null,
-      this.props.defaultLocale,
-      this.props.locale,
-      this.props.locales,
-    ),
+    ...getStateFromProps(null, this.props.defaultLocale, this.props.locale, this.props.locales),
   };
 
   getChildContext() {
@@ -222,12 +213,7 @@ export default class I18nProvider extends Component {
   }
 
   componentWillReceiveProps({ defaultLocale, locale, locales }, nextState) {
-    const newState = getStateFromProps(
-      nextState,
-      defaultLocale,
-      locale,
-      locales,
-    );
+    const newState = getStateFromProps(nextState, defaultLocale, locale, locales);
     if (newState && Object.keys(newState)) {
       this.setState(newState);
     }
