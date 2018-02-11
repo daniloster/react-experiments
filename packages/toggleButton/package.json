@@ -1,6 +1,6 @@
 {
   "name": "daniloster-toggle-button",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React toggle button component",
   "main": "lib/index.js",
   "nyc": {
@@ -50,7 +50,7 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",
-    "daniloster-base-styles": "^1.1.0",
+    "daniloster-base-styles": "^1.1.2",
     "daniloster-if": "^1.1.1",
     "enzyme": "3.0.0",
     "eslint": "3.19.0",
