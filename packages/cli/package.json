@@ -1,6 +1,6 @@
 {
   "name": "daniloster-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "CLI to the lerna repo for react experiments",
   "main": "index.js",
   "nyc": {
