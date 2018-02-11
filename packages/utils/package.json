@@ -28,13 +28,13 @@
   "scripts": {
     "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
     "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
-    "test": "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
-    "test:watch": "npm run test -- --watch",
+    "test": "yarn run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+    "test:watch": "yarn run test -- --watch",
     "precompile": "rm -rf lib/ && mkdir -p lib",
     "compile": "babel src --out-dir lib --copy-files --source-maps",
     "bundle": "NODE_ENV=production webpack -p --config webpack.config.js",
-    "build": "npm run compile && npm run bundle",
-    "prepublish": "npm run build",
+    "build": "yarn run compile && yarn run bundle",
+    "prepublish": "yarn run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },

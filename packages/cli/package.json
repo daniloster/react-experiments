@@ -25,12 +25,13 @@
   "scripts": {
     "check-coverage": "exit 0",
     "coverage": "exit 0",
-    "test": "npm run lint",
+    "test": "yarn run lint",
     "precompile": "rm -rf lib/ && mkdir -p lib",
     "compile": "babel src --out-dir lib --copy-files --source-maps",
-    "prepublish": "npm run compile",
+    "prepublish": "yarn run compile",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
+    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
+    "doc": "exit 0"
   },
   "bin": {
     "daniloster-cli": "./index.js"

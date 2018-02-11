@@ -1,7 +1,7 @@
 {
-  "name": "daniloster-toggle-button",
-  "version": "1.0.0",
-  "description": "React toggle button component",
+  "name": "react-i18n-base",
+  "version": "0.0.1",
+  "description": "react experiments package",
   "main": "lib/index.js",
   "nyc": {
     "require": [
@@ -12,6 +12,7 @@
       "src/*.js"
     ],
     "exclude": [
+      "src/mockData.test",
       "src/**/*.spec.js",
       "test",
       "build",
@@ -40,31 +41,31 @@
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc": "react-asciidoc-generator src --ignore node_modules,index.js,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --output COMPONENTS_INTERFACE.md"
   },
-  "dependencies": {},
+  "dependencies": {
+    "daniloster-utils": "^1.0.0"
+  },
   "peerDependencies": {
-    "daniloster-base-styles": "^1.0.0",
-    "daniloster-if": "^1.0.0",
-    "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "prop-types": "^15.6.0",
+    "fast-memoize": "^2.3.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",
-    "daniloster-base-styles": "^1.0.0",
-    "daniloster-if": "^1.0.0",
     "enzyme": "3.0.0",
     "eslint": "3.19.0",
     "mocha": "3.5.3",
     "mochawesome": "2.3.1",
     "nyc": "10.0.0",
-    "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.2",
     "react-asciidoc-generator": "1.5.8",
     "react-test-renderer": "16.0.0",
     "uuid": "3.1.0",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2"
+    "webpack-dev-server": "2.4.2",
+    "prop-types": "15.6.0",
+    "fast-memoize": "2.3.0"
   }
 }

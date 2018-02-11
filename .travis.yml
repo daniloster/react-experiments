@@ -12,10 +12,9 @@ before_install:
 - npm run tools
 install:
 - yarn install
-- npm run bootstrap
 script:
 - echo "Running tests against $(node -v) ..."
-- npm run validate
+- yarn run validate
 jobs:
   include:
   - stage: release

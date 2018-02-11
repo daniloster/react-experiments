@@ -15,5 +15,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "[Error] There is no attribute release in this last commit"
     exit 1
   fi
+  echo "[Successful] Attribute is present in this last commit"
   exit 0
 fi

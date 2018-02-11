@@ -30,7 +30,8 @@
     "coverage": "exit 0",
     "test": "exit 0",
     "build": "exit 0",
-    "prepublish": "exit 0"
+    "prepublish": "exit 0",
+    "doc": "exit 0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

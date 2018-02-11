@@ -1,7 +1,7 @@
 import axios from 'axios';
 import pack from '../../../../package.json';
 
-const REACT_DEFAULT_DEPENDENCIES = ['react', 'prop-types', 'react-doc-generator'];
+const REACT_DEFAULT_DEPENDENCIES = ['react', 'prop-types', 'react-asciidoc-generator'];
 /**
  * Performs an api call to obtain the dependencies' version.
  * Especial case for react.

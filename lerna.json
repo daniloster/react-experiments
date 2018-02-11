@@ -1,6 +1,7 @@
 {
-  "lerna": "2.1.0",
   "hoist": true,
+  "lerna": "2.8.0",
   "npmClient": "yarn",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "useWorkspaces": true
 }
