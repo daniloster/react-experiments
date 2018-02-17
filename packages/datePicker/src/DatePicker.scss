@@ -1,4 +1,4 @@
-@import '~daniloster-base-styles';
+@import "~daniloster-base-styles";
 
 $calendarPaletteDarkLight: $inactiveLightColor;
 $calendarHeaderColor: #448aff;
@@ -11,13 +11,12 @@ $calendarHeaderNavigation: 48px;
 .datePickerContainer {
   font-family: $fontFamily;
   line-height: $basicLineHeight;
-  height: $basicLineHeight;
   font-size: $basicFontSize;
   position: relative;
   width: calc(#{$calendarBoxCell} * 7);
 
   .iconDatePickerIcon {
-    background: url('./icon.svg');
+    background: url("./icon.svg");
     width: calc(#{$basicInputHeight} - 12px);
     height: calc(#{$basicInputHeight} - 12px);
     display: block;
@@ -50,7 +49,6 @@ $calendarHeaderNavigation: 48px;
   }
 
   .valid {
-
   }
   .invalid {
     color: $errorColor;
@@ -62,15 +60,15 @@ $calendarHeaderNavigation: 48px;
       $rows: 1.3fr 0.7fr auto 1fr
     );
     grid-template-areas:
-      'previousMonth headerContent headerContent headerContent headerContent headerContent nextMonth'
-      'sunday monday tuesday wednesday thursday friday saturday'
-      'content content content content content content content'
-      'footer footer footer footer footer footer footer'
-    ;
+      "previousMonth headerContent headerContent headerContent headerContent headerContent nextMonth"
+      "sunday monday tuesday wednesday thursday friday saturday"
+      "content content content content content content content"
+      "footer footer footer footer footer footer footer";
 
     box-sizing: border-box;
     width: 100%;
     right: 0;
+    background-color: #fff;
     @include flyout;
 
     button[type="button"][data-active="true"] {
@@ -82,7 +80,7 @@ $calendarHeaderNavigation: 48px;
 
       &:hover:before,
       &:active:before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -95,7 +93,8 @@ $calendarHeaderNavigation: 48px;
       }
     }
 
-    .calendarNavigation, .calendarHeaderText {
+    .calendarNavigation,
+    .calendarHeaderText {
       display: inline-flex;
       flex-direction: column;
       justify-content: center;
@@ -111,7 +110,7 @@ $calendarHeaderNavigation: 48px;
       color: $calendarHeaderTextColor;
       padding: 0;
       border: 0;
-      transition: text-shadow .3s ease-in;
+      transition: text-shadow 0.3s ease-in;
 
       &:hover {
         text-shadow: 5px 5px 12px $calendarPaletteDarkLight;
@@ -172,8 +171,8 @@ $calendarHeaderNavigation: 48px;
       width: 100%;
       background: linear-gradient(
         180deg,
-        hsla(0,0%,100%,0) 50%,
-        rgba(0,0,0,.05)
+        hsla(0, 0%, 100%, 0) 50%,
+        rgba(0, 0, 0, 0.05)
       );
 
       .calendarDay {
@@ -202,7 +201,6 @@ $calendarHeaderNavigation: 48px;
       }
     }
 
-
     button[type="button"].calendarSelectedDay {
       color: $calendarHeaderTextColor;
 
@@ -211,7 +209,7 @@ $calendarHeaderNavigation: 48px;
       }
 
       &:before {
-        content: '';
+        content: "";
         background-color: $calendarHighlightColor;
         position: absolute;
         top: 50%;
@@ -238,8 +236,8 @@ $calendarHeaderNavigation: 48px;
       cursor: default;
       width: 100%;
       height: $calendarBoxCell;
-      border-top: 1px solid lighten(rgba(0,0,0,.05), 20);
-      background-color: rgba(0,0,0,.05);
+      border-top: 1px solid lighten(rgba(0, 0, 0, 0.05), 20);
+      background-color: rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: center;
       align-items: center;

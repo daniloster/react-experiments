@@ -1,15 +1,10 @@
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import If from 'daniloster-if';
 import NavigationButton from './NavigationButton';
 import Weekdays from './Weekdays';
 import Weeks from './Weeks';
-import {
-  getMoment,
-  getCalendar,
-} from './datePickerUtils';
+import { getMoment, getCalendar } from './datePickerUtils';
 
 import styles from './DatePicker.scss';
 
@@ -23,19 +18,16 @@ class Calendar extends PureComponent {
     month: null,
     year: null,
     calendar: null,
-  }
+  };
 
   componentWillMount() {
-    const {
-      value: initialValue,
-      isUtc: initialIsUtc,
-    } = this.props;
-    const currentMonth = getMoment(initialIsUtc)(initialValue);
-    const initialMonth = currentMonth.month();
-    const initialYear = currentMonth.year();
+    const { value: initialValue, isUtc: initialIsUtc } = this.props;
+    const initialCurrentMonth = getMoment(initialIsUtc)(initialValue);
+    const initialMonth = initialCurrentMonth.month();
+    const initialYear = initialCurrentMonth.year();
 
     this.setState({
-      currentMonth,
+      currentMonth: initialCurrentMonth,
       month: initialMonth,
       year: initialYear,
       calendar: getCalendar({
@@ -46,11 +38,7 @@ class Calendar extends PureComponent {
     });
 
     this.onClick = (e) => {
-      const {
-        isUtc,
-        format,
-        onChange,
-      } = this.props;
+      const { isUtc, format, onChange } = this.props;
       const item = e.currentTarget;
       const value = Number(item.getAttribute('data-value'));
       const isActive = item.getAttribute('data-active') === 'true';
@@ -77,12 +65,8 @@ class Calendar extends PureComponent {
 
     this.nextMonth = (e) => {
       e.preventDefault();
-      const {
-        currentMonth: m,
-      } = this.state;
-      const {
-        isUtc,
-      } = this.props;
+      const { currentMonth: m } = this.state;
+      const { isUtc } = this.props;
 
       const currentMonth = m.clone().add(1, 'month');
       const month = currentMonth.month();
@@ -98,12 +82,8 @@ class Calendar extends PureComponent {
 
     this.previousMonth = (e) => {
       e.preventDefault();
-      const {
-        currentMonth: m,
-      } = this.state;
-      const {
-        isUtc,
-      } = this.props;
+      const { currentMonth: m } = this.state;
+      const { isUtc } = this.props;
 
       const currentMonth = m.clone().subtract(1, 'month');
       const month = currentMonth.month();
@@ -119,39 +99,21 @@ class Calendar extends PureComponent {
   }
 
   render() {
-    const {
-      className,
-      isUtc,
-      hasWeekdays,
-      format,
-      value,
-    } = this.props;
-    const {
-      month,
-      year,
-      calendar,
-    } = this.state;
+    const { className, isUtc, hasWeekdays, format, value } = this.props;
+    const { month, year, calendar } = this.state;
     const m = getMoment(isUtc);
     const currentDate = m(value);
     const currentMonth = m([year, month]);
 
     return (
       <div className={[styles.calendar, className].join(' ')}>
-        <NavigationButton
-          className={styles.calendarPreviousMonth}
-          navigate={this.previousMonth}
-        >
+        <NavigationButton className={styles.calendarPreviousMonth} navigate={this.previousMonth}>
           &lt;
         </NavigationButton>
         <div className={styles.calendarHeaderText}>
-          <span>
-            {currentMonth.format('MMM YYYY')}
-          </span>
+          <span>{currentMonth.format('MMM YYYY')}</span>
         </div>
-        <NavigationButton
-          className={styles.calendarNextMonth}
-          navigate={this.nextMonth}
-        >
+        <NavigationButton className={styles.calendarNextMonth} navigate={this.nextMonth}>
           &gt;
         </NavigationButton>
         <If expression={hasWeekdays}>
@@ -164,9 +126,7 @@ class Calendar extends PureComponent {
           calendar={calendar}
           onClickItem={this.onClick}
         />
-        <div className={styles.footer}>
-          {currentDate.format(format)}
-        </div>
+        <div className={styles.footer}>{currentDate.format(format)}</div>
       </div>
     );
   }

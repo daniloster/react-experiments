@@ -1,26 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {
-  decorate,
-  localise,
-  I18nProvider,
-} from '../src';
-import Greeting from '../src/mockData.test/Greeting';
-import LabelForm from '../src/mockData.test/LabelForm';
-import LanguagePicker from '../src/mockData.test/LanguagePicker';
-import localeGreeting from '../src/mockData.test/Greeting.locale';
-import localeLabelForm from '../src/mockData.test/LabelForm.locale';
-import localeLanguagePicker from '../src/mockData.test/LanguagePicker.locale';
+import { decorate, localise, I18nProvider } from '../src';
+import Greeting from '../src/__test__/Greeting';
+import LabelForm from '../src/__test__/LabelForm';
+import LanguagePicker from '../src/__test__/LanguagePicker';
+import localeGreeting from '../src/__test__/Greeting.locale';
+import localeLabelForm from '../src/__test__/LabelForm.locale';
+import localeLanguagePicker from '../src/__test__/LanguagePicker.locale';
 
-const localeKeys = [
-  localeGreeting,
-  localeLabelForm,
-  localeLanguagePicker,
-].reduce((keys, locale = {}) => (
-  Object.keys(locale)
-    .filter(key => !keys.includes(key))
-    .concat(keys)
-), []);
+const localeKeys = [localeGreeting, localeLabelForm, localeLanguagePicker].reduce(
+  (keys, locale = {}) =>
+    Object.keys(locale)
+      .filter(key => !keys.includes(key))
+      .concat(keys),
+  [],
+);
 
 const GreetingI18n = localise(localeGreeting)(Greeting);
 const LabelFormI18n = localise(localeLabelForm)(LabelForm);

@@ -1,19 +1,18 @@
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import Italic from './Italic';
 
 export default class LanguagePicker extends PureComponent {
   onChange = (e) => {
     this.props.i18nMetadata.setI18n(e.target.value);
-  }
+  };
   render() {
     const { children, i18n, i18nMetadata } = this.props;
     return (
-      <div>
+      <div style={{ backgroundColor: 'rgba(40, 40, 180, 0.3)', padding: '10px' }}>
         <section>
-          <label>{i18n.languages}</label>
-          <select onChange={this.onChange} value={i18nMetadata.locale}>
+          <label htmlFor="language_item">{i18n.languages}</label>
+          <br />
+          <select id="language_item" onChange={this.onChange} value={i18nMetadata.locale}>
             {i18nMetadata.locales.map(locale => (
               <option value={locale} key={locale}>
                 {i18n.options[locale]}
@@ -21,9 +20,7 @@ export default class LanguagePicker extends PureComponent {
             ))}
           </select>
         </section>
-        <section>
-          {children}
-        </section>
+        <section>{children}</section>
       </div>
     );
   }

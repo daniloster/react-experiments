@@ -2,7 +2,7 @@
 
 React toggle button component
 
-### 1. [API](https://github.com/daniloster/react-experiments/blob/master/packages/toggleButton/COMPONENTS_INTERFACE.md)
+### 1. [API](https://github.com/daniloster/react-experiments/blob/master/packages/toggleButton/API.md)
 
 ## Guidance
 

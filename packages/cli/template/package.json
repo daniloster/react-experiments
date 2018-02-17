@@ -31,7 +31,7 @@
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc":
-      "react-doc-generator src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js --format markdown --output COMPONENTS_INTERFACE.md"
+      "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "dependencies": {},
   "peerDependencies": {},
@@ -45,7 +45,8 @@
     "nyc": "10.0.0",
     "react": "16.0.0",
     "react-addons-test-utils": "15.6.2",
-    "react-doc-generator": "1.2.5",
+    "react-docgen": "2.20.0",
+    "react-styleguidist": "6.2.5",
     "react-test-renderer": "16.0.0",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"

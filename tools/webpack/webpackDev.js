@@ -1,10 +1,9 @@
 const env = require('./webpackEnv');
 
-module.exports = function(package, webpackConfig) {
-  const DEV_PORT = package.devPort || 8000,
+module.exports = function (pack, webpackConfig) {
+  const DEV_PORT = pack.devPort || 8000,
     DEV_HOST = 'localhost',
     DEV_URL = ['http://', DEV_HOST, ':', DEV_PORT, '/'].join('');
-
 
   if (env.isDev) {
     webpackConfig.externals = [];
@@ -24,8 +23,8 @@ module.exports = function(package, webpackConfig) {
         colors: true,
         hash: false,
         timings: true,
-        version: false
-      }
+        version: false,
+      },
     };
   }
 };

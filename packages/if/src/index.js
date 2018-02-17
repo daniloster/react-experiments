@@ -1,11 +1,17 @@
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 /**
  * If
  * Component that wraps other components and conditionally displays them.
+ * E.g.
+ * ```html
+ * <If
+ *   expression={isTruthy}
+ *   then={() => <span>It is truthy!</span>}
+ *   otherwise={() => <span>It is falsy!</span>}
+ * />
+ * ```
  */
 class If extends PureComponent {
   render() {

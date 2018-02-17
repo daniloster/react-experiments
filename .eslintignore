@@ -1,2 +1,2 @@
 **/*.spec.js
-**/mockData.test
+**/__test__

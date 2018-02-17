@@ -1,10 +1,6 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  shouldComponentUpdate,
-} from 'daniloster-utils';
+import { shouldComponentUpdate } from 'daniloster-utils';
 import If from 'daniloster-if';
 import DateInputField from './DateInputField';
 import Calendar from './Calendar';
@@ -19,7 +15,7 @@ class DatePicker extends Component {
   state = {
     isMonthViewDisplayed: false,
     isComponentReady: false,
-  }
+  };
 
   componentWillMount() {
     this.showDateMonthView = () => {
@@ -31,19 +27,17 @@ class DatePicker extends Component {
     };
 
     this.isValidDismissEvent = (e) => {
-      const target = e.relatedTarget
-        || e.explicitOriginalTarget
-        || (e.nativeEvent || {}).explicitOriginalTarget
-        || (e.target && e.target.tagName !== 'input')
-          ? e.target : document.activeElement;
+      const target =
+        e.relatedTarget ||
+        e.explicitOriginalTarget ||
+        (e.nativeEvent || {}).explicitOriginalTarget ||
+        (e.target && e.target.tagName !== 'input')
+          ? e.target
+          : document.activeElement;
 
       return !(
-        !this.state.isMonthViewDisplayed
-        || (
-          target
-          && this.container
-          && this.container.contains(target)
-        )
+        !this.state.isMonthViewDisplayed ||
+        (target && this.container && this.container.contains(target))
       );
     };
 
@@ -57,7 +51,9 @@ class DatePicker extends Component {
       this.onLeave({ e });
     };
 
-    this.setContainer = (el) => { this.container = el; };
+    this.setContainer = (el) => {
+      this.container = el;
+    };
 
     document.on('click', this.onClickOut);
   }
@@ -67,12 +63,9 @@ class DatePicker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const hasValueChange = !nextProps.shouldKeepCalendarWhileSelecting
-      && shouldComponentUpdate(
-        ['value'],
-        this.props,
-        nextProps,
-      );
+    const hasValueChange =
+      !nextProps.shouldKeepCalendarWhileSelecting &&
+      shouldComponentUpdate(['value'], this.props, nextProps);
     if (hasValueChange) {
       this.hideDateMonthView();
     }
@@ -96,21 +89,12 @@ class DatePicker extends Component {
       textDate,
       isValid,
     } = this.props;
-    const {
-      isMonthViewDisplayed,
-      isComponentReady,
-    } = this.state;
+    const { isMonthViewDisplayed, isComponentReady } = this.state;
 
-    const composedClassName = [
-      styles.datePickerContainer,
-      className,
-    ].join(' ');
+    const composedClassName = [styles.datePickerContainer, className].join(' ');
 
     return (
-      <div
-        className={composedClassName}
-        ref={this.setContainer}
-      >
+      <div className={composedClassName} ref={this.setContainer}>
         <If expression={isComponentReady}>
           <i
             className={styles.iconDatePickerIcon}

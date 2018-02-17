@@ -1,35 +1,28 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import decorate from './decorate';
-import I18nProvider, {
-  isValidChange,
-  getStateFromProps,
-} from './I18nProvider';
-import localise from './localise';
-import Greeting from './mockData.test/Greeting';
-import LabelForm from './mockData.test/LabelForm';
-import LanguagePicker from './mockData.test/LanguagePicker';
-import localeGreeting from './mockData.test/Greeting.locale';
-import localeLabelForm from './mockData.test/LabelForm.locale';
-import localeLanguagePicker from './mockData.test/LanguagePicker.locale';
+import I18nProvider, { isValidChange, getStateFromProps } from './I18nProvider';
+import { localise, decorate } from './localization';
+import Greeting from './__test__/Greeting';
+import LabelForm from './__test__/LabelForm';
+import LanguagePicker from './__test__/LanguagePicker';
+import localeGreeting from './__test__/Greeting.locale';
+import localeLabelForm from './__test__/LabelForm.locale';
+import localeLanguagePicker from './__test__/LanguagePicker.locale';
 
-const localeKeys = [
-  localeGreeting,
-  localeLabelForm,
-  localeLanguagePicker,
-].reduce((keys, locale = {}) => (
-  Object.keys(locale)
-    .filter(key => !keys.includes(key))
-    .concat(keys)
-), []);
+const localeKeys = [localeGreeting, localeLabelForm, localeLanguagePicker].reduce(
+  (keys, locale = {}) =>
+    Object.keys(locale)
+      .filter(key => !keys.includes(key))
+      .concat(keys),
+  [],
+);
 
 const GreetingI18n = localise(localeGreeting)(Greeting);
 const LabelFormI18n = localise(localeLabelForm)(LabelForm);
 const LanguagePickerI18n = localise(localeLanguagePicker)(LanguagePicker);
 
-
-describe(`<I18nProvider />`, () => {
+describe('<I18nProvider />', () => {
   let element;
   let onChangeI18n;
 
@@ -43,12 +36,7 @@ describe(`<I18nProvider />`, () => {
 
     onChangeI18n = sinon.spy();
     element = mount(
-      <I18nProvider
-        defaultLocale="en"
-        locales={localeKeys}
-        onChangeI18n={onChangeI18n}
-        {...props}
-      >
+      <I18nProvider defaultLocale="en" locales={localeKeys} onChangeI18n={onChangeI18n} {...props}>
         <LanguagePickerI18n>
           <GreetingI18n name="Leticia" />
           <LabelFormI18n hasError />
@@ -138,7 +126,7 @@ describe(`<I18nProvider />`, () => {
   describe('getStateFromProps should return new state empty', () => {
     let value;
     it('Given getStateFromProps is executed for no props', () => {
-      value = getStateFromProps({ defaultLocale: 'en', locale:'en', locales: ['en'] });
+      value = getStateFromProps({ defaultLocale: 'en', locale: 'en', locales: ['en'] });
     });
     it('Expect the new state to be empty', () => {
       expect(value).to.be.eql({});
@@ -150,19 +138,19 @@ describe(`<I18nProvider />`, () => {
       mountI18nProvider();
     });
     it('When I change the language dropdown to portuguese', () => {
-      element.find(LanguagePickerI18n)
+      element
+        .find(LanguagePickerI18n)
         .find('select')
-        .simulate(
-          'change',
-          { target: { value: 'pt' } },
-      );
+        .simulate('change', { target: { value: 'pt' } });
     });
     it('Then the onChangeI18n should be triggered', () => {
       expect(onChangeI18n.calledOnce).to.be.eql(true);
-      expect(onChangeI18n.lastCall.args).to.be.eql([{
-        locale: 'pt',
-        locales: localeKeys,
-      }]);
+      expect(onChangeI18n.lastCall.args).to.be.eql([
+        {
+          locale: 'pt',
+          locales: localeKeys,
+        },
+      ]);
     });
   });
 
@@ -202,7 +190,7 @@ describe(`<I18nProvider />`, () => {
     });
     it('When I change the props to portuguese', () => {
       element.setProps({
-        locale: 'pt'
+        locale: 'pt',
       });
     });
     it('Then the messages should be in portuguese', () => {
@@ -218,7 +206,7 @@ describe(`<I18nProvider />`, () => {
     });
     it('When I18nProvider gets not interested props', () => {
       element.setProps({
-        house: 'I18nProvider'
+        house: 'I18nProvider',
       });
     });
     it('Then the messages should be the same', () => {
