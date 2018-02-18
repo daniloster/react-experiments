@@ -31,7 +31,7 @@
     "compile": "babel src --out-dir lib --copy-files --source-maps",
     "bundle": "NODE_ENV=production webpack -p --config webpack.config.js",
     "build": "yarn run compile && yarn run bundle",
-    "prepublish": "yarn run build && yarn run doc",
+    "prepublish": "yarn run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc":

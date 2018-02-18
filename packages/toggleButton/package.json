@@ -1,7 +1,8 @@
 {
   "name": "daniloster-toggle-button",
   "version": "1.1.2",
-  "description": "ToggleButton react component observing the same idea of checkbox element (checked/unchecked).",
+  "description":
+    "ToggleButton react component observing the same idea of checkbox element (checked/unchecked).",
   "main": "lib/index.js",
   "nyc": {
     "require": ["babel-register"],
@@ -27,11 +28,11 @@
     "compile": "babel src --out-dir lib --copy-files --source-maps",
     "bundle": "NODE_ENV=production webpack -p --config webpack.config.js",
     "build": "yarn run compile && yarn run bundle",
-    "prepublish": "yarn run build && yarn run doc",
+    "prepublish": "yarn run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "doc":
-    "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
+      "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "peerDependencies": {
     "daniloster-base-styles": "^1.0.0",

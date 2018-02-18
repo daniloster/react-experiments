@@ -12,7 +12,7 @@ Component to resolve conditional rendering.
 If
 Component that wraps other components and conditionally displays them.
 E.g.
-```js
+```html
 <If
   expression={isTruthy}
   then={() => <span>It is truthy!</span>}
