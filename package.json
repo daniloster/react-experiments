@@ -101,6 +101,7 @@
     "check-coverage": "lerna run check-coverage --since --concurrency 8",
     "validate": "npm run coverage && npm run check-coverage",
     "doc": "lerna run doc --since --parallel --concurrency 8",
+    "update:readme": "./tools/docs/updateReadme.sh | um README.md \"## Packages\"",
     "styleguide": "NODE_ENV=dev styleguidist server",
     "styleguide:build": "NODE_ENV=dev styleguidist build"
   }
