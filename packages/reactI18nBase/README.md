@@ -112,7 +112,7 @@ import { I18nProvider } from 'daniloster-react-i18n';
 </Provider>
 ```
 
-## [API](https://github.com/daniloster/react-experiments/blob/master/packages/reactI18nBase/COMPONENTS_INTERFACE.md)
+## [API](https://github.com/daniloster/react-experiments/blob/master/packages/reactI18nBase/API.md)
 
 ## Test
 

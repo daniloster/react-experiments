@@ -1,5 +1,4 @@
-import decorate from './decorate';
-import localise from './localise';
+import { decorate, localise } from './localization';
 import I18nProvider from './I18nProvider';
 
 export { decorate };

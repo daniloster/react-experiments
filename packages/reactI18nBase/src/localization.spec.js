@@ -1,12 +1,9 @@
-import {
-  getI18n,
-  mergeLocales,
-} from './localise';
+import { getI18n, mergeLocales } from './localization';
 
 const localeData = {
   en: 'en',
   pt: 'pt',
-}
+};
 
 describe('localise', () => {
   describe('getI18n should return default "en" for no entry in localeData', () => {

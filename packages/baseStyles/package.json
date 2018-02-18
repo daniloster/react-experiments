@@ -4,21 +4,9 @@
   "description": "This base styles package defines theme colors and layouts",
   "main": "src/index.scss",
   "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "include": [
-      "src/**/*.js",
-      "src/*.js"
-    ],
-    "exclude": [
-      "src/**/*.spec.js",
-      "test",
-      "build",
-      "dist",
-      "lib",
-      "mochawesome-reports"
-    ],
+    "require": ["babel-register"],
+    "include": ["src/**/*.js", "src/*.js"],
+    "exclude": ["src/**/*.spec.js", "test", "build", "dist", "lib", "mochawesome-reports"],
     "sourceMap": false,
     "instrument": false
   },
@@ -30,8 +18,7 @@
     "coverage": "exit 0",
     "test": "exit 0",
     "build": "exit 0",
-    "prepublish": "exit 0",
-    "doc": "exit 0"
+    "prepublish": "exit 0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

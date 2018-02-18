@@ -1,6 +1,4 @@
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 import If from 'daniloster-if';
@@ -8,10 +6,9 @@ import If from 'daniloster-if';
 import styles from './ToggleButton.scss';
 
 /**
- * ToggleButton
  * Button that switches between checked and unchecked.
  * E.g.
- * ```
+ * ```js
  * class Example extends Component {
  *   state = {
  *     isLightOn: false,
@@ -33,7 +30,7 @@ import styles from './ToggleButton.scss';
  *   }
  * }
  *
- * ...
+ * // ...
  *
  * <Example />
  * ```
@@ -45,25 +42,13 @@ class ToggleButton extends PureComponent {
   }
 
   onToggle = () => {
-    const {
-      isChecked,
-      onChange,
-    } = this.props;
+    const { isChecked, onChange } = this.props;
     onChange(!isChecked);
-  }
+  };
 
   render() {
-    const {
-      className,
-      children,
-      nodeOn,
-      nodeOff,
-      isChecked,
-    } = this.props;
-    const classNameComposed = [
-      styles.toggleButton,
-      className,
-    ].join(' ');
+    const { className, children, nodeOn, nodeOff, isChecked } = this.props;
+    const classNameComposed = [styles.toggleButton, className].join(' ');
 
     return (
       <div className={classNameComposed}>

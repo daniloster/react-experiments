@@ -4,22 +4,15 @@ import PropTypes from 'prop-types';
 import styles from './HelloWorld.scss';
 
 /**
- * HelloWorld
  * HelloWorld may be used as below.
- * E.g.:
- * ```html
+ * E.g.
+ * ```js
  * <HelloWorld>My message!</HelloWorld>
  * ```
  */
 const HelloWorld = (props) => {
-  const {
-    children,
-  } = props;
-  return (
-    <div
-      className={styles.helloWorld}
-    >{children}</div>
-  );
+  const { children } = props;
+  return <div className={styles.helloWorld}>{children}</div>;
 };
 HelloWorld.propTypes = {
   /**

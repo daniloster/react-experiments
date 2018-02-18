@@ -4,18 +4,9 @@
   "description": "CLI to the lerna repo for react experiments",
   "main": "index.js",
   "nyc": {
-    "require": [
-      "babel-register"
-    ],
+    "require": ["babel-register"],
     "include": [],
-    "exclude": [
-      "src/**/*",
-      "test",
-      "build",
-      "dist",
-      "lib",
-      "mochawesome-reports"
-    ],
+    "exclude": ["src/**/*", "test", "build", "dist", "lib", "mochawesome-reports"],
     "sourceMap": false,
     "instrument": false
   },
@@ -30,8 +21,7 @@
     "compile": "babel src --out-dir lib --copy-files --source-maps",
     "prepublish": "yarn run compile",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "doc": "exit 0"
+    "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore"
   },
   "bin": {
     "daniloster-cli": "./index.js"

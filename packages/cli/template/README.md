@@ -2,7 +2,7 @@
 [project-name-dashlines]
 [project-description]
 
-## [API](https://github.com/daniloster/[project-folder]/COMPONENTS_INTERFACE.md)
+## [API](https://github.com/daniloster/[project-folder]/API.md)
 
 
 ## Test

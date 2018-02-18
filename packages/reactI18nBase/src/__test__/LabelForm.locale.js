@@ -1,5 +1,4 @@
-// import { decorate } from 'daniloster-react-i18n';
-import decorate from '../decorate';
+import { decorate } from '../localization';
 
 export default {
   en: {

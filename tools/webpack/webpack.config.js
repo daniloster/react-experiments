@@ -9,15 +9,15 @@ const externals = require('./webpackExternals');
 const env = require('./webpackEnv');
 const applyDevMode = require('./webpackDev');
 
-module.exports = function (package, dirname) {
+module.exports = function (pack, dirname) {
   const webpackResourcesLoaders = createResourcesLoaders(dirname);
   const webpackConfig = {
     output: {
       path: path.resolve(dirname, 'dist'),
-      filename: '[name].js'
+      filename: '[name].js',
     },
     entry: {
-      [package.name]: env.isDev ? ['babel-polyfill', './DEV/index.js'] : './src/index.js'
+      [pack.name]: env.isDev ? ['babel-polyfill', './DEV/index.js'] : './src/index.js',
     },
     resolve: {
       extensions: ['.js', '.jsx'],
@@ -26,10 +26,10 @@ module.exports = function (package, dirname) {
         path.resolve(dirname, '../../node_modules'),
         path.resolve(dirname),
         path.resolve(dirname, 'DEV'),
-        path.resolve(dirname, 'src')
+        path.resolve(dirname, 'src'),
       ],
     },
-    plugins: plugins,
+    plugins,
     externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     module: webpackResourcesLoaders.module,
   };
@@ -39,11 +39,11 @@ module.exports = function (package, dirname) {
   }
 
   if (env.isDev) {
-    applyDevMode(package, webpackConfig);
+    applyDevMode(pack, webpackConfig);
   }
 
   if (env.isTest) {
-    delete webpackConfig['entry'];
+    delete webpackConfig.entry;
     webpackConfig.target = 'node'; // in order to ignore built-in modules like path, fs, etc.
   }
 
