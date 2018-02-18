@@ -32,24 +32,50 @@ const devPackages = packages.filter(function(item) {
   return fs.existsSync(`${item.location}/DEV`);
 });
 
+const componentSections = devPackages.map(function(info) {
+  return {
+    components: `${info.location}/src/**/*.js`,
+    description: info.package.description,
+    ignore: (info.package.styleguide || {}).ignore || ['**/src/index.js', '**/__test__/**/*.js'],
+    name: info.package.name,
+  };
+});
+
 const sections = [
   {
     name: 'Introduction',
     content: 'README.md',
   },
-].concat(
-  devPackages.map(function(info) {
-    return {
-      components: `${info.location}/src/**/*.js`,
-      description: info.package.description,
-      ignore: (info.package.styleguide || {}).ignore || ['**/src/index.js', '**/__test__/**/*.js'],
-      name: info.package.name,
-    };
-  }),
-);
+].concat(componentSections);
 console.log('devPackages sections', sections);
 
 const node_modules = path.resolve('node_modules');
+
+const reactDocgenDisplaynameHandler = require('react-docgen-displayname-handler');
+const reactDocgen = require('react-docgen');
+
+function customHandler(documentation, path) {
+  // Calculate a display name for components based upon the declared class name.
+  if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
+    documentation.set('displayName', path.value.id.name);
+
+    // Calculate the key required to find the component in the module exports
+    if (path.parentPath.value.type === 'ExportNamedDeclaration') {
+      documentation.set('path', path.value.id.name);
+    }
+  }
+
+  // The component is the default export
+  if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
+    documentation.set('path', 'default');
+  }
+}
+
+function handlers(componentPath) {
+  return []
+    .concat(reactDocgen.defaultHandlers)
+    .concat(customHandler, reactDocgenDisplaynameHandler.createDisplayNameHandler(componentPath));
+}
 
 module.exports = {
   ignore: [
@@ -107,29 +133,6 @@ module.exports = {
   resolver: require('react-docgen').resolver.findAllComponentDefinitions,
   showUsage: true,
   sections: sections,
-  handlers: componentPath =>
-    require('react-docgen').defaultHandlers.concat(
-      function(documentation, path) {
-        // Calculate a display name for components based upon the declared class name.
-        if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
-          console.log('path.value.id.name - (ClassDeclaration, Identifier)', path.value.id.name);
-          documentation.set('displayName', path.value.id.name);
-
-          // Calculate the key required to find the component in the module exports
-          if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-            console.log('path.value.id.name - (ExportNamedDeclaration)', path.value.id.name);
-            documentation.set('path', path.value.id.name);
-          }
-        }
-
-        // The component is the default export
-        if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
-          console.log('path.value.id.name - (ExportDefaultDeclaration)', path.value.id.name);
-          documentation.set('path', 'default');
-        }
-      },
-
-      require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
-    ),
+  handlers: handlers,
 };
 /* eslint-enable */
