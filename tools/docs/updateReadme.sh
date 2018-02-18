@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 function parseData() {
-  const packages = PackageUtilities.getPackages(new Repository(process.cwd())).map(subPackage => ({
-    folderName: subPackage._location.split('/').pop(),
-    name: subPackage._package.name,
-  }));
-  packages.sort((a, b) => {
+  const packages = PackageUtilities.getPackages(new Repository(process.cwd())).map(function(subPackage) {
+    return {
+      folderName: subPackage._location.split('/').pop(),
+      name: subPackage._package.name,
+    };
+  });
+  packages.sort(function(a, b) {
     if (a.name === b.name) {
       return 0;
     } else if (a.name > b.name) {
