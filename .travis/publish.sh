@@ -7,13 +7,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   exit 0
 fi
 
-update_docs() {
-  yarn run doc
-  yarn run styleguide:build
-  git add styleguide/ packages/
-  git commit -m "[skip ci] [update-docs]"
-}
-
 # Checking if it is a master commit with release attribute
 if [[ $TRAVIS_BRANCH == 'master' ]]; then
   echo '** Setting github user'
@@ -27,19 +20,37 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   echo '** Generating npm auth'
   echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> ~/.npmrc
 
+  update_docs() {
+    yarn run doc
+    yarn run styleguide:build
+    git add styleguide/ packages/
+    git commit -m "[skip ci] [update-docs]"
+    git push gh-publish master
+  }
+
+  update_markdown() {
+    yarn run update:markdown
+    git add README.md
+    git commit -m "[skip ci] [update-readme]"
+    git push gh-publish master
+  }
+
   export TYPE_RELEASE="$(git log --no-merges -n 1 --pretty=%B | grep '\[release=' | awk '{print $1}' | sed s/release=//)"
   if [[ $TYPE_RELEASE == '[major]' ]]; then
     echo '** Releasing MAJOR'
     update_docs
     node_modules/.bin/lerna publish --cd-version=major --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_markdown
   elif [[ $TYPE_RELEASE == '[minor]' ]]; then
     echo '** Releasing MINOR'
     update_docs
     node_modules/.bin/lerna publish --cd-version=minor --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_markdown
   elif [[ $TYPE_RELEASE == '[patch]' ]]; then
     echo '** Releasing PATCH'
     update_docs
     node_modules/.bin/lerna publish --cd-version=patch --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_markdown
   else
     echo '** NOT RELEASED'
   fi
