@@ -3,24 +3,34 @@ const path = require('path');
 const fs = require('fs');
 const webpackConfigCreate = require('./tools/webpack/webpack.config');
 const pack = require('./package.json');
+const removeKeys = require('./tools/docs/removeKeys');
 const webpackConfig = webpackConfigCreate({ name: 'default' }, __dirname);
-const { entry, output, ...config } = webpackConfig;
+const config = removeKeys(webpackConfig, ['entry', 'output']);
 
 // Lerna utilities
 const PackageUtilities = require('lerna/lib/PackageUtilities');
 const Repository = require('lerna/lib/Repository');
 
-const packages = PackageUtilities.getPackages(new Repository(process.cwd())).map(subPackage => ({
-  location: subPackage._location,
-  package: subPackage._package,
-  version: subPackage._version,
-}));
+const packagesInfo = PackageUtilities.getPackages(new Repository(process.cwd()));
+const packages = packagesInfo.map(function(subPackage) {
+  return {
+    location: subPackage._location,
+    package: subPackage._package,
+    version: subPackage._version,
+  };
+});
 
 const noDevPackages = packages
-  .filter(({ location }) => !fs.existsSync(`${location}/DEV`))
-  .map(({ location }) => `${location}/**/*.js`);
+  .filter(function(item) {
+    return !fs.existsSync(`${item.location}/DEV`);
+  })
+  .map(function(item) {
+    return `${item.location}/**/*.js`;
+  });
 
-const devPackages = packages.filter(({ location }) => fs.existsSync(`${location}/DEV`));
+const devPackages = packages.filter(function(item) {
+  return fs.existsSync(`${item.location}/DEV`);
+});
 
 const sections = [
   {
@@ -28,12 +38,14 @@ const sections = [
     content: 'README.md',
   },
 ].concat(
-  devPackages.map(info => ({
-    components: `${info.location}/src/**/*.js`,
-    description: info.package.description,
-    ignore: (info.package.styleguide || {}).ignore || ['**/src/index.js', '**/__test__/**/*.js'],
-    name: info.package.name,
-  })),
+  devPackages.map(function(info) {
+    return {
+      components: `${info.location}/src/**/*.js`,
+      description: info.package.description,
+      ignore: (info.package.styleguide || {}).ignore || ['**/src/index.js', '**/__test__/**/*.js'],
+      name: info.package.name,
+    };
+  }),
 );
 console.log('devPackages sections', sections);
 
@@ -57,8 +69,7 @@ module.exports = {
     '**/tools/**',
     /* node_modules dependencies */
     node_modules,
-    ...noDevPackages,
-  ],
+  ].concat(noDevPackages),
   require: ['babel-polyfill'],
   // style references: https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js
   theme: {
@@ -98,7 +109,7 @@ module.exports = {
   sections: sections,
   handlers: componentPath =>
     require('react-docgen').defaultHandlers.concat(
-      (documentation, path) => {
+      function(documentation, path) {
         // Calculate a display name for components based upon the declared class name.
         if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
           console.log('path.value.id.name - (ClassDeclaration, Identifier)', path.value.id.name);

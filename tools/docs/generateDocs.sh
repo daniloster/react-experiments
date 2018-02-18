@@ -14,14 +14,11 @@ const argsMapProp = {
 }
 
 function parseArgs(args) {
-  return {
-    ...Object.keys(argsMap).reduce((map, key) => {
-      return {
-        ...map,
-        [argsMapProp[key]]: argsMap[key]
-      };
-    }, {})
-  }
+  return Object.assign({}, Object.keys(argsMap).reduce(function(map, key) {
+      const newMap = map;
+      newMap[argsMapProp[key]] = argsMap[key];
+      return newMap;
+    }, {}));
 }
 const args = parseArgs(Array.from(process.argv).slice(2));
 
@@ -32,10 +29,14 @@ function parseData(data) {
     projectName: pack.name,
     description: pack.description,
     npmLink: `https://www.npmjs.com/package/${pack.name}`,
-    files: Object.keys(data).map(key => args.exclude.test(key) ? null : ({
-      fileName: key,
-      components: [].concat(data[key]),
-    })).filter(item => !!item),
+    files: Object.keys(data).map(function(key) {
+      return args.exclude.test(key)
+        ? null
+        : {
+          fileName: key,
+          components: [].concat(data[key]),
+        };
+    }).filter(function(item) { return !!item; }),
   };
 }
 
