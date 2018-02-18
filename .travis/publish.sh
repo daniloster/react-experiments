@@ -29,7 +29,7 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   }
 
   update_markdown() {
-    yarn run update:markdown
+    yarn run update:readme
     git add README.md
     git commit -m "[skip ci] [update-readme]"
     git push gh-publish master
