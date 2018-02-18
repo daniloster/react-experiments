@@ -7,7 +7,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   exit 0
 fi
 
-function updateDocs() {
+update_docs() {
   yarn run doc
   yarn run styleguide:build
   git add styleguide/ packages/
@@ -30,16 +30,16 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   export TYPE_RELEASE="$(git log --no-merges -n 1 --pretty=%B | grep '\[release=' | awk '{print $1}' | sed s/release=//)"
   if [[ $TYPE_RELEASE == '[major]' ]]; then
     echo '** Releasing MAJOR'
-    updateDocs()
-    lerna publish --cd-version=major --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_docs
+    node_modules/.bin/lerna publish --cd-version=major --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
   elif [[ $TYPE_RELEASE == '[minor]' ]]; then
     echo '** Releasing MINOR'
-    updateDocs()
-    lerna publish --cd-version=minor --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_docs
+    node_modules/.bin/lerna publish --cd-version=minor --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
   elif [[ $TYPE_RELEASE == '[patch]' ]]; then
     echo '** Releasing PATCH'
-    updateDocs()
-    lerna publish --cd-version=patch --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    update_docs
+    node_modules/.bin/lerna publish --cd-version=patch --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
   else
     echo '** NOT RELEASED'
   fi
