@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { shouldComponentUpdate } from 'daniloster-utils';
+import shouldComponentUpdate from 'daniloster-utils/lib/shouldComponentUpdate';
 import If from 'daniloster-if';
 import DateInputField from './DateInputField';
 import Calendar from './Calendar';

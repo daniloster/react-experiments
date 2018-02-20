@@ -1,56 +1,78 @@
 import uuid from 'uuid/v4';
 
-export default class ProxyStore {
-  constructor(storeUri) {
-    if (!window.Worker) {
+const noop = () => true;
+
+class ProxyStore {
+  constructor(storeUri, initialState) {
+    if (!Worker) {
       throw new Error('This browser does not support web worker.');
     }
 
-    this.promises = {};
+    this.lastStateUpdate = Date.now();
+    this.state = initialState;
+    this.subscriptions = [];
+    this.promises = {
+      subscriptions: ({ data: { $reference, lastStateUpdate, state } }) => {
+        console.log(`Proxy: subscribe [${$reference}]:`, { $reference, lastStateUpdate, state });
+        if (lastStateUpdate > this.lastStateUpdate) {
+          this.state = state;
+          this.lastStateUpdate = lastStateUpdate;
+        }
+        this.subscriptions.forEach((inkoveSubscription) => {
+          inkoveSubscription(this.state);
+        });
+      },
+    };
     this.remote = new Worker(storeUri);
-    this.remote.addListener('message', (args) => {
-      console.log('response args:', args);
-      this.promises[args.data.$reference](args);
-    });
+    this.remote.onmessage = (message) => {
+      (this.promises[message.data.$reference] || noop)(message);
+    };
+    this.remote.postMessage({ $method: 'init' });
   }
 
   init = () => new Promise((resolve, reject) => this.getState().then(resolve, reject));
 
-  getState = () =>
-    new Promise((resolve, reject) => {
-      const id = uuid();
-      this.promises[id] = (args) => {
-        console.log('getState args got here:', args);
-        delete this.promises[id];
-      };
-      this.remote.emit('getState', { $reference: id, payload: null });
-    });
+  getState = () => this.state;
 
   dispatch = action =>
     new Promise((resolve, reject) => {
       const id = uuid();
-      this.promises[id] = (args) => {
-        console.log('dispatch args got here:', args);
+      this.promises[id] = (message) => {
+        console.log(`Proxy: dispatch [${message.data.$reference}]:`, message);
         delete this.promises[id];
+        resolve(message.data.returnValue);
       };
-      this.remote.emit('dispacth', { $reference: id, payload: action });
+      this.remote.postMessage({
+        $method: 'dispatch',
+        $reference: id,
+        payload: action,
+      });
+
+      return action;
     });
 
-  subscribe = listener =>
-    new Promise((resolve, reject) => {
-      const id = uuid();
-      this.promises[id] = (args) => {
-        console.log('subscribe args got here:', args);
-      };
-      this.remote.emit('subscribe', { $reference: id, payload: listener });
-    });
+  subscribe = (listener) => {
+    listener(this.state);
+    this.subscriptions.push(state => listener(state));
+    return () => {
+      this.subscriptions = this.subscriptions.filter(subscription => subscription !== listener);
+    };
+  };
 
   replaceReducer = nextReducer =>
     new Promise((resolve, reject) => {
       const id = uuid();
-      this.promises[id] = (args) => {
-        console.log('replaceReducer args got here:', args);
+      this.promises[id] = (message) => {
+        console.log(`Proxy: replaceReducer [${message.data.$reference}]:`, message);
+        delete this.promises[id];
+        resolve(message.data.returnValue);
       };
-      this.remote.emit('replaceReducer', { $reference: id, payload: nextReducer });
+      this.remote.postMessage({
+        $method: 'replaceReducer',
+        $reference: id,
+        payload: nextReducer,
+      });
     });
 }
+
+export default ProxyStore;

@@ -12,24 +12,28 @@ const prodPlugins = [
       drop_debugger: true,
       join_vars: true,
       screw_ie8: true,
-      sequences: true
+      sequences: true,
     },
     mangle: false,
-    minimize: true
+    minimize: true,
   }),
   new webpack.DefinePlugin({
     'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
+      NODE_ENV: JSON.stringify('production'),
+    },
   }),
   new webpack.LoaderOptionsPlugin({
-        options: {
-          sourceMap: true
-        }
-      })
-];
-const nonProdPlugins = [
-  new HtmlWebpackPlugin()
+    options: {
+      sourceMap: true,
+    },
+  }),
 ];
 
-module.exports = env.isProd ? prodPlugins : nonProdPlugins;
+module.exports = function (extraBundles) {
+  const nonProdPlugins = [
+    new HtmlWebpackPlugin({
+      excludeChunks: Object.keys(extraBundles),
+    }),
+  ];
+  return env.isProd ? prodPlugins : nonProdPlugins;
+};
