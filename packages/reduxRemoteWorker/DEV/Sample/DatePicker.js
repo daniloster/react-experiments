@@ -1,6 +1,6 @@
 // import { connect } from 'react-redux';
 import DatePicker, { createReduxStoreSection } from 'daniloster-date-picker';
-import connect from './connect';
+import connect from '../../src/connect';
 
 const { mapDispatchToProps, initialState: initialStateDatePicker } = createReduxStoreSection(
   'datePicker',

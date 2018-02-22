@@ -125,8 +125,6 @@ export default function createReduxStoreSection(namespace, initialState = { ...I
       newState.isValid =
         date.isValid() && isValidTextDate(newState.textDate, format, newState.isUtc);
 
-      newState.fakeData = new Array(1000 * 1000).fill(0).map(() => uuid());
-
       return newState;
     }
 

@@ -1,19 +1,27 @@
-// import 'daniloster-utils/lib/mockWorkerWindow';
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createReduxStoreSection from 'daniloster-date-picker/lib/createReduxStoreSection';
-import RemoteStore from '../../src/RemoteStore';
+import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
-const { reducers } = createReduxStoreSection('datePicker');
+import RemoteStore from '../../src/RemoteStore';
+import { reducers as crypto } from './CryptoCurrenciesPrices/storeSection';
+import sagas from './CryptoCurrenciesPrices/cryptoCurrenciesPricesSagas';
+
+const datePicker = createReduxStoreSection('datePicker');
+
+const sagaMiddleware = createSagaMiddleware();
 
 const remoteStore = new RemoteStore(
   createStore(
     combineReducers({
-      ...reducers,
+      ...datePicker.reducers,
+      ...crypto,
     }),
+    applyMiddleware(sagaMiddleware, logger),
   ),
   message => postMessage(message),
 );
 
-onmessage = message => remoteStore.onmessage(message);
+sagaMiddleware.run(sagas);
 
-// export default remoteStore;
+onmessage = message => remoteStore.onmessage(message);

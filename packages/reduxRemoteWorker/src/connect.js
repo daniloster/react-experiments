@@ -12,7 +12,7 @@ function wrapActionCreators(dispatch, func) {
   /* eslint-enable */
 }
 
-const createActionCreators = memoize((dispatch, mapDispatchToProps) => {
+const createActionCreators = (dispatch, mapDispatchToProps) => {
   if (typeof mapDispatchToProps === 'function') {
     return mapDispatchToProps(dispatch);
   }
@@ -24,7 +24,7 @@ const createActionCreators = memoize((dispatch, mapDispatchToProps) => {
     }),
     {},
   );
-});
+};
 
 export default function connect(mapStateToProps, mapDispatchToProps = {}) {
   return RawComponent =>
