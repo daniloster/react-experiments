@@ -45,30 +45,34 @@ export function* onRefreshPrices({ endpoints, selectedCurrencies, setPricesConst
           price_usd: priceUSD,
           ['24h_volume_usd']: volume24hUSD,
           market_cap_usd: marketCapUSD,
+          last_updated: lastUpdated,
+          rank,
           ...otherCryptoInfo,
         } = priceCrypto;
         const currentPriceGroups = (transientPrices[index] || { priceGroups: [] }).priceGroups;
 
         return {
           ...otherCryptoInfo,
+          lastUpdated: Number(lastUpdated),
+          rank,
           priceGroups: currentPriceGroups.concat(
             (transientPrices.length === 0
             ? [
               {
                 currency: 'USD',
-                price: priceUSD,
-                volume24h: volume24hUSD,
-                marketCap: marketCapUSD,
-              }
+                price: Number(priceUSD),
+                volume24h: Number(volume24hUSD),
+                marketCap: Number(marketCapUSD),
+              },
             ]
             : []).concat([
               {
                 currency: selectedCurrencies[index],
-                price,
-                volume24h,
-                marketCap,
+                price: Number(price),
+                volume24h: Number(volume24h),
+                marketCap: Number(marketCap),
               },
-            ])
+            ]),
           ),
         };
       });
