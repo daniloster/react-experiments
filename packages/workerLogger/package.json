@@ -1,5 +1,5 @@
 {
-  "name": "remote-logger",
+  "name": "worker-logger",
   "version": "0.0.1",
   "description": "Creates dynamically a web worker logger",
   "main": "lib/index.js",
