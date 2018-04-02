@@ -39,17 +39,17 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   if [[ $TYPE_RELEASE == '[major]' ]]; then
     echo '** Releasing MAJOR'
     update_docs
-    node_modules/.bin/lerna publish --cd-version=major --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    node_modules/.bin/lerna publish --cd-version=major --yes --exact --git-remote gh-publish --message="[skip ci] [release]: %s"
     update_markdown
   elif [[ $TYPE_RELEASE == '[minor]' ]]; then
     echo '** Releasing MINOR'
     update_docs
-    node_modules/.bin/lerna publish --cd-version=minor --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    node_modules/.bin/lerna publish --cd-version=minor --yes --exact --git-remote gh-publish --message="[skip ci] [release]: %s"
     update_markdown
   elif [[ $TYPE_RELEASE == '[patch]' ]]; then
     echo '** Releasing PATCH'
     update_docs
-    node_modules/.bin/lerna publish --cd-version=patch --yes --git-remote gh-publish --message="[skip ci] [release]: %s"
+    node_modules/.bin/lerna publish --cd-version=patch --yes --exact --git-remote gh-publish --message="[skip ci] [release]: %s"
     update_markdown
   else
     echo '** NOT RELEASED'

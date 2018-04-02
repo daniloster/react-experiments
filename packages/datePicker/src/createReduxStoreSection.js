@@ -1,4 +1,5 @@
-import { createReducerFunction } from 'daniloster-utils';
+import uuid from 'uuid/v4';
+import createReducerFunction from 'daniloster-utils/lib/createReducerFunction';
 import { getMoment, isValidTextDate } from './datePickerUtils';
 
 export const DEFAULT_FORMAT = 'DD/MM/YYYY';
@@ -16,10 +17,7 @@ export const INITIAL_STATE = {
  * @param {string} namespace - name based on to reserve a section in the redux store
  * @param {object} initialState - initial values for the store section
  */
-export default function createReduxStoreSection(
-  namespace,
-  initialState = { ...INITIAL_STATE },
-) {
+export default function createReduxStoreSection(namespace, initialState = { ...INITIAL_STATE }) {
   const constants = {
     SET_VALUE: `${namespace}:${STANDARD_NAME}:SET_VALUE`,
     SET_TEXT: `${namespace}:${STANDARD_NAME}:SET_TEXT`,
@@ -95,8 +93,7 @@ export default function createReduxStoreSection(
     const date = getMoment(isUtc)(textDate, format);
     const newState = {};
     newState.textDate = textDate;
-    newState.isValid = date.isValid()
-      && isValidTextDate(textDate, format, isUtc);
+    newState.isValid = date.isValid() && isValidTextDate(textDate, format, isUtc);
     if (isSubmitting && date.isValid()) {
       newState.textDate = date.format(format);
       newState.value = date.valueOf();
@@ -125,8 +122,8 @@ export default function createReduxStoreSection(
       const newState = {};
       newState.value = value;
       newState.textDate = date.format(format);
-      newState.isValid = date.isValid()
-        && isValidTextDate(newState.textDate, format, newState.isUtc);
+      newState.isValid =
+        date.isValid() && isValidTextDate(newState.textDate, format, newState.isUtc);
 
       return newState;
     }
@@ -142,7 +139,7 @@ export default function createReduxStoreSection(
     setValue,
   };
 
-  const mapDispatchToProp = {
+  const mapDispatchToProps = {
     setIsUtc,
     setFormat,
     onRestore: restore,
@@ -162,7 +159,7 @@ export default function createReduxStoreSection(
     initialState,
     constants,
     actions,
-    mapDispatchToProp,
+    mapDispatchToProps,
     reducersMap,
     reducers: {
       [namespace]: createReducerFunction(initialState, reducersMap),

@@ -6,11 +6,9 @@ import PropTypes from 'prop-types';
  * Component that wraps other components and conditionally displays them.
  * E.g.
  * ```html
- * <If
- *   expression={isTruthy}
- *   then={() => <span>It is truthy!</span>}
- *   otherwise={() => <span>It is falsy!</span>}
- * />
+ * <If expression={isTruthy}>
+ *   <span>It is truthy!</span>
+ * </If>
  * ```
  */
 class If extends PureComponent {
