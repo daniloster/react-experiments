@@ -1,3 +1,4 @@
+import 'daniloster-utils/lib/EventHandler';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shouldComponentUpdate from 'daniloster-utils/lib/shouldComponentUpdate';

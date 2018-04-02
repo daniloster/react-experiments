@@ -1,4 +1,3 @@
-import uuid from 'uuid/v4';
 import createReducerFunction from 'daniloster-utils/lib/createReducerFunction';
 import { getMoment, isValidTextDate } from './datePickerUtils';
 
