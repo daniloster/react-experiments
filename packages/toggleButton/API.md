@@ -40,10 +40,10 @@ class Example extends Component {
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
-**className** | \`string\` | \`''\` | :x: | className applied to the container element in order to change styles from outer world.
-**children** | \`node\` | \`null\` | :x: | It is the label representative for the element.
-**nodeOn** | \`node\` | \`'On'\` | :x: | It is the representative element for checked.
-**nodeOff** | \`node\` | \`'Off'\` | :x: | It is the representative element for unchecked.
-**onChange** | \`func\` |  | :white_check_mark: | It is the event handler for toggling.
-**isChecked** | \`bool\` |  | :white_check_mark: | It is the value for checked/unchecked representation.
+**className** | string | '' | :x: | className applied to the container element in order to change styles from outer world.
+**children** | node | null | :x: | It is the label representative for the element.
+**nodeOn** | node | 'On' | :x: | It is the representative element for checked.
+**nodeOff** | node | 'Off' | :x: | It is the representative element for unchecked.
+**onChange** | func |  | :white_check_mark: | It is the event handler for toggling.
+**isChecked** | bool |  | :white_check_mark: | It is the value for checked/unchecked representation.
 
