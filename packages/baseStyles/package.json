@@ -1,6 +1,6 @@
 {
   "name": "daniloster-base-styles",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "This base styles package defines theme colors, layouts and sass mixins and functions",
   "main": "src/index.scss",
   "nyc": {

@@ -1,6 +1,6 @@
 {
   "name": "daniloster-date-picker",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "DatePicker react component with exported store connection (mapStateToProps, mapDispatchToProps and reducer function).",
   "main": "lib/index.js",
   "nyc": {
@@ -41,9 +41,9 @@
     "doc": "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "dependencies": {
-    "daniloster-base-styles": "1.2.1",
-    "daniloster-if": "1.2.1",
-    "daniloster-utils": "1.2.1"
+    "daniloster-base-styles": "1.2.2",
+    "daniloster-if": "1.2.2",
+    "daniloster-utils": "1.2.2"
   },
   "peerDependencies": {
     "mobx": "^3.3.0",
