@@ -1,13 +1,24 @@
 {
   "name": "daniloster-base-styles",
-  "version": "1.1.3",
-  "description":
-    "This base styles package defines theme colors, layouts and sass mixins and functions",
+  "version": "1.2.1",
+  "description": "This base styles package defines theme colors, layouts and sass mixins and functions",
   "main": "src/index.scss",
   "nyc": {
-    "require": ["babel-register"],
-    "include": ["src/**/*.js", "src/*.js"],
-    "exclude": ["src/**/*.spec.js", "test", "build", "dist", "lib", "mochawesome-reports"],
+    "require": [
+      "babel-register"
+    ],
+    "include": [
+      "src/**/*.js",
+      "src/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js",
+      "test",
+      "build",
+      "dist",
+      "lib",
+      "mochawesome-reports"
+    ],
     "sourceMap": false,
     "instrument": false
   },
