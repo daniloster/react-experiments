@@ -113,7 +113,7 @@ $calendarHeaderNavigation: 48px;
       transition: text-shadow 0.3s ease-in;
 
       &:hover {
-        text-shadow: 5px 5px 12px $calendarPaletteDarkLight;
+        background-color: lighten($color: $calendarHeaderColor, $amount: 8);
       }
     }
 

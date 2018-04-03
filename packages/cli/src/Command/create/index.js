@@ -25,8 +25,8 @@ export default function create(program, packageName) {
         isReact ? ['react', 'prop-types'] : [],
       ),
       devDependencies = InputUtils.parseList(
-        yield prompt(`devDependencies${isReact ? ' (react-doc-generator)' : ''}: `),
-        isReact ? ['react-doc-generator'] : [],
+        yield prompt(`devDependencies${isReact ? ' (react-docgen)' : ''}: `),
+        isReact ? ['react-docgen'] : [],
       ),
       folderName = yield prompt(`folder name (${suggestedFolderName}): `),
     } = program;

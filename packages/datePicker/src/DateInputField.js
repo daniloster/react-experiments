@@ -1,6 +1,4 @@
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './DatePicker.scss';
@@ -16,21 +14,12 @@ class DateInputField extends PureComponent {
     };
 
     this.changeDate = (textDate, isSubmitting = false) => {
-      const {
-        isUtc,
-        format,
-        onChange,
-      } = this.props;
+      const { isUtc, format, onChange } = this.props;
       onChange({ textDate, format, isUtc, isSubmitting });
     };
 
     this.onBlur = (e) => {
-      const {
-        shouldChangeValueOnBlur,
-        isValid,
-        textDate,
-        onLeave,
-      } = this.props;
+      const { shouldChangeValueOnBlur, isValid, textDate, onLeave } = this.props;
       if (shouldChangeValueOnBlur && isValid) {
         this.changeDate(textDate, true);
       } else {
@@ -39,12 +28,7 @@ class DateInputField extends PureComponent {
     };
 
     this.onKeyDown = (e) => {
-      const {
-        isValid,
-        shouldChangeValueOnBlur,
-        onRestore,
-        onLeave,
-      } = this.props;
+      const { isValid, shouldChangeValueOnBlur, onRestore, onLeave } = this.props;
       if (e.key === 'Enter' && isValid) {
         this.changeDate(e.target.value, true);
       } else if (e.key === 'Tab' && !shouldChangeValueOnBlur) {
@@ -57,11 +41,7 @@ class DateInputField extends PureComponent {
   }
 
   render() {
-    const {
-      textDate,
-      isValid,
-      onFocus,
-    } = this.props;
+    const { textDate, isValid, onFocus } = this.props;
 
     return (
       <input
@@ -86,6 +66,7 @@ DateInputField.defaultProps = {
   shouldChangeValueOnBlur: false,
   isUtc: false,
   format: 'DD MMM YYYY',
+  textDate: '',
 };
 
 DateInputField.propTypes = {
@@ -112,7 +93,7 @@ DateInputField.propTypes = {
   /**
    * A utc timestamp.
    */
-  textDate: PropTypes.string.isRequired,
+  textDate: PropTypes.string,
   /**
    * Handler dispatched when the value gets changed.
    */
