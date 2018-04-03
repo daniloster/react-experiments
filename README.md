@@ -37,7 +37,7 @@ npm run cli -- --help
 - Changes must be approved;
 - Changes must have tests passing on Travis-CI;
 - Changes must have coverage of 95% on Travis-CI for: statements, branches, functions and lines;
-- Last commit message must have attribute `[release=&amp;amp;amp;amp;amp;lt;major|minor|patch|no-release&amp;amp;amp;amp;amp;gt;]`;
+- Last commit message must have attribute `[release=&amp;amp;amp;amp;amp;amp;lt;major|minor|patch|no-release&amp;amp;amp;amp;amp;amp;gt;]`;
 
 ## Metrics
 [![Build Status](https://img.shields.io/travis/daniloster/react-experiments/master.svg?style=flat-square)](https://travis-ci.org/daniloster/react-experiments) [![BCH compliance](https://bettercodehub.com/edge/badge/daniloster/react-experiments?branch=master)](https://bettercodehub.com/)
@@ -60,4 +60,6 @@ npm run cli -- --help
 [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
 - [react-i18n-base](https://github.com/daniloster/react-experiments/blob/master/packages/reactI18nBase/README.md)
 [![NPM](https://img.shields.io/npm/v/react-i18n-base.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/react-i18n-base.svg?style=flat-square)](https://www.npmjs.com/package/react-i18n-base)
+- [worker-logger](https://github.com/daniloster/react-experiments/blob/master/packages/workerLogger/README.md)
+[![NPM](https://img.shields.io/npm/v/worker-logger.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/worker-logger.svg?style=flat-square)](https://www.npmjs.com/package/worker-logger)
 
