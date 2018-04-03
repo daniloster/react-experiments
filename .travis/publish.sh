@@ -20,6 +20,9 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   echo '** Generating npm auth'
   echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> ~/.npmrc
 
+  # Fixing conflict between yarn and npm
+  npm rebuild node-sass
+
   update_docs() {
     yarn run doc
     yarn run styleguide:build

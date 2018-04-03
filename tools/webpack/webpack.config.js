@@ -11,19 +11,17 @@ const applyDevMode = require('./webpackDev');
 
 module.exports = function (pack, dirname, extraBundles = {}) {
   const webpackResourcesLoaders = createResourcesLoaders(dirname);
-
+  const defaultEntry = {
+    [pack.name]: env.isDev ? ['babel-polyfill', './DEV/index.js'] : './src/index.js',
+  };
+  const entry = Object.assign({}, defaultEntry, env.isDev ? extraBundles : {});
+  /* eslint-disable */
   const webpackConfig = {
     output: {
       path: path.resolve(dirname, 'dist'),
       filename: '[name].js',
     },
-    entry: Object.assign(
-      {},
-      {
-        [pack.name]: env.isDev ? ['babel-polyfill', './DEV/index.js'] : './src/index.js',
-      },
-      env.isDev ? extraBundles : {},
-    ),
+    entry: entry,
     resolve: {
       extensions: ['.js', '.jsx'],
       modules: [
@@ -38,6 +36,7 @@ module.exports = function (pack, dirname, extraBundles = {}) {
     externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     module: webpackResourcesLoaders.module,
   };
+  /* eslint-enable */
 
   if (!env.isProd) {
     webpackConfig.devtool = 'source-map';
