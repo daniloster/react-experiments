@@ -112,8 +112,6 @@ In the insight ops view, you are going to get roughly these data.
 02 Apr 2018 22:51:32.613 { "instanceId": "999fa24f-2245-4257-97c7-9cf302b2e461", "level": "INFO", "event": { "track": "0be30376-cb94-413d-b17e-bc3d46b70bcc", "data": { "type": "crypto:cryptoStock:CHANGE_SELECTED_CURRENCIES", "selectedCurrencies": [ "BRL" ] } } }
 ```
 
-## [API](https://github.com/daniloster/workerLogger/API.md)
-
 ## Test
 
 ```
