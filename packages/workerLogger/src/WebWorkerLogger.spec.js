@@ -4,16 +4,12 @@ import WebWorkerLogger from './WebWorkerLogger';
 
 // Update the value every time when the file size changes
 const WEB_WORKER_LOGGER_TOTAL_LINES = 120;
-global.cov_1j3kd8u1dn = global.cov_1j3kd8u1dn || {
-  f: new Array(WEB_WORKER_LOGGER_TOTAL_LINES).fill(0),
-  s: new Array(WEB_WORKER_LOGGER_TOTAL_LINES).fill(0),
-};
 
 global.Blob = class Blob {
   constructor(arr) {
     let foundGlobalLine = false;
     let hasFinishedGlobalLine = false;
-    const serialisedFunction = arr[0]
+    let serialisedFunction = arr[0]
       .split(/\n/gi)
       .map((line) => {
         if (!foundGlobalLine && !hasFinishedGlobalLine && line.includes('const global = {')) {
@@ -32,8 +28,16 @@ global.Blob = class Blob {
         return line;
       })
       .join('\n')
-      .replace(/_promise2\.default/gi, 'Promise')
-      .replace(/cov_1j3kd8u1dn/gi, 'global.cov_1j3kd8u1dn');
+      .replace(/_promise2\.default/gi, 'Promise');
+
+    const coverageKeyHash = (serialisedFunction.match(/(cov_(\w+))/gi) || []).pop();
+    if (coverageKeyHash) {
+      global[coverageKeyHash] = global[coverageKeyHash] || {
+        f: new Array(WEB_WORKER_LOGGER_TOTAL_LINES).fill(0),
+        s: new Array(WEB_WORKER_LOGGER_TOTAL_LINES).fill(0),
+      };
+      serialisedFunction = serialisedFunction.replace(/(cov_(\w+))/gi, `global.${coverageKeyHash}`);
+    }
     this.func = new Function('', serialisedFunction);
   }
 };
