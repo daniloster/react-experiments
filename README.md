@@ -37,7 +37,7 @@ npm run cli -- --help
 - Changes must be approved;
 - Changes must have tests passing on Travis-CI;
 - Changes must have coverage of 95% on Travis-CI for: statements, branches, functions and lines;
-- Last commit message must have attribute `[release=&amp;amp;amp;amp;amp;amp;lt;major|minor|patch|no-release&amp;amp;amp;amp;amp;amp;gt;]`;
+- Last commit message must have attribute `[release=&amp;amp;amp;amp;amp;amp;amp;lt;major|minor|patch|no-release&amp;amp;amp;amp;amp;amp;amp;gt;]`;
 
 ## Metrics
 [![Build Status](https://img.shields.io/travis/daniloster/react-experiments/master.svg?style=flat-square)](https://travis-ci.org/daniloster/react-experiments) [![BCH compliance](https://bettercodehub.com/edge/badge/daniloster/react-experiments?branch=master)](https://bettercodehub.com/)
