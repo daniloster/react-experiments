@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const argsMap = {
   '-s': 'src',
-  '-e': new RegExp('(node_modules\/|lib\/|dist\/|DEV\/|.nyc_output\/|coverage\/|mochawesome-reports\/|webpack\.config\.js|__test__)', 'i'),
+  '-e': new RegExp('(node_modules\/|lib\/|dist\/|DEV\/|.spec.js|.nyc_output\/|coverage\/|mochawesome-reports\/|webpack\.config\.js|__test__)', 'i'),
   '-t': '../../tools/docs/template.md',
   '-o': 'API.md',
 }
@@ -64,5 +64,6 @@ process.stdin.on('readable', function() {
 
 process.stdin.on('end', function() {
   const jsonText = json.join('');
-  buildDocs(parseData(JSON.parse(jsonText)));
+  const jsonData = JSON.parse(jsonText);
+  buildDocs(parseData(jsonData));
 });

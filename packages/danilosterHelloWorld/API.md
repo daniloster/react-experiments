@@ -7,7 +7,7 @@ Project template for continuos integration (travis) for react experiments
 
 ### src/HelloWorld/HelloWorld.js
 
-#### 
+#### HelloWorld
 
 HelloWorld may be used as below.
 E.g.
@@ -17,5 +17,5 @@ E.g.
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
-**children** | \`string\` |  | :white_check_mark: | children is a string which will be wrapped by a div element.
+**children** | string |  | :white_check_mark: | children is a string which will be wrapped by a div element.
 

@@ -67,7 +67,7 @@
     "prettier": "1.10.2",
     "postcss-loader": "1.2.1",
     "react-addons-test-utils": "15.6.2",
-    "react-docgen": "2.20.0",
+    "react-docgen": "2.20.1",
     "react-docgen-displayname-handler": "1.0.1",
     "react-styleguidist": "6.2.5",
     "react-test-renderer": "16.0.0",
