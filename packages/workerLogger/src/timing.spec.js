@@ -76,8 +76,8 @@ describe('createTime and createTimeWithArgs', () => {
     it('Given I create a timed sum series function', () => {
       sumElements = timeFunc(sum);
     });
-    it('When I execute the function sumElements for 1,000,000', () => {
-      result = sumElements(1000000);
+    it('When I execute the function sumElements for 100,000', () => {
+      result = sumElements(100000);
     });
     it('Then the execution time should be logged', () => {
       expect(ref.log.calledOnce).to.be.true;
@@ -85,8 +85,8 @@ describe('createTime and createTimeWithArgs', () => {
       expect(ref.log.lastCall.args[0].type).to.be.eql('function');
       expect(ref.log.lastCall.args[0].ticksEllapsed > 0).to.be.true;
     });
-    it('And the overall result should be 500,000,500,000', () => {
-      expect(result).to.be.eql(500000500000);
+    it('And the overall result should be 5,000,050,000', () => {
+      expect(result).to.be.eql(5000050000);
     });
   });
 
@@ -98,18 +98,18 @@ describe('createTime and createTimeWithArgs', () => {
     it('Given I create a timed sum series function', () => {
       sumElements = timeFunc(sum);
     });
-    it('When I execute the function sumElements for 1,000,000', () => {
-      result = sumElements(1000000);
+    it('When I execute the function sumElements for 100,000', () => {
+      result = sumElements(100000);
     });
     it('Then the execution time should be logged', () => {
       expect(ref.log.calledOnce).to.be.true;
       expect(ref.log.lastCall.args[0].name).to.be.eql('sum');
       expect(ref.log.lastCall.args[0].type).to.be.eql('function');
-      expect(ref.log.lastCall.args[0].args).to.be.eql([1000000]);
+      expect(ref.log.lastCall.args[0].args).to.be.eql([100000]);
       expect(ref.log.lastCall.args[0].ticksEllapsed > 0).to.be.true;
     });
-    it('And the overall result should be 500,000,500,000', () => {
-      expect(result).to.be.eql(500000500000);
+    it('And the overall result should be 5,000,050,000', () => {
+      expect(result).to.be.eql(5000050000);
     });
   });
 });

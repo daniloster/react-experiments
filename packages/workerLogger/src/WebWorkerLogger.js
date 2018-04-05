@@ -41,8 +41,8 @@ export default class WebWorkerLogger {
   });
 
   constructor(options) {
-    const { thread, args, format = data => data } = options;
-    const blobUrl = createBlobFunctionUrl(thread, args);
+    const { logger, args, format = data => data } = options;
+    const blobUrl = createBlobFunctionUrl(logger, args);
     const instanceId = uuid();
     let worker = null;
     if (!window.Worker) {

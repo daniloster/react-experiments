@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import 'daniloster-utils';
 import store from './Sample/store';
-import DatePicker from './Sample/DatePicker';
 import CryptoCurrenciesPrices from './Sample/CryptoCurrenciesPrices';
 
 // app
@@ -21,7 +20,6 @@ const App = () => (
   <div style={{ marginLeft: '120px', width: '320px', display: 'flex', flexDirection: 'column' }}>
     <Provider store={store}>
       <div>
-        <DatePicker shouldKeepCalendarWhileSelecting hasWeekdays />
         <CryptoCurrenciesPrices />
       </div>
     </Provider>

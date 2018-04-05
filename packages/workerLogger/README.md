@@ -1,10 +1,10 @@
 ## worker-logger
 
-This library reduce the CPU cost of logging web app. As everyone knows, javascript runs on a single thread on the browser which gets blocked when gets interrupted by async calls such as setTimeout, setInterval, XHR, fetch and native events. So, delegating the work to a web worker mitigates the problem.
+This library reduce the CPU cost of logging web app. As everyone knows, jjavascript runs on a single logger on the browser which gets interrupted by async calls such as setTimeout, setInterval, XHR, fetch and native events. So, delegating the work to a web worker mitigates the problem.
 
 ## Usage
 
-Assuming that you want to use something like Rapid7 InsightOps to get metrics from you web app. It is likelly to perform several api/xhr calls sending the logs. If they were running on the main thread, users would experience some sluggishness. Using the `worker-logger` is possible to migrate it. Here follows an example for react/redux app.
+Assuming that you want to use something like Rapid7 InsightOps to get metrics from you web app. It is likelly to perform several api/xhr calls sending the logs. If they were running on the main logger, users would experience some sluggishness. Using the `worker-logger` is possible to migrate it. Here follows an example for react/redux app.
 
 ### Creating a token log
 
@@ -30,10 +30,10 @@ export default function rapid7Logging(token) {
 
 ```js
 import WorkerLogger from "worker-logger";
-import rapid7Logging from "./rapid7Logging";
+import insightOpsLogger from "./insightOpsLogger";
 
 const logger = new WorkerLogger({
-  thread: rapid7Logging,
+  logger: insightOpsLogger,
   args: ["INSERT YOUR TOKEN HERE"]
 });
 

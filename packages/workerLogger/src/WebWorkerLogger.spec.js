@@ -101,7 +101,7 @@ describe('WebWorkerLogger', () => {
       global.fetch = sinon.spy();
       try {
         new WebWorkerLogger({
-          thread: logging,
+          logger: logging,
           args: ['my-token-value'],
         });
       } catch (e) {
@@ -127,7 +127,7 @@ describe('WebWorkerLogger', () => {
       results = [];
       global.fetch = sinon.spy();
       logger = new WebWorkerLogger({
-        thread: logging,
+        logger: logging,
         args: ['my-token-value'],
       });
     });
@@ -249,7 +249,7 @@ describe('WebWorkerLogger', () => {
       results = [];
       global.fetch = sinon.spy();
       logger = new WebWorkerLogger({
-        thread: logging,
+        logger: logging,
         args: ['my-token-value'],
       });
     });
@@ -319,7 +319,7 @@ describe('WebWorkerLogger', () => {
       results = [];
       global.fetch = sinon.spy();
       logger = new WebWorkerLogger({
-        thread: logging,
+        logger: logging,
         args: ['my-token-value'],
       });
     });
