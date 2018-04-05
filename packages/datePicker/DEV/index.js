@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Provider, connect } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { observer } from 'mobx-react';
 import DatePicker, { DatePickerModel, createReduxStoreSection } from '../src';
+// import logger from './logger';
 
 const { reducers, mapDispatchToProps } = createReduxStoreSection('datePicker');
 
@@ -21,6 +22,7 @@ const store = createStore(
   combineReducers({
     ...reducers,
   }),
+  // applyMiddleware(logger.createMiddleware()),
 );
 
 // app

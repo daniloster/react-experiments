@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import createReduxStoreSection from 'daniloster-date-picker/lib/createReduxStoreSection';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 

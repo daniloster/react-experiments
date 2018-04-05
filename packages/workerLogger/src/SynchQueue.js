@@ -1,4 +1,9 @@
 /**
+ * Trick to make the transpilation access Promise as "Promise"
+ * and not "_promise2.default".
+ */
+const Promise = global.Promise;
+/**
  * This queue provides synchronised access to each item.
  *
  * @param list initial list to synch consumer
