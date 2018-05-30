@@ -1,10 +1,14 @@
 ## worker-logger
 
-This library reduce the CPU cost of logging web app. As everyone knows, jjavascript runs on a single logger on the browser which gets interrupted by async calls such as setTimeout, setInterval, XHR, fetch and native events. So, delegating the work to a web worker mitigates the problem.
+This library reduce the CPU cost of logging web app. As everyone knows, javascript runs on a single event loop on the browser which gets interrupted by async calls such as setTimeout, setInterval, XHR, fetch and native events. So, delegating the work to a web worker mitigates the problem.
+
+The `worker-logger` makes use of a synchronized queue which follows the FIFO principle. Then, by consequence, it only hijacks one connection from the pool for XHR, not impacting the app experience significatly.
 
 ## Usage
 
-Assuming that you want to use something like Rapid7 InsightOps to get metrics from you web app. It is likelly to perform several api/xhr calls sending the logs. If they were running on the main logger, users would experience some sluggishness. Using the `worker-logger` is possible to migrate it. Here follows an example for react/redux app.
+Assuming that you want to use something like Rapid7 InsightOps to log and get derived metrics for your web app. It is likely to perform several api/xhr calls sending the logs. If they were running on the main logger, users would experience some sluggishness. Using the `worker-logger` is possible to migrate it due to the synchronized queue implemented and mentioned before.
+
+Here follows an example for react/redux app.
 
 ### Creating a token log
 
