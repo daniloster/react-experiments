@@ -1,8 +1,9 @@
 {
-  "name": "${project.name}",
+  "name": "context-api-polyfill",
   "version": "0.0.1",
-  "description": "${project.description}",
+  "description": "Polyfill React 15 with the new context api",
   "main": "lib/index.js",
+  "license": "MIT",
   "nyc": {
     "require": ["babel-register"],
     "include": ["src/**/*.js", "src/*.js"],
@@ -17,7 +18,7 @@
     "dev":
       "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist --config webpack.config.js",
     "check-coverage":
-      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 75 --functions 95 --lines 95",
     "coverage":
       "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
     "test":
@@ -34,7 +35,11 @@
       "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "dependencies": {},
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "prop-types": "^15.6.0",
+    "uuid": "^3.1.0"
+  },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "cross-env": "5.0.5",
@@ -49,6 +54,8 @@
     "react-styleguidist": "6.2.5",
     "react-test-renderer": "16.0.0",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2"
+    "webpack-dev-server": "2.4.2",
+    "prop-types": "15.6.0",
+    "uuid": "3.1.0"
   }
 }
