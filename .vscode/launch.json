@@ -1,0 +1,45 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Name of configuration; appears in the launch configuration drop down menu.
+      "name": "Run mocha RE",
+      // Type of configuration. Possible values: "node", "mono".
+      "type": "node",
+      "request": "launch",
+      // Workspace relative or absolute path to the program.
+      "program": "${workspaceFolder}/node_modules/.bin/mocha",
+      "runtimeArgs": [
+        "${workspaceRoot}/packages/contextApiPolyfill/node_modules/.bin/mocha",
+        "--inspect-brk",
+        "${relativeFile}",
+        "--require",
+        "./tools/helpers/browser.js",
+        "--require",
+        "ignore-styles",
+        "--colors",
+        "--reporter",
+        "mochawesome"
+      ],
+      // Console
+      "console": "integratedTerminal",
+      // No internal console
+      "internalConsoleOptions": "neverOpen",
+      // Defining port
+      "port": 9229,
+      // Enabling source maps
+      "sourceMaps": true,
+      // Output
+      "outFiles": ["${workspaceRoot}/packages/contextApiPolyfill/__test__/*"],
+      // Environment
+      "env": {
+        "NODE_ENV": "development"
+      },
+      // Automatically stop program after launch.
+      "stopOnEntry": false
+    }
+  ]
+}

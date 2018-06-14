@@ -3,22 +3,11 @@
   "version": "1.2.2",
   "description": "Utilities package for react experiments",
   "main": "lib/index.js",
+  "license": "MIT",
   "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "include": [
-      "src/**/*.js",
-      "src/*.js"
-    ],
-    "exclude": [
-      "src/**/*.spec.js",
-      "test",
-      "build",
-      "dist",
-      "lib",
-      "mochawesome-reports"
-    ],
+    "require": ["babel-register"],
+    "include": ["src/**/*.js", "src/*.js"],
+    "exclude": ["src/**/*.spec.js", "test", "build", "dist", "lib", "mochawesome-reports"],
     "sourceMap": false,
     "instrument": false
   },
@@ -26,9 +15,12 @@
     "access": "public"
   },
   "scripts": {
-    "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
-    "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
-    "test": "yarn run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+    "check-coverage":
+      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+    "coverage":
+      "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
+    "test":
+      "yarn run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
     "test:watch": "yarn run test -- --watch",
     "precompile": "rm -rf lib/ && mkdir -p lib",
     "compile": "babel src --out-dir lib --copy-files --source-maps",
@@ -46,7 +38,7 @@
     "mocha": "3.5.3",
     "mochawesome": "2.3.1",
     "nyc": "10.0.0",
-    "react": "16.0.0",
+    "react": "16.4.0",
     "react-addons-test-utils": "15.6.2",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"
