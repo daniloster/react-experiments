@@ -44,6 +44,8 @@ npm run cli -- --help
 
 ## Packages
 
+- [context-api-polyfill](https://github.com/daniloster/react-experiments/blob/master/packages/contextApiPolyfill/README.md)
+[![NPM](https://img.shields.io/npm/v/context-api-polyfill.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/context-api-polyfill.svg?style=flat-square)](https://www.npmjs.com/package/context-api-polyfill)
 - [daniloster-base-styles](https://github.com/daniloster/react-experiments/blob/master/packages/baseStyles/README.md)
 [![NPM](https://img.shields.io/npm/v/daniloster-base-styles.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-base-styles.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-base-styles)
 - [daniloster-cli](https://github.com/daniloster/react-experiments/blob/master/packages/cli/README.md)
