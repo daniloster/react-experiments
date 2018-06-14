@@ -3,18 +3,11 @@
   "version": "1.2.2",
   "description": "Component to resolve conditional rendering.",
   "main": "lib/index.js",
+  "license": "MIT",
   "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "include": [
-      "src/**/*.js",
-      "src/*.js"
-    ],
-    "exclude": [
-      "src/**/*.spec.js",
-      "src/*.spec.js"
-    ],
+    "require": ["babel-register"],
+    "include": ["src/**/*.js", "src/*.js"],
+    "exclude": ["src/**/*.spec.js", "src/*.spec.js"],
     "sourceMap": false,
     "instrument": false
   },
@@ -22,15 +15,17 @@
     "access": "public"
   },
   "styleguide": {
-    "ignore": [
-      "**/__test__/**/*.js"
-    ]
+    "ignore": ["**/__test__/**/*.js"]
   },
   "scripts": {
-    "dev": "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist --config webpack.config.js",
-    "check-coverage": "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
-    "coverage": "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
-    "test": "yarn run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+    "dev":
+      "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist --config webpack.config.js",
+    "check-coverage":
+      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+    "coverage":
+      "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
+    "test":
+      "yarn run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
     "test:watch": "yarn run test -- --watch",
     "precompile": "rm -rf lib/ && mkdir -p lib",
     "compile": "babel src --out-dir lib --copy-files --source-maps",
@@ -39,7 +34,8 @@
     "prepublish": "yarn run build",
     "lint:fix": "eslint --fix src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
     "lint": "eslint src --config ../../.eslintrc.json --ignore-path ../../.eslintignore",
-    "doc": "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
+    "doc":
+      "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

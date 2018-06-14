@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "${project.description}",
   "main": "lib/index.js",
+  "license": "MIT",
   "nyc": {
     "require": ["babel-register"],
     "include": ["src/**/*.js", "src/*.js"],
