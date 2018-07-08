@@ -62,6 +62,8 @@ npm run cli -- --help
 [![NPM](https://img.shields.io/npm/v/daniloster-utils.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/daniloster-utils.svg?style=flat-square)](https://www.npmjs.com/package/daniloster-utils)
 - [react-i18n-base](https://github.com/daniloster/react-experiments/blob/master/packages/reactI18nBase/README.md)
 [![NPM](https://img.shields.io/npm/v/react-i18n-base.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/react-i18n-base.svg?style=flat-square)](https://www.npmjs.com/package/react-i18n-base)
+- [react-redux-form-base](https://github.com/daniloster/react-experiments/blob/master/packages/reactReduxFormBase/README.md)
+[![NPM](https://img.shields.io/npm/v/react-redux-form-base.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/react-redux-form-base.svg?style=flat-square)](https://www.npmjs.com/package/react-redux-form-base)
 - [worker-logger](https://github.com/daniloster/react-experiments/blob/master/packages/workerLogger/README.md)
 [![NPM](https://img.shields.io/npm/v/worker-logger.svg?style=flat-square) ![NPM](https://img.shields.io/npm/dm/worker-logger.svg?style=flat-square)](https://www.npmjs.com/package/worker-logger)
 
