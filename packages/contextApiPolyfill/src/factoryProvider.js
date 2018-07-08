@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid/v4';
 
 export default function factoryProvider(stack, initialValue) {
   return class Provider extends Component {
@@ -27,10 +26,8 @@ export default function factoryProvider(stack, initialValue) {
     }
 
     componentWillReceiveProps({ value }) {
-      if (this.props.value !== value) {
-        this.setState({ value });
-        Object.values(this.subscribers).forEach(notify => notify(value));
-      }
+      this.setState({ value });
+      Object.values(this.subscribers).forEach(notify => notify(value));
       stack.push(this);
     }
 
@@ -40,13 +37,11 @@ export default function factoryProvider(stack, initialValue) {
 
     subscribers = {};
 
-    addListener = (notify) => {
-      const id = uuid();
-      this.subscribers[id] = notify;
-      notify(this.state.value);
+    addListener = (consumerId, notify) => {
+      this.subscribers[consumerId] = notify;
 
       return () => {
-        delete this.subscribers[id];
+        delete this.subscribers[consumerId];
       };
     };
 
