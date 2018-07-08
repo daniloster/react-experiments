@@ -1,6 +1,6 @@
 {
   "name": "react-i18n-base",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "I18nProvider react component and functions as localise and decorate that resolve internationalization.",
   "main": "lib/index.js",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "doc": "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
   "dependencies": {
-    "daniloster-utils": "1.3.0"
+    "daniloster-utils": "1.4.0"
   },
   "peerDependencies": {
     "fast-memoize": "^2.3.0",
