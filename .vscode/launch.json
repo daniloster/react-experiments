@@ -40,6 +40,45 @@
       },
       // Automatically stop program after launch.
       "stopOnEntry": false
+    },
+    {
+      // Name of configuration; appears in the launch configuration drop down menu.
+      "name": "Run mocha RE Mocking context",
+      // Type of configuration. Possible values: "node", "mono".
+      "type": "node",
+      "request": "launch",
+      // Workspace relative or absolute path to the program.
+      "program": "${workspaceFolder}/node_modules/.bin/mocha",
+      "runtimeArgs": [
+        "${workspaceRoot}/packages/reactReduxFormBase/node_modules/.bin/mocha",
+        "--inspect-brk",
+        "${relativeFile}",
+        "--require",
+        "./tools/helpers/test/mockReactCreateContext.js",
+        "--require",
+        "./tools/helpers/browser.js",
+        "--require",
+        "ignore-styles",
+        "--colors",
+        "--reporter",
+        "mochawesome"
+      ],
+      // Console
+      "console": "integratedTerminal",
+      // No internal console
+      "internalConsoleOptions": "neverOpen",
+      // Defining port
+      "port": 9229,
+      // Enabling source maps
+      "sourceMaps": true,
+      // Output
+      "outFiles": ["${workspaceRoot}/packages/reactReduxFormBase/__test__/*"],
+      // Environment
+      "env": {
+        "NODE_ENV": "development"
+      },
+      // Automatically stop program after launch.
+      "stopOnEntry": false
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "name": "${project.name}",
+  "name": "react-redux-form-base",
   "version": "0.0.1",
-  "description": "${project.description}",
+  "description": "Provides a composable form structure with validation",
   "main": "lib/index.js",
   "license": "MIT",
   "nyc": {
@@ -18,11 +18,11 @@
     "dev":
       "NODE_ENV=dev webpack-dev-server --hot --inline --progress --colors --watch --content-base dist --config webpack.config.js",
     "check-coverage":
-      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
+      "cross-env NODE_ENV=test nyc --all --babel --require \"../../tools/helpers/test/mockReactCreateContext.js\" --require \"../../tools/helpers/browser.js\" --require ignore-styles --reporter=lcov --reporter=text mocha --recursive src -name *.spec.js check-coverage --statements 95 --branches 95 --functions 95 --lines 95",
     "coverage":
-      "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
+      "cross-env NODE_ENV=test nyc --all --babel --reporter=lcov --reporter=text --require \"../../tools/helpers/test/mockReactCreateContext.js\" --require \"../../tools/helpers/browser.js\" --require ignore-styles mocha --recursive src -name *.spec.js",
     "test":
-      "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
+      "npm run lint && mocha --recursive src -name *.spec.js --require \"../../tools/helpers/test/mockReactCreateContext.js\" --require \"../../tools/helpers/browser.js\" --require ignore-styles --colors --reporter mochawesome",
     "test:watch": "npm run test -- --watch",
     "precompile": "rm -rf lib/ && mkdir -p lib",
     "compile": "babel src --out-dir lib --copy-files --source-maps",
@@ -34,22 +34,36 @@
     "doc":
       "react-docgen src --ignore node_modules,lib,dist,DEV,.nyc_output,coverage,mochawesome-reports,webpack.config.js,src/__test__ -e **/*.spec.js --resolver findAllComponentDefinitions --pretty | ../../tools/docs/generateDocs.sh"
   },
-  "dependencies": {},
-  "peerDependencies": {},
+  "dependencies": {
+    "daniloster-utils": "1.3.0"
+  },
+  "peerDependencies": {
+    "classnames": "^2.2.5",
+    "mutation-helper": "^1.0.0",
+    "react": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "prop-types": "^15.6.0"
+  },
   "devDependencies": {
     "babel-cli": "6.26.0",
+    "classnames": "2.2.5",
+    "context-api-polyfill": "1.3.0",
     "cross-env": "5.0.5",
     "enzyme": "3.3.0",
     "eslint": "3.19.0",
+    "mutation-helper": "1.0.0",
     "mocha": "3.5.3",
     "mochawesome": "2.3.1",
     "nyc": "10.0.0",
     "react": "16.4.1",
     "react-addons-test-utils": "15.6.2",
     "react-docgen": "2.20.1",
+    "react-redux": "5.0.7",
     "react-styleguidist": "6.2.5",
     "react-test-renderer": "16.0.0",
+    "redux": "3.7.2",
     "webpack": "2.2.1",
-    "webpack-dev-server": "2.4.2"
+    "webpack-dev-server": "2.4.2",
+    "prop-types": "15.6.0"
   }
 }
