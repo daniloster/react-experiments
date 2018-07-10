@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'mutation-helper';
 
+import { getValidation } from './formUtils';
+
 /**
  * Model
  * It is a proxy component which executes the form flow validation/update
@@ -14,20 +16,11 @@ export default class Model extends PureComponent {
      */
     path: PropTypes.string,
     /**
-     * Render function
-     * @type ({
-     *  data,
-     *  schemaData,
-     *  onChangeValue,
-     *  setData,
-     *  setShouldValidate,
-     *  shouldValidate,
-     * }) => <Component />
+     * Render function e.g. ({ data, schemaData, onChangeValue, setData, setShouldValidate, shouldValidate }) => <Component />
      */
     children: PropTypes.func.isRequired, // Function => Renderer
     /**
-     * Action function
-     * @type (path, value) => ({ActionCreator})
+     * Action function e.g. (path, value) => ({ActionCreator})
      */
     onChangeValue: PropTypes.func.isRequired,
   };
@@ -52,15 +45,26 @@ export default class Model extends PureComponent {
   };
 
   renderChildren = (connectedProps) => {
-    const { dataName, schemaData, setData, setShouldValidate, shouldValidate } = connectedProps;
+    const {
+      dataName,
+      schemaData,
+      setData,
+      setShouldValidate,
+      shouldValidate,
+    } = connectedProps;
     const data = connectedProps[dataName];
     const { children, path } = this.props;
     const value = this.getDataValue(data, path);
-    const validation = path ? schemaData[path] : null;
+    const validation = getValidation(schemaData, path);
     const validationData =
-      shouldValidate && validation && validation.$validate && validation.$validate(value);
+      shouldValidate &&
+      validation &&
+      validation.$validate &&
+      validation.$validate(value);
     const derivedErrorMessages =
-      shouldValidate && validation && validation.$getMessage(value, validationData);
+      shouldValidate &&
+      validation &&
+      validation.$getMessage(value, validationData);
 
     return (
       <div className="react__form-item">
@@ -73,7 +77,9 @@ export default class Model extends PureComponent {
           value,
         })}
         {derivedErrorMessages && (
-          <div className="react__form-item-validation-message">{derivedErrorMessages}</div>
+          <div className="react__form-item-validation-message">
+            {derivedErrorMessages}
+          </div>
         )}
       </div>
     );

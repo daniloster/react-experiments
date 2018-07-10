@@ -27,16 +27,26 @@ class Input extends PureComponent {
 #### schemaData
 
 ```js
-const schemaData = {
+export default {
+  // Note the special case for complex lists.
+  "contacts[].value": {
+    $validate: value => !!value,
+    $getMessage: (_, $validateOutput) =>
+      !$validateOutput ? <span>Contact is required</span> : null
+  },
+  // Note the special case for primitive lists.
+  "attributes[]": {
+    $validate: value => !!value,
+    $getMessage: (_, $validateOutput) =>
+      !$validateOutput ? <span>Attribute is required</span> : null
+  },
   firstname: {
     $validate: value => !!value,
-    // eslint-disable-next-line
     $getMessage: (_, $validateOutput) =>
       !$validateOutput ? <span>Firstname is required</span> : null
   },
   age: {
     $validate: value => !!value && /\d+$/g.test(value),
-    // eslint-disable-next-line
     $getMessage: (_, $validateOutput) =>
       !$validateOutput ? (
         <span>Age is required and only accepts numbers</span>
@@ -44,7 +54,6 @@ const schemaData = {
   },
   lastname: {
     $validate: value => !!value,
-    // eslint-disable-next-line
     $getMessage: (_, $validateOutput) =>
       !$validateOutput ? <span>Lastname is required</span> : null
   },
@@ -228,6 +237,31 @@ class AppModel extends Component {
                   onChange={onChangeValue}
                   value={value}
                 />
+              )}
+            </Model>
+            {/*
+            Note the special case for complex and primitive lists.
+            */}
+            <label htmlFor="contacts">Contacts</label>
+            <Model path="contacts[0].value">
+              {({ onChangeValue, value }) => (
+                <Input id="contacts[0].value" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <Model path="contacts[1].value">
+              {({ onChangeValue, value }) => (
+                <Input id="contacts[1].value" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <label htmlFor="attributes">Attributes</label>
+            <Model path="attributes[0]">
+              {({ onChangeValue, value }) => (
+                <Input id="attributes[0]" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <Model path="attributes[1]">
+              {({ onChangeValue, value }) => (
+                <Input id="attributes[1]" onChange={onChangeValue} value={value} />
               )}
             </Model>
             <Model>

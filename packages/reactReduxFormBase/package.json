@@ -65,7 +65,7 @@
     "prop-types": "15.6.0",
     "react": "16.4.1",
     "react-addons-test-utils": "15.6.2",
-    "react-docgen": "2.20.1",
+    "react-docgen": "2.21.0",
     "react-redux": "5.0.7",
     "react-styleguidist": "6.2.5",
     "react-test-renderer": "16.0.0",

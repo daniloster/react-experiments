@@ -1,3 +1,4 @@
+/* eslint-disable */
 import co from 'co';
 import prompt from 'co-prompt';
 import { getDependenciesVersion } from '../../Utils/ApiUtils';

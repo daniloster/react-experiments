@@ -20,7 +20,7 @@ function getComponentAsNode(customProps = {}) {
     onSubmit: sinon.spy(),
   };
 
-  return <AppModel />;
+  return <AppModel noLogging />;
 }
 
 function mountComponent(props) {
@@ -40,7 +40,7 @@ describe('<Model />', () => {
     });
     it('Expect to see 5 inputs', () => {
       const inputs = element.find(Input);
-      length(inputs).eql(5, 'There is no 5 elements rendered');
+      length(inputs).eql(5, 'There are no 5 elements rendered');
     });
   });
 
@@ -57,6 +57,7 @@ describe('<Model />', () => {
       assertValue(state[state.dataName]).eql({ firstname: 'Mont' }, 'Data is not the expected');
     });
   });
+
   describe('Model should not show message for valid fields', () => {
     it('Given the AppModel has some inputs', () => {
       mountComponent();

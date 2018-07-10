@@ -1,3 +1,4 @@
+/* eslint-disable */
 import program from 'commander';
 import InputUtils from './Utils/InputUtils';
 import Command from './Command';

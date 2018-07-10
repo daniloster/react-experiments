@@ -36,7 +36,11 @@ const componentSections = devPackages.map(function(info) {
   return {
     components: `${info.location}/src/**/*.js`,
     description: info.package.description,
-    ignore: (info.package.styleguide || {}).ignore || ['**/src/index.js', '**/__test__/**/*.js'],
+    ignore: (info.package.styleguide || {}).ignore || [
+      '**/src/index.js',
+      '**/*.spec.js',
+      '**/__test__/**/*.js',
+    ],
     name: info.package.name,
   };
 });
@@ -96,7 +100,8 @@ module.exports = {
     /* node_modules dependencies */
     node_modules,
   ].concat(noDevPackages),
-  require: ['babel-polyfill'],
+  styleguideDir: 'docs',
+  require: ['babel-polyfill', './docs/components/loader'],
   // style references: https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js
   theme: {
     baseBackground: '#fdfdfc',
@@ -126,8 +131,8 @@ module.exports = {
     },
   },
   styleguideComponents: {
-    LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
-    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+    LogoRenderer: path.join(__dirname, 'docs/components/Logo'),
+    StyleGuideRenderer: path.join(__dirname, 'docs/components/StyleGuide'),
   },
   webpackConfig: config,
   resolver: require('react-docgen').resolver.findAllComponentDefinitions,

@@ -26,7 +26,7 @@ if [[ $TRAVIS_BRANCH == 'master' ]]; then
   update_docs() {
     yarn run doc
     yarn run styleguide:build
-    git add styleguide/ packages/
+    git add docs/ packages/
     git commit -m "[skip ci] [update-docs]"
     git push gh-publish master
   }

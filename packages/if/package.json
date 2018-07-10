@@ -24,7 +24,8 @@
   },
   "styleguide": {
     "ignore": [
-      "**/__test__/**/*.js"
+      "**/__test__/**/*.js",
+      "**/__test__/**/*.spec.js"
     ]
   },
   "scripts": {

@@ -82,9 +82,13 @@ const styles = ({ font, base, light, link, linkHover, baseBackground, mq }) => (
     '& *': {
       boxSizing: 'border-box',
     },
+    '& > div > div > div > ul': {
+      overflowY: 'scroll',
+      maxHeight: 'calc(100vh - 120px)',
+    }
   },
   sidebarHidden: {
-    left: '-230px',
+    transform: 'translateX(-100%)',
   },
   input: {
     boxSizing: 'border-box',
@@ -98,8 +102,9 @@ const styles = ({ font, base, light, link, linkHover, baseBackground, mq }) => (
     fontSize: '28px',
     fontWeight: '600',
     position: 'absolute',
-    top: 'calc((100vh/2) - 66px)',
-    left: '215px',
+    transform: 'translate(-50%, -50%)',
+    top: '50vh',
+    left: '100%',
     zIndex: '1000',
     color: 'white',
     backgroundColor: '#274e75',
