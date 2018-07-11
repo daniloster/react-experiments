@@ -28,18 +28,15 @@ export default class StateForm extends Component {
      */
     data: PropTypes.shape({}),
     /**
-     * Function to propagate change of the data
-     * @type Function(path, value)
+     * Function to propagate change of the data e.g. Function(path, value)
      */
     onChange: PropTypes.func,
     /**
-     * Schema of validation
-     * @type { [string]: { $validate: function, $getMessage: function } }
+     * Schema of validation e.g. { [string]: { $validate: function, $getMessage: function } }
      */
     schemaData: PropTypes.shape({}),
     /**
-     * Function to propagate settting the data
-     * @type Function(data)
+     * Function to propagate settting the data e.g. Function(data)
      */
     setData: PropTypes.func,
     /**

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'mutation-helper';
+
 import FormContext from './FormContext';
+import { getValidation } from './formUtils';
 
 /**
  * StateFormItem
@@ -15,20 +17,30 @@ export default class StateFormItem extends Component {
      */
     path: PropTypes.string.isRequired,
     /**
-     * Render function
-     * @type ({ data, schemaData, createOnChangeValue, setData, shouldValidate }) => <Component />
+     * Render function e.g. ({ data, schemaData, createOnChangeValue, setData, shouldValidate }) => <Component />
      */
-    children: PropTypes.func.isRequired, // Function => Renderer
+    children: PropTypes.func.isRequired,
   };
 
-  renderChildren = ({ data, schemaData, createOnChangeValue, setData, shouldValidate }) => {
+  renderChildren = ({
+    data,
+    schemaData,
+    createOnChangeValue,
+    setData,
+    shouldValidate,
+  }) => {
     const { children, path } = this.props;
     const value = get(data, path);
-    const validation = path ? schemaData[path] : schemaData;
+    const validation = getValidation(schemaData, path);
     const validationData =
-      shouldValidate && validation && validation.$validate && validation.$validate(value);
+      shouldValidate &&
+      validation &&
+      validation.$validate &&
+      validation.$validate(value);
     const derivedErrorMessages =
-      shouldValidate && validation && validation.$getMessage(value, validationData);
+      shouldValidate &&
+      validation &&
+      validation.$getMessage(value, validationData);
     const onChangeValue = createOnChangeValue(path);
 
     return (
@@ -41,7 +53,9 @@ export default class StateFormItem extends Component {
           value,
         })}
         {derivedErrorMessages && (
-          <div className="react__form-item-validation-message">{derivedErrorMessages}</div>
+          <div className="react__form-item-validation-message">
+            {derivedErrorMessages}
+          </div>
         )}
       </div>
     );

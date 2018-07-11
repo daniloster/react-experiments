@@ -31,15 +31,7 @@ export default class AppModel extends Component {
             <h2>ReduxForm</h2>
             <label htmlFor="title">Title</label>
             <Model path="title">
-              {({ onChangeValue, value }) => (
-                <Input id="title" onChange={onChangeValue} value={value} />
-              )}
-            </Model>
-            <label htmlFor="age">Age</label>
-            <Model path="age">
-              {({ onChangeValue, value }) => (
-                <Input id="age" onChange={onChangeValue} value={value} />
-              )}
+              {({ onChangeValue, value }) => <Input id="title" onChange={onChangeValue} value={value} />}
             </Model>
             <label htmlFor="firstname">Firstname</label>
             <Model path="firstname">
@@ -53,10 +45,26 @@ export default class AppModel extends Component {
                 <Input id="lastname" onChange={onChangeValue} value={value} />
               )}
             </Model>
-            <label htmlFor="description">Certificate description</label>
-            <Model path="certificate.description">
+            <label htmlFor="contacts">Contacts</label>
+            <Model path="contacts[0].value">
               {({ onChangeValue, value }) => (
-                <Input id="description" onChange={onChangeValue} value={value} />
+                <Input id="contacts[0].value" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <Model path="contacts[1].value">
+              {({ onChangeValue, value }) => (
+                <Input id="contacts[1].value" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <label htmlFor="attributes">Attributes</label>
+            <Model path="attributes[0]">
+              {({ onChangeValue, value }) => (
+                <Input id="attributes[0]" onChange={onChangeValue} value={value} />
+              )}
+            </Model>
+            <Model path="attributes[1]">
+              {({ onChangeValue, value }) => (
+                <Input id="attributes[1]" onChange={onChangeValue} value={value} />
               )}
             </Model>
             <Model>

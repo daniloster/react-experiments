@@ -2,7 +2,9 @@ import Model from './Model';
 import StateForm from './StateForm';
 import StateFormItem from './StateFormItem';
 import createReduxStoreSection from './createReduxStoreSection';
-import createReduxStoreSectionAndConnectedComponent from './createReduxStoreSectionAndConnectedComponent';
+import createConnectedComponent from './createReduxStoreSectionAndConnectedComponent';
+
+const createReduxStoreSectionAndConnectedComponent = createConnectedComponent;
 
 export { createReduxStoreSectionAndConnectedComponent };
 export { createReduxStoreSection };

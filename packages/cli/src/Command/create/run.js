@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   spawnSync,
 } from 'child_process';

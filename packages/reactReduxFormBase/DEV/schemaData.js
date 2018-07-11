@@ -1,11 +1,20 @@
 import React from 'react';
 
 export default {
+  'contacts[].value': {
+    $validate: value => !!value,
+    // eslint-disable-next-line
+    $getMessage: (_, $validateOutput) => (!$validateOutput ? <span>Contact is required</span> : null),
+  },
+  'attributes[]': {
+    $validate: value => !!value,
+    // eslint-disable-next-line
+    $getMessage: (_, $validateOutput) => (!$validateOutput ? <span>Attribute is required</span> : null),
+  },
   firstname: {
     $validate: value => !!value,
     // eslint-disable-next-line
-    $getMessage: (_, $validateOutput) =>
-      !$validateOutput ? <span>Firstname is required</span> : null,
+    $getMessage: (_, $validateOutput) => (!$validateOutput ? <span>Firstname is required</span> : null),
   },
   age: {
     $validate: value => !!value && /\d+$/g.test(value),
@@ -16,8 +25,7 @@ export default {
   lastname: {
     $validate: value => !!value,
     // eslint-disable-next-line
-    $getMessage: (_, $validateOutput) =>
-      !$validateOutput ? <span>Lastname is required</span> : null,
+    $getMessage: (_, $validateOutput) => (!$validateOutput ? <span>Lastname is required</span> : null),
   },
   title: {
     $validate: value => /^(([mM][rR])([sS]?))/g.test(value),
