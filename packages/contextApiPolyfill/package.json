@@ -1,6 +1,6 @@
 {
   "name": "context-api-polyfill",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Polyfill React 15 with the new context api",
   "main": "lib/index.js",
   "license": "MIT",

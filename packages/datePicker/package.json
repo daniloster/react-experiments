@@ -1,6 +1,6 @@
 {
   "name": "daniloster-date-picker",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "DatePicker react component with exported store connection (mapStateToProps, mapDispatchToProps and reducer function).",
   "main": "lib/index.js",
   "license": "MIT",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "daniloster-base-styles": "1.4.0",
-    "daniloster-if": "1.4.0",
+    "daniloster-if": "1.4.1",
     "daniloster-utils": "1.4.0"
   },
   "peerDependencies": {

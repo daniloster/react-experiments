@@ -1,6 +1,6 @@
 {
   "name": "daniloster-if",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Component to resolve conditional rendering.",
   "main": "lib/index.js",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "daniloster-toggle-button",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "ToggleButton react component observing the same idea of checkbox element (checked/unchecked).",
   "main": "lib/index.js",
   "license": "MIT",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "daniloster-base-styles": "1.4.0",
-    "daniloster-if": "1.4.0"
+    "daniloster-if": "1.4.1"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

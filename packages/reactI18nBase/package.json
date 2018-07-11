@@ -1,6 +1,6 @@
 {
   "name": "react-i18n-base",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "I18nProvider react component and functions as localise and decorate that resolve internationalization.",
   "main": "lib/index.js",
   "license": "MIT",

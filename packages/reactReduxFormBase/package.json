@@ -1,6 +1,6 @@
 {
   "name": "react-redux-form-base",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Provides a composable form structure with validation",
   "main": "lib/index.js",
   "license": "MIT",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "classnames": "2.2.5",
-    "context-api-polyfill": "1.4.0",
+    "context-api-polyfill": "1.4.1",
     "cross-env": "5.0.5",
     "enzyme": "3.3.0",
     "eslint": "3.19.0",
