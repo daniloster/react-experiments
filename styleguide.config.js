@@ -89,6 +89,7 @@ module.exports = {
     '**/baseStyles/**',
     '**/cli/**',
     '**/utils/**',
+    '**/workerLogger/**',
     '**/lib/**',
     '**/DEV/**',
     '**/demo/**',

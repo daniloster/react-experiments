@@ -22,25 +22,14 @@ export default class StateFormItem extends Component {
     children: PropTypes.func.isRequired,
   };
 
-  renderChildren = ({
-    data,
-    schemaData,
-    createOnChangeValue,
-    setData,
-    shouldValidate,
-  }) => {
+  renderChildren = ({ data, schemaData, createOnChangeValue, setData, shouldValidate }) => {
     const { children, path } = this.props;
     const value = get(data, path);
     const validation = getValidation(schemaData, path);
     const validationData =
-      shouldValidate &&
-      validation &&
-      validation.$validate &&
-      validation.$validate(value);
+      shouldValidate && validation && validation.$validate && validation.$validate(value);
     const derivedErrorMessages =
-      shouldValidate &&
-      validation &&
-      validation.$getMessage(value, validationData);
+      shouldValidate && validation && validation.$getMessage(value, validationData);
     const onChangeValue = createOnChangeValue(path);
 
     return (
@@ -53,9 +42,7 @@ export default class StateFormItem extends Component {
           value,
         })}
         {derivedErrorMessages && (
-          <div className="react__form-item-validation-message">
-            {derivedErrorMessages}
-          </div>
+          <div className="react__form-item-validation-message">{derivedErrorMessages}</div>
         )}
       </div>
     );
