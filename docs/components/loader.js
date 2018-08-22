@@ -1,5 +1,5 @@
 import AppModelList from '../../packages/reactReduxFormBase/DEV/AppModelList';
-import AppStateForm from '../../packages/reactReduxFormBase/DEV/AppStateForm';
+import AppFormState from '../../packages/reactReduxFormBase/DEV/AppFormState';
 
 global.AppModelList = AppModelList;
-global.AppStateForm = AppStateForm;
+global.AppFormState = AppFormState;

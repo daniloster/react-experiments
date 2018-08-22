@@ -1,5 +1,6 @@
 import createReducerFunction from 'daniloster-utils/lib/createReducerFunction';
-import { get, set } from 'mutation-helper';
+import get from 'lodash/get';
+import set from 'lodash/fp/set';
 
 /**
  * Creates the redux store section
@@ -37,7 +38,7 @@ export default function createReduxStoreSection(namespace, dataName, schemaData)
   function changeValueReducer({ [dataName]: oldData }, { path, value }) {
     const oldValue = get(oldData, path);
     if (oldValue !== value) {
-      return { [dataName]: set(oldData, path, value) };
+      return { [dataName]: set(path, value, oldData) };
     }
 
     return {};

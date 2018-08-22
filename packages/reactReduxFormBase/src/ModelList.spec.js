@@ -1,15 +1,11 @@
 import React from 'react';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
-import { get, set } from 'mutation-helper';
 import AppModelList from '../DEV/AppModelList';
-import schemaData from '../DEV/schemaData';
 import Input from '../DEV/Input';
-import Model from './Model';
 
-import { noop } from '../../../tools/helpers/test/utils';
-import { change, click } from '../../../tools/helpers/test/simulate';
-import { assertPath, assertValue, length } from '../../../tools/helpers/test/assert';
+import { change } from '../../../tools/helpers/test/simulate';
+import { assertValue, length } from '../../../tools/helpers/test/assert';
 
 let element;
 let props;
@@ -68,7 +64,10 @@ describe('<Model />', () => {
     it('Then the state should have  "Classic" in the property "value" at index 1 of the contacts', () => {
       const store = element.instance().store;
       const state = store.getState().personSection;
-      assertValue(state[state.dataName]).eql({ contacts: [, { value: 'Classic' }] }, 'Data is not the expected');
+      assertValue(state[state.dataName]).eql(
+        { contacts: [, { value: 'Classic' }] },
+        'Data is not the expected',
+      );
     });
   });
 });
