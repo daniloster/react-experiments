@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import set from 'lodash/fp/set';
 import get from 'lodash/get';
 
 import FormContext from './FormContext';
-import { noop, addValidations, clearValidations, isAllValid } from './formUtils';
+import { noop, getOnChangeValueHash, addValidations, clearValidations, isAllValid } from './formUtils';
 
 /**
  * FormState
@@ -23,7 +23,12 @@ export default class FormState extends Component {
     /**
      * Tag name used as container
      */
-    tagName: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+    tagName: PropTypes.oneOfType([
+      PropTypes.instanceOf(Component),
+      PropTypes.instanceOf(PureComponent),
+      PropTypes.func,
+      PropTypes.string,
+    ]),
     /**
      * Initial data provided
      */
@@ -33,7 +38,7 @@ export default class FormState extends Component {
      */
     onChange: PropTypes.func,
     /**
-     * Schema of validation e.g. { [string]: { $validate: function, $getMessage: function } }
+     * Schema of validation e.g. { [string]: [result of combineValidations function, see recipe] }
      */
     schemaData: PropTypes.shape({}),
     /**
@@ -53,6 +58,7 @@ export default class FormState extends Component {
 
   state = {
     data: this.props.data,
+    createOnChange: path => this.createOnChange(path),
     createOnChangeValue: path => this.createOnChangeValue(path),
     schemaData: this.props.schemaData,
     setData: data => this.setData(data),
@@ -98,17 +104,29 @@ export default class FormState extends Component {
     this.setState({ data }, () => setData(data));
   };
 
-  createOnChangeValue = (path) => {
+  createOnChange = (path) => {
     this.memoization = this.memoization || {};
 
     if (!this.memoization[path]) {
+      const onChangeValue = this.createOnChangeValue(path);
       this.memoization[path] = (e) => {
-        const value = e.target.value;
-        this.onChange(path, value);
+        onChangeValue(e.target.value);
       };
     }
 
     return this.memoization[path];
+  };
+
+  createOnChangeValue = (path) => {
+    this.memoization = this.memoization || {};
+    const hash = getOnChangeValueHash(path);
+    if (!this.memoization[hash]) {
+      this.memoization[hash] = (value) => {
+        this.onChange(path, value);
+      };
+    }
+
+    return this.memoization[hash];
   };
 
   render() {

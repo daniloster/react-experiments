@@ -33,9 +33,9 @@ const schemaData = {
 <FormState schemaData={schemaData} shouldValidate={true}>
   <label htmlFor="description">Certificate description</label>
   <FormStateItem path="certificate.description">
-    {({ onChangeValue, value, validations }) => (
+    {({ onChange, value, validations }) => (
       <span data-form-state-item>
-        <Input id="description" onChange={onChangeValue} value={value} />
+        <Input id="description" onChange={onChange} value={value} />
         {validations && validations.map(({ message }) => message)}
       </span>
     )}

@@ -1,6 +1,10 @@
 ## react-redux-form-base
 
-It is a library to provide 2 ways to manage the form data. Either through the component state or redux state. So, see following cookbook recipes.
+There a lot of libraries out there managing the form. However, all them force specific Input components or form items. This library only defines the workflow to capture data and validate it.
+
+It is really recommended using the state recipe, as forms usually are transient data and this type of data does not need to be kept in memory.
+
+2 ways to manage the form data. Either through the component state or redux state. So, see following cookbook recipes.
 
 For both cases, please, assume that we have the following `Input` component and `schemaData`...
 
@@ -122,7 +126,15 @@ export default {
 
 ### Component State
 
-Here the state is kept in the component state which uses the new context api to provide the events to control data and validation messages. In this recipe, the develop control when should show the validation. The most important thing is this recipe defines workflow data collection and validation in the most flexible way.
+Here the state is kept in the component state which uses the new context api to provide the events to control data and validation messages. In this recipe, the developer controls when the validation should be displayed. The most important thing is that this recipe defines workflow for capturing data and validating it in the most flexible way.
+
+It worth mention that in the children as function there are 3 nice functions provided:
+
+* onChange, which handle an event updating the path with `e.target.value` / `(e) => { ...internalUpdate(e.target.value)... )}`;
+* onChangeValue, which updates the path with given value `(value) => { ...internalUpdate(value)... )}`;
+* isAllValid, which validates a restricted groups of paths required, or all them when restrictions are not provided;
+  * `isAllValid()` validates all the validations associated with the shema and FormStateItem defined for path;
+  * `isAllValid(['firstname', 'lastname'])` verifies only the validations associated with firstname and lastname;
 
 ```js
 import React, { Component } from "react";
@@ -136,46 +148,62 @@ class AppStateForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    alert("Sending form data...");
+  };
+
+  onValidate = e => {
+    e.preventDefault();
     this.setState({ shouldValidate: true });
   };
 
   render() {
+    const { shouldValidate } = this.state;
     return (
       <div>
         <h2>FormState</h2>
         <FormState schemaData={schemaData}>
+          <div>
+            <FormStateItem path="firstname">
+              {({ onChange, value, validations }) => (
+                <span data-form-state-item>
+                  <Input id="firstname" onChange={onChange} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
+              )}
+            </FormStateItem>
+            <br />
+
+            <label htmlFor="lastname">Lastname</label>
+            <FormStateItem path="lastname">
+              {({ onChange, value, validations }) => (
+                <span data-form-state-item>
+                  <Input id="lastname" onChange={onChange} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
+              )}
+            </FormStateItem>
+            <br />
+
+            <FormStateItem>
+              {({ isAllValid }) => (
+                <button
+                  onClick={this.onValidate}
+                  disabled={!isAllValid(["fistname", "lastname"])}
+                >
+                  Validate Certificate
+                </button>
+              )}
+            </FormStateItem>
+          </div>
+
           <label htmlFor="description">Certificate description</label>
           <FormStateItem path="certificate.description">
-            {({ onChangeValue, value, validations }) => (
+            {({ onChange, value, validations }) => (
               <span>
-                <Input
-                  id="description"
-                  onChange={onChangeValue}
-                  value={value}
-                />
-                {validations && validations.map(({ message }) => message)}
-              </span>
-            )}
-          </FormStateItem>
-          <br />
-
-          <label htmlFor="firstname">Firstname</label>
-          <FormStateItem path="firstname">
-            {({ onChangeValue, value, validations }) => (
-              <span>
-                <Input id="firstname" onChange={onChangeValue} value={value} />
-                {validations && validations.map(({ message }) => message)}
-              </span>
-            )}
-          </FormStateItem>
-          <br />
-
-          <label htmlFor="lastname">Lastname</label>
-          <FormStateItem path="lastname">
-            {({ onChangeValue, value, validations }) => (
-              <span>
-                <Input id="lastname" onChange={onChangeValue} value={value} />
-                {validations && validations.map(({ message }) => message)}
+                <Input id="description" onChange={onChange} value={value} />
+                {shouldValidate &&
+                  validations &&
+                  validations.map(({ message }) => message)}
               </span>
             )}
           </FormStateItem>
@@ -228,7 +256,12 @@ class AppModel extends Component {
       applyMiddleware(logger)
     );
     this.actions = connectActions(this.store);
-    // Here we are resetting the form every 1 minute.
+    /**
+     * Here we are resetting the form every 1 minute. Don't take it as a real use case.
+     * You might get the action connecting your component. Also, it is recommended to use
+     * the state in the form. We should not be using the store state to keep transient
+     * data.
+     * */
     this.intervalRef = setInterval(() => this.actions.setData({}), ONE_MINUTE);
   }
 
@@ -244,36 +277,32 @@ class AppModel extends Component {
             <h2>ReduxForm</h2>
             <label htmlFor="title">Title</label>
             <Model path="title">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="title" onChange={onChangeValue} value={value} />
+                  <Input id="title" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="firstname">Firstname</label>
             <Model path="firstname">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
                   {/**
-                   * onChangeValue is a connected actions that changes the field
+                   * onChange is a connected actions that changes the field
                    * value based on the path. And, the value is a result extracted
                    * using the path.
                    **/}
-                  <Input
-                    id="firstname"
-                    onChange={onChangeValue}
-                    value={value}
-                  />
+                  <Input id="firstname" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="lastname">Lastname</label>
             <Model path="lastname">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="lastname" onChange={onChangeValue} value={value} />
+                  <Input id="lastname" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
@@ -281,11 +310,11 @@ class AppModel extends Component {
             {/* Note the special case for complex and primitive lists. */}
             <label htmlFor="contacts">Contacts</label>
             <Model path="contacts[0].value">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
                   <Input
                     id="contacts[0].value"
-                    onChange={onChangeValue}
+                    onChange={onChange}
                     value={value}
                   />
                   {validations && validations.map(({ message }) => message)}
@@ -293,11 +322,11 @@ class AppModel extends Component {
               )}
             </Model>
             <Model path="contacts[1].value">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
                   <Input
                     id="contacts[1].value"
-                    onChange={onChangeValue}
+                    onChange={onChange}
                     value={value}
                   />
                   {validations && validations.map(({ message }) => message)}
@@ -306,32 +335,24 @@ class AppModel extends Component {
             </Model>
             <label htmlFor="attributes">Attributes</label>
             <Model path="attributes[0]">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input
-                    id="attributes[0]"
-                    onChange={onChangeValue}
-                    value={value}
-                  />
+                  <Input id="attributes[0]" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <Model path="attributes[1]">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input
-                    id="attributes[1]"
-                    onChange={onChangeValue}
-                    value={value}
-                  />
+                  <Input id="attributes[1]" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             {/**
              * When no path is provided, it still give access to the
-             * full form data and connected actions such as onChangeValue,
+             * full form data and connected actions such as onChange,
              * setShouldValidate and setData.
              **/}
             <Model>

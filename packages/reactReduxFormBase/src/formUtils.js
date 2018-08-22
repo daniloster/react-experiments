@@ -66,17 +66,34 @@ export function clearValidations() {
 
 /**
  * Iterates of the list of validations to indentify whether all them are valid.
- * This function expects to be bond.
+ * This function expects to be bond. If no required validation is provided, it
+ * assumes that is required to evaluate the full list of validations.
+ *
+ * @param {array} requiredValidations - list of paths required for the validation
  *
  * @returns {boolean}
  */
-export function isAllValid() {
-  const len = this.allValidations.length;
+export function isAllValid(requiredValidations = []) {
+  const validations = this.allValidations.filter(
+    ({ path }) => requiredValidations.length === 0 || requiredValidations.includes(path),
+  );
+  const len = validations.length;
   for (let index = 0; index < len; index += 1) {
-    if (!this.allValidations[index].isValid) {
+    if (!validations[index].isValid) {
       return false;
     }
   }
 
   return true;
+}
+
+/**
+ * Creates a hash based on the path for onChangeValue function cache
+ *
+ * @param {string} path - path to access the data
+ *
+ * @returns {string}
+ */
+export function getOnChangeValueHash(path) {
+  return `change:${path}`;
 }
