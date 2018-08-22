@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'mutation-helper';
+import get from 'lodash/get';
 
 import { getValidation } from './formUtils';
 
@@ -45,26 +45,12 @@ export default class Model extends PureComponent {
   };
 
   renderChildren = (connectedProps) => {
-    const {
-      dataName,
-      schemaData,
-      setData,
-      setShouldValidate,
-      shouldValidate,
-    } = connectedProps;
+    const { dataName, schemaData, setData, setShouldValidate, shouldValidate } = connectedProps;
     const data = connectedProps[dataName];
     const { children, path } = this.props;
     const value = this.getDataValue(data, path);
-    const validation = getValidation(schemaData, path);
-    const validationData =
-      shouldValidate &&
-      validation &&
-      validation.$validate &&
-      validation.$validate(value);
-    const derivedErrorMessages =
-      shouldValidate &&
-      validation &&
-      validation.$getMessage(value, validationData);
+    const validate = getValidation(schemaData, path);
+    const validations = shouldValidate && validate && validate({ data, path, value });
 
     return (
       <div className="react__form-item">
@@ -75,12 +61,8 @@ export default class Model extends PureComponent {
           setData,
           setShouldValidate,
           value,
+          validations,
         })}
-        {derivedErrorMessages && (
-          <div className="react__form-item-validation-message">
-            {derivedErrorMessages}
-          </div>
-        )}
       </div>
     );
   };

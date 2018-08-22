@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { get, set } from 'mutation-helper';
+import set from 'lodash/fp/set';
+import get from 'lodash/get';
+
 import FormContext from './FormContext';
-import { noop } from './formUtils';
+import { noop, addValidations, clearValidations, isAllValid } from './formUtils';
 
 /**
- * StateForm
- * Container for StateFormItem elements which provides data access
+ * FormState
+ * Container for FormStateItem elements which provides data access
  */
-export default class StateForm extends Component {
+export default class FormState extends Component {
   static propTypes = {
     /**
      * Elements of the form rendered
@@ -39,10 +40,6 @@ export default class StateForm extends Component {
      * Function to propagate settting the data e.g. Function(data)
      */
     setData: PropTypes.func,
-    /**
-     * Defines when the validation should be applied
-     */
-    shouldValidate: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -52,7 +49,6 @@ export default class StateForm extends Component {
     onChange: null,
     schemaData: {},
     setData: noop,
-    shouldValidate: false,
   };
 
   state = {
@@ -60,18 +56,16 @@ export default class StateForm extends Component {
     createOnChangeValue: path => this.createOnChangeValue(path),
     schemaData: this.props.schemaData,
     setData: data => this.setData(data),
-    shouldValidate: this.props.shouldValidate,
+    addValidations: addValidations.bind(this),
+    clearValidations: clearValidations.bind(this),
+    isAllValid: isAllValid.bind(this),
   };
 
   // eslint-disable-next-line
   UNSAFE_componentWillReceiveProps(nextProps) {
     const state = {};
-    const {
-      data: oldData,
-      schemaData: oldSchemaData,
-      shouldValidate: oldShouldValidate,
-    } = this.props;
-    const { data, schemaData, shouldValidate } = nextProps;
+    const { data: oldData, schemaData: oldSchemaData } = this.props;
+    const { data, schemaData } = nextProps;
 
     if (oldSchemaData !== schemaData) {
       state.schemaData = schemaData;
@@ -79,10 +73,6 @@ export default class StateForm extends Component {
 
     if (oldData !== data) {
       state.data = data;
-    }
-
-    if (oldShouldValidate !== shouldValidate) {
-      state.shouldValidate = shouldValidate;
     }
 
     if (Object.keys(state).length) {
@@ -99,7 +89,7 @@ export default class StateForm extends Component {
     }
 
     if (get(data, path) !== value) {
-      this.state.setData(set(data, path, value));
+      this.state.setData(set(path, value, data));
     }
   };
 
@@ -124,9 +114,10 @@ export default class StateForm extends Component {
   render() {
     const { className, children, tagName } = this.props;
     const Container = tagName;
+    this.state.clearValidations();
 
     return (
-      <Container className={classnames(className, 'react__form-container')}>
+      <Container className={className}>
         <FormContext.Provider value={this.state}>{children}</FormContext.Provider>
       </Container>
     );

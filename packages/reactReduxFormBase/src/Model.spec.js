@@ -1,15 +1,11 @@
 import React from 'react';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
-import { get, set } from 'mutation-helper';
 import AppModel from '../DEV/AppModel';
-import schemaData from '../DEV/schemaData';
 import Input from '../DEV/Input';
-import Model from './Model';
 
-import { noop } from '../../../tools/helpers/test/utils';
 import { change, click } from '../../../tools/helpers/test/simulate';
-import { assertPath, assertValue, length } from '../../../tools/helpers/test/assert';
+import { assertValue, length } from '../../../tools/helpers/test/assert';
 
 let element;
 let props;
@@ -73,10 +69,10 @@ describe('<Model />', () => {
       const state = store.getState().personSection;
       assertValue(state[state.dataName]).eql({ firstname: 'Mont' }, 'Data is not the expected');
     });
-    it('And it should have 4 invalid messages', () => {
+    it('And it should have 6 invalid messages', () => {
       length(element.find('.react__form-item-validation-message')).eql(
-        4,
-        'There are no 4 validation messages',
+        6,
+        'There are no 6 validation messages',
       );
     });
   });

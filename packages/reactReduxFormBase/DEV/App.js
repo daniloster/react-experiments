@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import AppModel from './AppModel';
 import AppModelList from './AppModelList';
-import AppStateForm from './AppStateForm';
+import AppFormState from './AppFormState';
 
 export default class App extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class App extends Component {
         <hr />
         <AppModelList />
         <hr />
-        <AppStateForm />
+        <AppFormState />
       </ErrorBoundary>
     );
   }

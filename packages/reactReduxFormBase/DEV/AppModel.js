@@ -31,32 +31,47 @@ export default class AppModel extends Component {
             <h2>ReduxForm</h2>
             <label htmlFor="title">Title</label>
             <Model path="title">
-              {({ onChangeValue, value }) => (
-                <Input id="title" onChange={onChangeValue} value={value} />
+              {({ onChangeValue, value, validations }) => (
+                <span>
+                  <Input id="title" onChange={onChangeValue} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
               )}
             </Model>
             <label htmlFor="age">Age</label>
             <Model path="age">
-              {({ onChangeValue, value }) => (
-                <Input id="age" onChange={onChangeValue} value={value} />
+              {({ onChangeValue, value, validations }) => (
+                <span>
+                  <Input id="age" onChange={onChangeValue} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
               )}
             </Model>
             <label htmlFor="firstname">Firstname</label>
             <Model path="firstname">
-              {({ onChangeValue, value }) => (
-                <Input id="firstname" onChange={onChangeValue} value={value} />
+              {({ onChangeValue, value, validations }) => (
+                <span>
+                  <Input id="firstname" onChange={onChangeValue} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
               )}
             </Model>
             <label htmlFor="lastname">Lastname</label>
             <Model path="lastname">
-              {({ onChangeValue, value }) => (
-                <Input id="lastname" onChange={onChangeValue} value={value} />
+              {({ onChangeValue, value, validations }) => (
+                <span>
+                  <Input id="lastname" onChange={onChangeValue} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
               )}
             </Model>
             <label htmlFor="description">Certificate description</label>
             <Model path="certificate.description">
-              {({ onChangeValue, value }) => (
-                <Input id="description" onChange={onChangeValue} value={value} />
+              {({ onChangeValue, value, validations }) => (
+                <span>
+                  <Input id="description" onChange={onChangeValue} value={value} />
+                  {validations && validations.map(({ message }) => message)}
+                </span>
               )}
             </Model>
             <Model>

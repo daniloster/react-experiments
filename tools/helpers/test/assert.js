@@ -1,10 +1,11 @@
 /* global expect */
-import { get } from 'mutation-helper';
+import { get } from 'lodash';
 
 export function assertValue(val) {
   const expected = expect(val);
 
   return {
+    diff: (value, message) => expected.to.not.be.eql(value, message),
     eql: (value, message) => expected.to.be.eql(value, message),
     length: (total, message) => expected.to.have.length(total, message),
     contain: (text, message) => expected.to.contain(text, message),
