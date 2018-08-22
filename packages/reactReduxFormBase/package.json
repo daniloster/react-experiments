@@ -1,6 +1,6 @@
 {
   "name": "react-redux-form-base",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "Provides a composable form structure with validation",
   "main": "lib/index.js",
   "license": "MIT",
@@ -69,9 +69,9 @@
     "cross-env": "5.0.5",
     "enzyme": "3.3.0",
     "eslint": "3.19.0",
+    "lodash": "4.17.10",
     "mocha": "3.5.3",
     "mochawesome": "2.3.1",
-    "lodash": "4.17.10",
     "nyc": "10.0.0",
     "prop-types": "15.6.0",
     "react": "16.4.1",
