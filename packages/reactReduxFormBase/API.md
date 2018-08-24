@@ -19,7 +19,7 @@ prop | type | default | required | description
 **tagName** | union | 'form' | :x: | Tag name used as container
 **data** | shape | {} | :x: | Initial data provided
 **onChange** | func | null | :x: | Function to propagate change of the data e.g. Function(path, value)
-**schemaData** | shape | {} | :x: | Schema of validation e.g. { [string]: { $validate: function, $getMessage: function } }
+**schemaData** | shape | {} | :x: | Schema of validation e.g. { [string]: [result of combineValidations function, see recipe] }
 **setData** | func | noop | :x: | Function to propagate settting the data e.g. Function(data)
 
 ### src/FormStateItem.js
@@ -47,6 +47,6 @@ provided to fields from a redux store.
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
 **path** | string | null | :x: | Path defined to change form data.
-**children** | func |  | :white_check_mark: | Render function e.g. ({ data, schemaData, onChangeValue, setData, setShouldValidate, shouldValidate }) => <Component />
+**children** | func |  | :white_check_mark: | Render function e.g. ({ data, schemaData, onChange, onChangeValue, setData }) => <Component />
 **onChangeValue** | func |  | :white_check_mark: | Action function e.g. (path, value) => ({ActionCreator})
 
