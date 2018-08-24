@@ -16,7 +16,7 @@ export default class Model extends PureComponent {
      */
     path: PropTypes.string,
     /**
-     * Render function e.g. ({ data, schemaData, onChangeValue, setData, setShouldValidate, shouldValidate }) => <Component />
+     * Render function e.g. ({ data, schemaData, onChange, onChangeValue, setData }) => <Component />
      */
     children: PropTypes.func.isRequired, // Function => Renderer
     /**
@@ -29,9 +29,13 @@ export default class Model extends PureComponent {
     path: null,
   };
 
-  onChangeValue = (e) => {
+  onChange = (e) => {
+    this.onChangeValue(e.target.value);
+  };
+
+  onChangeValue = (value) => {
     const { path, onChangeValue } = this.props;
-    onChangeValue(path, e.target.value);
+    onChangeValue(path, value);
   };
 
   getDataValue = (data, path) => {
@@ -45,21 +49,21 @@ export default class Model extends PureComponent {
   };
 
   renderChildren = (connectedProps) => {
-    const { dataName, schemaData, setData, setShouldValidate, shouldValidate } = connectedProps;
+    const { dataName, schemaData, setData } = connectedProps;
     const data = connectedProps[dataName];
     const { children, path } = this.props;
     const value = this.getDataValue(data, path);
     const validate = getValidation(schemaData, path);
-    const validations = shouldValidate && validate && validate({ data, path, value });
+    const validations = validate && validate({ data, path, value });
 
     return (
       <div className="react__form-item">
         {children({
           data,
           path,
+          onChange: this.onChange,
           onChangeValue: this.onChangeValue,
           setData,
-          setShouldValidate,
           value,
           validations,
         })}

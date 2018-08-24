@@ -31,69 +31,69 @@ export default class AppModel extends Component {
             <h2>ReduxForm</h2>
             <label htmlFor="title">Title</label>
             <Model path="title">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="title" onChange={onChangeValue} value={value} />
+                  <Input id="title" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="firstname">Firstname</label>
             <Model path="firstname">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="firstname" onChange={onChangeValue} value={value} />
+                  <Input id="firstname" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="lastname">Lastname</label>
             <Model path="lastname">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="lastname" onChange={onChangeValue} value={value} />
+                  <Input id="lastname" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="contacts">Contacts</label>
             <Model path="contacts[0].value">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="contacts[0].value" onChange={onChangeValue} value={value} />
+                  <Input id="contacts[0].value" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <Model path="contacts[1].value">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="contacts[1].value" onChange={onChangeValue} value={value} />
+                  <Input id="contacts[1].value" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <label htmlFor="attributes">Attributes</label>
             <Model path="attributes[0]">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="attributes[0]" onChange={onChangeValue} value={value} />
+                  <Input id="attributes[0]" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <Model path="attributes[1]">
-              {({ onChangeValue, value, validations }) => (
+              {({ onChange, value, validations }) => (
                 <span>
-                  <Input id="attributes[1]" onChange={onChangeValue} value={value} />
+                  <Input id="attributes[1]" onChange={onChange} value={value} />
                   {validations && validations.map(({ message }) => message)}
                 </span>
               )}
             </Model>
             <Model>
-              {({ setShouldValidate }) => (
-                <button id="btnValidate" type="button" onClick={() => setShouldValidate(true)}>
-                  Validate
+              {() => (
+                <button id="btnValidate" type="button">
+                  Submit
                 </button>
               )}
             </Model>

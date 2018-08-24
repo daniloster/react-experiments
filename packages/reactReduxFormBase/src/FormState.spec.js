@@ -23,9 +23,9 @@ function getComponentAsNode(customProps = {}) {
     <FormState schemaData={schemaData} {...customProps}>
       <label htmlFor="description">Certificate description</label>
       <FormStateItem path="certificate.description">
-        {({ onChangeValue, value, validations }) => (
+        {({ onChange, value, validations }) => (
           <div>
-            <Input id="description" onChange={onChangeValue} value={value} />
+            <Input id="description" onChange={onChange} value={value} />
             {validations && validations.map(({ message }) => message)}
           </div>
         )}
@@ -34,9 +34,9 @@ function getComponentAsNode(customProps = {}) {
 
       <label htmlFor="firstname">Firstname</label>
       <FormStateItem path="firstname">
-        {({ onChangeValue, value, validations }) => (
+        {({ onChange, value, validations }) => (
           <div>
-            <Input id="firstname" onChange={onChangeValue} value={value} />
+            <Input id="firstname" onChange={onChange} value={value} />
             {validations && validations.map(({ message }) => message)}
           </div>
         )}
@@ -45,14 +45,22 @@ function getComponentAsNode(customProps = {}) {
 
       <label htmlFor="lastname">Lastname</label>
       <FormStateItem path="lastname">
-        {({ onChangeValue, value, validations }) => (
+        {({ onChange, value, validations }) => (
           <div>
-            <Input id="description" onChange={onChangeValue} value={value} />
+            <Input id="description" onChange={onChange} value={value} />
             {validations && validations.map(({ message }) => message)}
           </div>
         )}
       </FormStateItem>
       <br />
+
+      <FormStateItem>
+        {({ isAllValid }) => (
+          <a href="javascript: console.log('going nowhere');" disabled={!isAllValid(['firstname'])}>
+            Docs
+          </a>
+        )}
+      </FormStateItem>
 
       <FormStateItem>
         {({ isAllValid }) => (
@@ -102,9 +110,15 @@ describe('<StateForm />', () => {
       assertValue(props.setData.called).eql(true, 'setData was not called');
       assertValue(props.setData.calledOnce).eql(true, 'setData was called more than once');
     });
+    it('And the submit button should not be enabled', () => {
+      assertValue(element.find('button').props().disabled).eql(true, 'Submit button should not be enabled');
+    });
+    it('And the link should be enabled', () => {
+      assertValue(element.find('a').props().disabled).eql(false, 'Link should be enabled');
+    });
   });
 
-  describe('StateForm should update the state with value changed', () => {
+  describe('StateForm should update the state with data changed', () => {
     const firstname = 'Mont';
     it('Given the StateForm has firstname set to "Mont"', () => {
       mountComponent({
@@ -149,7 +163,6 @@ describe('<StateForm />', () => {
       length(element.find('.react__form-item-validation-message')).eql(0);
     });
     it('And to see the submit button enabled', () => {
-      console.log('element.find("button").props().disabled:', element.find('button').props().disabled);
       assertValue(element.find('button').props().disabled).diff(true, 'Submit button should be enabled');
     });
   });
@@ -168,7 +181,6 @@ describe('<StateForm />', () => {
       length(element.find('.react__form-item-validation-message')).eql(0);
     });
     it('And to see the submit button enabled', () => {
-      console.log('element.find("button").props().disabled:', element.find('button').props().disabled);
       assertValue(element.find('button').props().disabled).diff(true, 'Submit button should be enabled');
     });
   });
